@@ -1,40 +1,39 @@
 class CharacterClass:
-    def __init__(self, starting_abilities, # <-- list of strings
+    def __init__(self,
                  class_stat_bonuses, # <-- dictionary
                  class_name, # <-- string
                  class_description, # <-- string
-                 primary_stats, # <-- list of strings to show order of importance of abilities to the class.
-                 hit_dice_per_level, # <-- a string something like d10 or d6 depending on class
-                 ability_progression, #<-- planned as a dictionary
+                 primary_stats, # <-- set of strings to show order of importance of abilities to the class.
+                 hit_dice_per_level, # <-- an integer
+                 ability_progression, #<-- planned as a dictionary # !!!!!! Note !!!!!! Grab starting abilities from ability_progress's first dictionary item so you're not repeating code.
                  weapon_proficiencies, #<-- planned as a list of weapon types: i.e. 'light' 'medium' 'heavy' etc..
                  armor_proficiencies): # <-- planned as a list of armor types: i.e. 'sword' 'dagger' 'whip' etc..
-        self.starting_abilities = starting_abilities
-        self.class_stat_bonuses = class_stat_bonuses
+        self.class_stat_bonuses = class_stat_bonuses if class_stat_bonuses is not None else {} #<-- dictionary
         self.class_name = class_name
         self.class_description = class_description
-        self.primary_stats = primary_stats
-        self.hit_dice_per_level = hit_dice_per_level # <-- Later, will be implementing giving the player a choice between the average health of the hit dice number, or letting them let the fate of the dice roll give their hp upgrade on level up.
-        self.ability_progression = ability_progression
-        self.weapon_proficiencies = weapon_proficiencies
-        self.armor_proficiencies = armor_proficiencies
+        self.primary_stats = primary_stats if primary_stats is not None else {} # <-- set
+        self.hit_dice_per_level = hit_dice_per_level # int <-- Later, will be implementing giving the player a choice between the average health of the hit dice number, or letting them let the fate of the dice roll give their hp upgrade on level up.
+        self.ability_progression = ability_progression if ability_progression is not None else {} # <-- dictionary
+        self.weapon_proficiencies = weapon_proficiencies if weapon_proficiencies is not None else set() # <-- set
+        self.armor_proficiencies = armor_proficiencies if armor_proficiencies is not None else set() # <-- set
 
 class CharacterRace:
     def __init__(self,
                 name, # <-- string
                 description, # <-- string
                 racial_stat_mods, # <-- dictionary
-                racial_abilities, # <-- list of strings
-                movement_speed,
-                size,
-                languages
+                racial_abilities, # <-- set of strings
+                movement_speed, # <-- number
+                size, # <-- number
+                languages # <-- set
                 ):
         self.name = name
         self.description = description
-        self.racial_stat_mods = racial_stat_mods
-        self.racial_abilties = racial_abilities
+        self.racial_stat_mods = racial_stat_mods if racial_stat_mods is not None else {}
+        self.racial_abilties = racial_abilities if racial_abilities is not None else set()
         self.movement_speed = movement_speed
         self.size = size
-        self.languages = languages
+        self.languages = languages if languages is not None else set()
 
 
 class Character:

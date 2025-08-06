@@ -1,6 +1,9 @@
 The Smoother, Smarter To-Do List
 The goal is to build a "vertical slice"—a tiny version of the full game experience—and then add layers of complexity.
 
+STILL ON CHARACTER CREATION. FINISH UP: CURRENT STEP -> character_classes
+
+
 Phase 1: The "Walking Simulator" Core
 (Goal: Get a character object to exist and move in a world.)
 Basic Character Creation: Just the essentials. Your Character class, maybe a Player subclass. Get to the point where you can create a player object with a name and stats. Don't worry about all the CharacterClass details yet. You just need a "thing" to exist.

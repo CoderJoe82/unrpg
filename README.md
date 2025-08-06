@@ -2,6 +2,12 @@
 
 Hello! This is just my personal side project. I'm doing it to help me learn python, and also consider game design concepts that I like and how to implement them over time. It will be a long, bigger project than I've ever worked on when it's done. I'm hoping it ends up a great learning experience as well as just have some fun.
 
+V-0.0.4
+---
+-Added a constants.py file to house everything that will be referenced from to create and run things.
+-Finished up and refactored my character_creation.py file's current code.
+-Added a character_classes.py file to hold all the information on character classes.
+
 V-0.0.3
 ---
 -Added a CharacterClass and CharacterRace class to help make character creation smoother.
