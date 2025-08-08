@@ -1,11 +1,12 @@
 from locations import display_welcome_message
-from helper_functions import print_wrapper
+from helper_functions import clear_screen
 from menus import game_start_menu
 
 def main():
     """
     This is the main function where our game will run.
     """
+    clear_screen()
     display_welcome_message()
     game_start_menu()
 

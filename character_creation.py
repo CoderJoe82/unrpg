@@ -23,7 +23,7 @@ class CharacterClass:
 class CharacterRace:
     def __init__(self,
                 race_name, # <-- string
-                description, # <-- string
+                race_description, # <-- string
                 racial_stat_mods, # <-- dictionary
                 racial_abilities, # <-- set of strings
                 movement_speed, # <-- number
@@ -31,7 +31,7 @@ class CharacterRace:
                 languages # <-- set
                 ):
         self.race_name = race_name
-        self.description = description
+        self.race_description = race_description
         self.racial_stat_mods = racial_stat_mods if racial_stat_mods is not None else {}
         self.racial_abilities = racial_abilities if racial_abilities is not None else set()
         self.movement_speed = movement_speed

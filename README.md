@@ -2,6 +2,10 @@
 
 Hello! This is just my personal side project. I'm doing it to help me learn python, and also consider game design concepts that I like and how to implement them over time. It will be a long, bigger project than I've ever worked on when it's done. I'm hoping it ends up a great learning experience as well as just have some fun.
 
+V-0.0.6
+---
+-Minor edit. Got through character creation menu so your class and race is picked properly.
+
 V-0.0.5
 ---
 -Working on character creation some more.

@@ -14,3 +14,13 @@ def print_wrapper(text):
     wrapped_text = textwrap.fill(text, width = width)
 
     print(wrapped_text)
+
+def clear_screen():
+    """
+    Clears the terminal screen.
+    This function is cross-platform and works on Windows, macOS, and Linux.
+    """
+    if os.name == "nt":
+        os.system('cls')
+    else:
+        os.system('clear')
