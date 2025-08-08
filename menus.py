@@ -1,7 +1,7 @@
 from colorama import Fore, Style, init
 from character_classes import CHARACTER_CLASSES
 from character_races import CHARACTER_RACES
-from character_creation import CharacterClass, CharacterRace
+from character_creation import CharacterClass, CharacterRace, Player
 from helper_functions import clear_screen
 import textwrap
 
@@ -216,7 +216,18 @@ def character_creation_menu():
     # --- Step 3: (Future) Choose a Name ---
     clear_screen()
     print("Finally, what is your name?")
-    player_name = input("> ")
+    player_name = input("> ").strip()
+
+    if not player_name:
+        player_name = "Adventurer"
+
+    # Calling the player class constructor and adding the appropriate data it needs to make our player.
+
+    player = Player(
+        character_name = player_name,
+        character_race = chosen_race,
+        character_class = chosen_class
+    )
 
     # --- Step 4: Combine everything ---
     # This is where you would create the final Player object.
@@ -227,10 +238,17 @@ def character_creation_menu():
 
     clear_screen()
     print("--- CHARACTER SUMMARY ---")
-    print(f"  Name: {player_name}")
-    print(f"  Race: {chosen_race.race_name}")
-    print(f" Class: {chosen_class.class_name}")
+    print(f"       Name: {player.character_name}")
+    print(f"       Race: {player.character_race.race_name}")
+    print(f"      Class: {player.character_class.class_name}")
+    print(f"         HP: {player.current_health}/{player.max_health}")
+    print("  Base Stats:")
+
+    for stat, value in player.stats.items():
+        print(f"    - {stat.capitalize()}: {value}")
     print("-------------------------")
     input("\nPress Enter to begin your adventure...")
+
+    return player
 
     # For now, let's just return a placeholder. In the future, this will return the real player object.

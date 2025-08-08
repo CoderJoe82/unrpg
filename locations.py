@@ -1,5 +1,5 @@
 from colorama import Fore, Style, init
-from helper_functions import print_wrapper
+from helper_functions import print_wrapper, print_divider
 
 welcome_message = f"""
 Welcome to a world poised on a knife's edge between the primal and the profound.
@@ -22,6 +22,8 @@ Every choice, from the smallest kindness to the most calculated cruelty, sends r
 Your story begins now.
 """
 
+divider_symbol = '-'
+
 def display_welcome_message():
     """
     Displays the stylized welcome message and game introduction.
@@ -38,12 +40,12 @@ def display_welcome_message():
     print(Fore.YELLOW + "╚" + "═" * box_width + "╝")
     print() # Add a little space
 
-    print("-" * (box_width + 2))
+    # print("-" * (box_width + 2))
+    print_divider(divider_symbol)
     # The Welcome Prose
     print_wrapper(welcome_message)
-
-
-    print("-" * (box_width + 2))
+    print_divider(divider_symbol)
+    # print("-" * (box_width + 2))
     print("\n")
 
 LOCATIONS = {

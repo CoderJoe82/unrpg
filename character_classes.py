@@ -5,9 +5,9 @@ CHARACTER_CLASSES = {
         "class_name": "Accountant",
         "class_description": "A master of ledgers and loopholes, who vanquishes foes with the sheer force of fiscal policy.",
         "class_stat_mods": {
-            "Intelligence": 2,
-            "Charisma": 1,
-            "Strength": -1  # All that sitting is bad for the muscles
+            "intelligence": 2,
+            "charisma": 1,
+            "strength": -1  # All that sitting is bad for the muscles
         },
         "primary_stats": ("Intelligence", "Wisdom", "Charisma"), # <-- A tuple, for order!
         "hit_dice_per_level": 6, # Not very sturdy
@@ -24,9 +24,9 @@ CHARACTER_CLASSES = {
         "class_name": "Professional Napper",
         "class_description": "A connoisseur of comfort who has mastered the art of strategic slumber, drawing immense power from rest.",
         "class_stat_mods": {
-            "Constitution": 2,
-            "Wisdom": 1,
-            "Dexterity": -1 # A bit groggy
+            "constitution": 2,
+            "wisdom": 1,
+            "dexterity": -1 # A bit groggy
         },
         "primary_stats": ("Constitution", "Wisdom", "Strength"),
         "hit_dice_per_level": 12, # Incredibly resilient
@@ -43,9 +43,9 @@ CHARACTER_CLASSES = {
         "class_name": "Cat Herder",
         "class_description": "An individual of impossible patience and lightning-fast reflexes, dedicated to the chaotic art of managing the unmanageable.",
         "class_stat_mods": {
-            "Dexterity": 2,
-            "Wisdom": 1,
-            "Charisma": -1 # Constantly covered in cat hair
+            "dexterity": 2,
+            "wisdom": 1,
+            "charisma": -1 # Constantly covered in cat hair
         },
         "primary_stats": ("Dexterity", "Wisdom", "Constitution"),
         "hit_dice_per_level": 8,

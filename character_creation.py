@@ -1,5 +1,6 @@
 from character_classes import CHARACTER_CLASSES
 from character_races import CHARACTER_RACES
+from constants import BASE_STATS
 
 class CharacterClass:
     def __init__(self,
@@ -46,7 +47,7 @@ class Character:
     def __init__(self,
                    character_name,
                    max_health, # <-- We don't need to set hp here because we'll use max_hp to also assign it to hp at character creation
-                   race,
+                   character_race,
                    character_class,
                    base_stats = None,
                    abilities = None,
@@ -65,24 +66,69 @@ class Character:
         # --- Attributes ---
         self.character_name = character_name
         self.max_health = max_health
-        self.race = race
+        self.character_race = character_race
         self.character_class = character_class
         # - These coding functions are saying if no inventory is provided, the inventory defaults to []. Otherwise, it gives the character the inventory provided when made.
         # - The above comment applies to equipment, abilities, and racial abilities.
         self.inventory = inventory if inventory is not None else []
         self.equipment = equipment if equipment is not None else {}
         self.abilities = abilities if abilities is not None else []
-        self.racial_abilities = race.racial_abilities
+        self.racial_abilities = character_race.racial_abilities
         self.base_stats = base_stats if base_stats is not None else {}
         self.starting_gold = starting_gold
         self.stats = {}
         for stat_name, value in base_stats.items():
-            bonus = race.racial_stat_mods.get(stat_name, 0) + character_class.class_stat_mods.get(stat_name, 0)
+            bonus = character_race.racial_stat_mods.get(stat_name, 0) + character_class.class_stat_mods.get(stat_name, 0)
             self.stats[stat_name] = value + bonus
 
 
         # --- METHODS ---
         pass # <- placeholder for now. Will add methods later.
+
+class Player(Character):
+    def __init__(self, character_name, character_race, character_class):
+         # This is where the magic happens. We need to gather all the
+        # ingredients required by the main Character class's __init__ method.
+        # Let's call them one by one.
+
+        # --- Ingredient 1: Max Health ---
+        # A level 1 character's health is typically the max value of their class's hit die.
+        # We can add a Constitution bonus later, but this is a great start.
+        starting_max_health = character_class.hit_dice_per_level
+
+        # --- Ingredient 2: Abilities ---
+        # You had a great note about this! We grab the starting abilities
+        # from the class's ability progression for level 1.
+        # .get(1, []) is a safe way to do this. It gets the list for key 1,
+        # or returns an empty list [] if level 1 has no abilities.
+        starting_abilities = character_class.ability_progression.get(1, [])
+        
+        # --- Ingredient 3: Starting Gear/Gold (A thought for the future) ---
+        # Your class doesn't have starting gold/inventory yet, but if it did,
+        # you'd get it here. For now, we'll use empty defaults.
+        starting_inventory = [] # e.g., character_class.starting_inventory
+        starting_gold = 0       # e.g., character_class.starting_gold
+
+        # --- Now, we call the parent class's __init__ method (the "super" class) ---
+        # We pass it all the ingredients we just prepared.
+        super().__init__(
+            character_name=character_name,
+            max_health=starting_max_health,
+            character_race=character_race,
+            character_class=character_class,
+            base_stats=BASE_STATS.copy(),  # Use a copy so we don't accidentally change the constant
+            abilities=starting_abilities,
+            inventory=starting_inventory,
+            equipment={}, # Players start with nothing equipped
+            starting_gold=starting_gold
+        )
+        
+        # We also need to set the player's current health. A new character starts at full health.
+        self.current_health = self.max_health
+
+        # Finally, we can add any attributes that are UNIQUE to the Player
+        self.level = 1
+        self.experience_points = 0
 
 
 # Character creation flow:

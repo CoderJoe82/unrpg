@@ -33,3 +33,12 @@ EQUIPMENT_SLOTS = {
     'accessory_one',
     'accessory_two'
 }
+
+BASE_STATS = {
+    "strength" : 10,
+    "dexterity" : 10,
+    "constitution" : 10,
+    "intelligence" : 10,
+    "charisma" : 10,
+    "wisdom" : 10
+}
