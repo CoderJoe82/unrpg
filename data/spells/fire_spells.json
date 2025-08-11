@@ -1,0 +1,206 @@
+{
+    "spells": [
+        {
+            "id": "fire_001",
+            "name": "Ember",
+            "level": 1,
+            "source": "fire",
+            "type": "spell",
+            "description": "Hurl a small, smoldering coal at an enemy. A simple but reliable starting point for any pyromancer.",
+            "damage": "1d6",
+            "mana_cost": 5,
+            "cast_time": 1,
+            "cooldown": 0,
+            "target_type": "single",
+            "scaling": {"intelligence": 0.25},
+            "effects": []
+        },
+        {
+            "id": "fire_002",
+            "name": "Inner Flame",
+            "level": 1,
+            "source": "fire",
+            "type": "spell",
+            "description": "Stoke your own inner fire, causing your next fire spell within 3 turns to deal 25% additional damage.",
+            "damage": null,
+            "mana_cost": 8,
+            "cast_time": 1,
+            "cooldown": 6,
+            "target_type": "self",
+            "scaling": {},
+            "effects": [
+                {"type": "buff", "stat": "fire_damage_modifier", "value": 0.25, "duration": 3, "name": "Inner Flame"}
+            ]
+        },
+        {
+            "id": "fire_003",
+            "name": "Heat Haze",
+            "level": 2,
+            "source": "fire",
+            "type": "spell",
+            "description": "Distort the air around a target with intense heat, making them less likely to land their next attack.",
+            "damage": null,
+            "mana_cost": 10,
+            "cast_time": 1,
+            "cooldown": 4,
+            "target_type": "single",
+            "scaling": {},
+            "effects": [
+                {"type": "debuff", "stat": "accuracy", "value": -20, "duration": 2, "name": "Heat Haze"}
+            ]
+        },
+        {
+            "id": "fire_004",
+            "name": "Firebolt",
+            "level": 2,
+            "source": "fire",
+            "type": "spell",
+            "description": "Launch a focused bolt of raw fire. An evolution of the simple Ember spell.",
+            "damage": "2d8",
+            "mana_cost": 12,
+            "cast_time": 1,
+            "cooldown": 0,
+            "target_type": "single",
+            "scaling": {"intelligence": 0.5},
+            "effects": []
+        },
+        {
+            "id": "fire_005",
+            "name": "Sear",
+            "level": 3,
+            "source": "fire",
+            "type": "spell",
+            "description": "Brand a target with searing heat, causing minor initial damage and leaving them burning for several turns.",
+            "damage": "1d4",
+            "mana_cost": 15,
+            "cast_time": 1,
+            "cooldown": 2,
+            "target_type": "single",
+            "scaling": {"intelligence": 0.2},
+            "effects": [
+                {"type": "dot", "damage": "1d6", "duration": 3, "name": "Burning"}
+            ]
+        },
+        {
+            "id": "fire_006",
+            "name": "Cinder Burst",
+            "level": 4,
+            "source": "fire",
+            "type": "spell",
+            "description": "Cause a target to erupt in a shower of hot cinders, dealing damage to them and nearby enemies.",
+            "damage": "3d6",
+            "mana_cost": 22,
+            "cast_time": 1,
+            "cooldown": 3,
+            "target_type": "area",
+            "radius": "5ft",
+            "scaling": {"intelligence": 0.4},
+            "effects": []
+        },
+        {
+            "id": "fire_007",
+            "name": "Wall of Fire",
+            "level": 5,
+            "source": "fire",
+            "type": "spell",
+            "description": "Summon a curtain of shimmering flame that damages any enemy who passes through it.",
+            "damage": "4d6",
+            "mana_cost": 30,
+            "cast_time": 1,
+            "cooldown": 8,
+            "target_type": "zone",
+            "zone_size": "20ft line",
+            "duration": 5,
+            "scaling": {"intelligence": 0.6},
+            "effects": []
+        },
+        {
+            "id": "fire_008",
+            "name": "Fireball",
+            "level": 6,
+            "source": "fire",
+            "type": "spell",
+            "description": "The quintessential pyromancer's spell. Hurl a bead of fire that detonates in a massive, fiery explosion.",
+            "damage": "6d8",
+            "mana_cost": 40,
+            "cast_time": 1,
+            "cooldown": 4,
+            "target_type": "area",
+            "radius": "15ft",
+            "scaling": {"intelligence": 0.75},
+            "effects": [
+                {"type": "knockback", "strength": "5ft"}
+            ]
+        },
+        {
+            "id": "fire_009",
+            "name": "Immolate",
+            "level": 7,
+            "source": "fire",
+            "type": "spell",
+            "description": "Set an enemy ablaze with an inferno that deals heavy damage over time.",
+            "damage": "2d6",
+            "mana_cost": 35,
+            "cast_time": 1,
+            "cooldown": 2,
+            "target_type": "single",
+            "scaling": {"intelligence": 0.4},
+            "effects": [
+                {"type": "dot", "damage": "2d8", "duration": 4, "name": "Immolated"}
+            ]
+        },
+        {
+            "id": "fire_010",
+            "name": "Combustion",
+            "level": 8,
+            "source": "fire",
+            "type": "spell",
+            "description": "Cause all of your burning effects on a target to instantly erupt, dealing all their remaining damage at once, plus a bonus.",
+            "damage": "3d10",
+            "mana_cost": 25,
+            "cast_time": 0,
+            "cooldown": 10,
+            "target_type": "single",
+            "scaling": {"intelligence": 1.0},
+            "effects": [
+                {"type": "consume_dot", "source_type": "fire"}
+            ]
+        },
+        {
+            "id": "fire_011",
+            "name": "Living Bomb",
+            "level": 9,
+            "source": "fire",
+            "type": "spell",
+            "description": "The target becomes a Living Bomb for 5 turns. If they die while affected, they explode, dealing massive damage to nearby enemies.",
+            "damage": null,
+            "mana_cost": 50,
+            "cast_time": 1,
+            "cooldown": 12,
+            "target_type": "single",
+            "scaling": {},
+            "effects": [
+                {"type": "debuff", "on_death_effect": {"type": "explosion", "damage": "8d10", "radius": "20ft"}, "duration": 5, "name": "Living Bomb"}
+            ]
+        },
+        {
+            "id": "fire_012",
+            "name": "Meteor",
+            "level": 10,
+            "source": "fire",
+            "type": "spell",
+            "description": "Tear a meteor from the heavens and crash it down upon your foes. It deals immense damage at the impact point and less in a wider radius.",
+            "damage": "10d10",
+            "mana_cost": 80,
+            "cast_time": 2,
+            "cooldown": 20,
+            "target_type": "area",
+            "radius": "10ft",
+            "scaling": {"intelligence": 1.5},
+            "effects": [
+                {"type": "secondary_damage", "damage": "5d10", "radius": "25ft"},
+                {"type": "stun", "duration": 1, "radius": "10ft"}
+            ]
+        }
+    ]
+}

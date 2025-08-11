@@ -1,0 +1,215 @@
+{
+    "spells": [
+        {
+            "id": "frost_001",
+            "name": "Frostbolt",
+            "level": 1,
+            "source": "frost",
+            "type": "spell",
+            "description": "Fires a bolt of jagged ice, dealing minor damage and chilling the target, slightly reducing their speed.",
+            "damage": "1d6",
+            "mana_cost": 6,
+            "cast_time": 1,
+            "cooldown": 0,
+            "target_type": "single",
+            "scaling": {"intelligence": 0.3},
+            "effects": [
+                {"type": "debuff", "stat": "speed", "value": -10, "duration": 2, "name": "Chilled"}
+            ]
+        },
+        {
+            "id": "frost_002",
+            "name": "Frost Armor",
+            "level": 1,
+            "source": "frost",
+            "type": "spell",
+            "description": "Encases you in a layer of protective ice, increasing your armor and chilling any enemy that strikes you in melee.",
+            "damage": null,
+            "mana_cost": 10,
+            "cast_time": 1,
+            "cooldown": 0,
+            "target_type": "self",
+            "scaling": {},
+            "effects": [
+                {"type": "buff", "stat": "armor", "value": 20, "duration": 10, "name": "Frost Armor"},
+                {"type": "on_hit_effect", "effect": {"type": "debuff", "stat": "speed", "value": -15, "duration": 1}, "duration": 10}
+            ]
+        },
+        {
+            "id": "frost_003",
+            "name": "Ice Lance",
+            "level": 2,
+            "source": "frost",
+            "type": "spell",
+            "description": "Conjure a sharp spear of pure ice. Deals triple damage to targets that are Frozen.",
+            "damage": "1d10",
+            "mana_cost": 12,
+            "cast_time": 1,
+            "cooldown": 0,
+            "target_type": "single",
+            "scaling": {"intelligence": 0.4},
+            "effects": [
+                {"type": "conditional_damage", "condition": "frozen", "multiplier": 3}
+            ]
+        },
+        {
+            "id": "frost_004",
+            "name": "Cone of Cold",
+            "level": 3,
+            "source": "frost",
+            "type": "spell",
+            "description": "Blast enemies in a cone before you with a wave of intense cold, heavily slowing them.",
+            "damage": "2d8",
+            "mana_cost": 20,
+            "cast_time": 1,
+            "cooldown": 4,
+            "target_type": "cone",
+            "range": "15ft",
+            "scaling": {"intelligence": 0.45},
+            "effects": [
+                {"type": "debuff", "stat": "speed", "value": -50, "duration": 3, "name": "Chilled"}
+            ]
+        },
+        {
+            "id": "frost_005",
+            "name": "Frost Nova",
+            "level": 4,
+            "source": "frost",
+            "type": "spell",
+            "description": "An explosion of ice erupts from you, Freezing all nearby enemies in place.",
+            "damage": "1d4",
+            "mana_cost": 25,
+            "cast_time": 1,
+            "cooldown": 10,
+            "target_type": "area",
+            "radius": "10ft",
+            "scaling": {},
+            "effects": [
+                {"type": "root", "duration": 2, "name": "Frozen"}
+            ]
+        },
+        {
+            "id": "frost_006",
+            "name": "Glacial Spike",
+            "level": 5,
+            "source": "frost",
+            "type": "spell",
+            "description": "Summon a massive spike of ice from the earth to impale your foe.",
+            "damage": "5d10",
+            "mana_cost": 35,
+            "cast_time": 1,
+            "cooldown": 3,
+            "target_type": "single",
+            "scaling": {"intelligence": 0.7},
+            "effects": []
+        },
+        {
+            "id": "frost_007",
+            "name": "Blizzard",
+            "level": 6,
+            "source": "frost",
+            "type": "spell",
+            "description": "A storm of biting ice shards blankets a large area, dealing damage each turn and slowing enemies within.",
+            "damage": null,
+            "mana_cost": 50,
+            "cast_time": 1,
+            "cooldown": 12,
+            "target_type": "zone",
+            "radius": "20ft",
+            "duration": 4,
+            "scaling": {},
+            "effects": [
+                {"type": "zone_dot", "damage": "2d6", "effect": {"type": "debuff", "stat": "speed", "value": -25, "name": "Chilled"}}
+            ]
+        },
+        {
+            "id": "frost_008",
+            "name": "Ice Barrier",
+            "level": 7,
+            "source": "frost",
+            "type": "spell",
+            "description": "Create a shield of ice around yourself that absorbs a significant amount of damage. When it breaks, it explodes outward, chilling nearby enemies.",
+            "damage": null,
+            "mana_cost": 30,
+            "cast_time": 1,
+            "cooldown": 15,
+            "target_type": "self",
+            "scaling": {"intelligence": 2.0},
+            "effects": [
+                {"type": "absorb_shield", "health": 100, "on_break_effect": {"type": "aoe_effect", "radius": "10ft", "effect": {"type": "debuff", "stat": "speed", "value": -30, "duration": 3}}}
+            ]
+        },
+        {
+            "id": "frost_009",
+            "name": "Deep Freeze",
+            "level": 8,
+            "source": "frost",
+            "type": "spell",
+            "description": "Encases a single target in a block of ice, stunning them for a long duration. The ice shatters if the target takes significant damage.",
+            "damage": null,
+            "mana_cost": 40,
+            "cast_time": 1,
+            "cooldown": 20,
+            "target_type": "single",
+            "scaling": {},
+            "effects": [
+                {"type": "stun", "duration": 4, "break_on_damage_threshold": 50, "name": "Deep Freeze"}
+            ]
+        },
+        {
+            "id": "frost_010",
+            "name": "Frozen Orb",
+            "level": 9,
+            "source": "frost",
+            "type": "spell",
+            "description": "Launch an orb of swirling frost that travels forward, automatically firing Ice Lances at nearby enemies.",
+            "damage": null,
+            "mana_cost": 65,
+            "cast_time": 1,
+            "cooldown": 10,
+            "target_type": "projectile_aoe",
+            "duration": 5,
+            "scaling": {"intelligence": 0.2},
+            "effects": [
+                {"type": "pulse_damage", "damage": "1d10", "interval": 1, "targets": "random_in_radius"}
+            ]
+        },
+        {
+            "id": "frost_011",
+            "name": "Icy Veins",
+            "level": 9,
+            "source": "frost",
+            "type": "spell",
+            "description": "Your blood turns to a freezing slurry, dramatically increasing your casting speed and preventing spell interruption for a short time.",
+            "damage": null,
+            "mana_cost": 20,
+            "cast_time": 0,
+            "cooldown": 18,
+            "target_type": "self",
+            "scaling": {},
+            "effects": [
+                {"type": "buff", "stat": "haste", "value": 0.30, "duration": 5, "name": "Icy Veins"},
+                {"type": "buff", "stat": "uninterruptible", "value": true, "duration": 5}
+            ]
+        },
+        {
+            "id": "frost_012",
+            "name": "Glacial Comet",
+            "level": 10,
+            "source": "frost",
+            "type": "spell",
+            "description": "Summon a massive comet of ice to crash down, dealing huge damage and freezing all survivors in the impact zone.",
+            "damage": "8d12",
+            "mana_cost": 100,
+            "cast_time": 2,
+            "cooldown": 30,
+            "target_type": "area",
+            "radius": "15ft",
+            "scaling": {"intelligence": 2.0},
+            "effects": [
+                {"type": "guaranteed_effect", "effect": {"type": "root", "duration": 3, "name": "Frozen"}},
+                {"type": "zone_effect", "effect": "difficult_terrain", "duration": 5, "name": "Frozen Ground"}
+            ]
+        }
+    ]
+}

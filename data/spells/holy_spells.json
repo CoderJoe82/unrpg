@@ -1,0 +1,214 @@
+{
+    "spells": [
+        {
+            "id": "holy_001",
+            "name": "Lesser Heal",
+            "level": 1,
+            "source": "holy",
+            "type": "spell",
+            "description": "A simple prayer that mends minor wounds on an ally.",
+            "damage": null,
+            "mana_cost": 10,
+            "cast_time": 1,
+            "cooldown": 0,
+            "target_type": "single_allied",
+            "scaling": {"faith": 0.75},
+            "effects": [
+                {"type": "heal", "amount": "2d8"}
+            ]
+        },
+        {
+            "id": "holy_002",
+            "name": "Smite",
+            "level": 1,
+            "source": "holy",
+            "type": "spell",
+            "description": "Sear an enemy with holy light. Deals bonus damage to Undead.",
+            "damage": "1d8",
+            "mana_cost": 8,
+            "cast_time": 1,
+            "cooldown": 0,
+            "target_type": "single",
+            "scaling": {"faith": 0.4},
+            "effects": [
+                {"type": "conditional_damage", "target_type": "undead", "multiplier": 1.5}
+            ]
+        },
+        {
+            "id": "holy_003",
+            "name": "Purify",
+            "level": 2,
+            "source": "holy",
+            "type": "spell",
+            "description": "Cleanse an ally of a harmful magical effect or poison.",
+            "damage": null,
+            "mana_cost": 12,
+            "cast_time": 1,
+            "cooldown": 2,
+            "target_type": "single_allied",
+            "scaling": {},
+            "effects": [
+                {"type": "cleanse", "category": ["magic", "poison"], "count": 1}
+            ]
+        },
+        {
+            "id": "holy_004",
+            "name": "Renew",
+            "level": 3,
+            "source": "holy",
+            "type": "spell",
+            "description": "Instill an ally with faith, causing them to heal over a short duration.",
+            "damage": null,
+            "mana_cost": 15,
+            "cast_time": 1,
+            "cooldown": 0,
+            "target_type": "single_allied",
+            "scaling": {"faith": 0.2},
+            "effects": [
+                {"type": "hot", "heal": "1d6", "duration": 5, "name": "Renew"}
+            ]
+        },
+        {
+            "id": "holy_005",
+            "name": "Holy Nova",
+            "level": 4,
+            "source": "holy",
+            "type": "spell",
+            "description": "An explosion of divine light erupts from the caster, damaging nearby enemies and healing nearby allies.",
+            "damage": "2d6",
+            "mana_cost": 30,
+            "cast_time": 1,
+            "cooldown": 6,
+            "target_type": "caster_area",
+            "radius": "10ft",
+            "scaling": {"faith": 0.3},
+            "effects": [
+                {"type": "aoe_heal", "amount": "2d6", "radius": "10ft"}
+            ]
+        },
+        {
+            "id": "holy_006",
+            "name": "Power Word: Shield",
+            "level": 5,
+            "source": "holy",
+            "type": "spell",
+            "description": "Shield an ally with divine energy, absorbing damage. The shield lasts until it is destroyed.",
+            "damage": null,
+            "mana_cost": 25,
+            "cast_time": 0,
+            "cooldown": 8,
+            "target_type": "single_allied",
+            "scaling": {"faith": 1.5},
+            "effects": [
+                {"type": "absorb_shield", "health": 150, "name": "Divine Shield"}
+            ]
+        },
+        {
+            "id": "holy_007",
+            "name": "Prayer of Healing",
+            "level": 6,
+            "source": "holy",
+            "type": "spell",
+            "description": "Offer a powerful prayer that heals a target ally and up to 4 other injured allies nearby.",
+            "damage": null,
+            "mana_cost": 45,
+            "cast_time": 1,
+            "cooldown": 4,
+            "target_type": "smart_group_heal",
+            "max_targets": 5,
+            "radius": "20ft",
+            "scaling": {"faith": 1.2},
+            "effects": [
+                {"type": "heal", "amount": "4d8"}
+            ]
+        },
+        {
+            "id": "holy_008",
+            "name": "Consecration",
+            "level": 7,
+            "source": "holy",
+            "type": "spell",
+            "description": "Sanctify a patch of ground, causing it to burn any enemies who stand within it.",
+            "damage": null,
+            "mana_cost": 40,
+            "cast_time": 1,
+            "cooldown": 12,
+            "target_type": "zone",
+            "radius": "15ft",
+            "duration": 6,
+            "scaling": {},
+            "effects": [
+                {"type": "zone_dot", "damage": "3d8", "effect": {"type": "conditional_damage", "target_type": "undead", "multiplier": 2}}
+            ]
+        },
+        {
+            "id": "holy_009",
+            "name": "Guardian Spirit",
+            "level": 8,
+            "source": "holy",
+            "type": "spell",
+            "description": "Summon a spirit to watch over an ally. If the ally takes fatal damage, the spirit sacrifices itself to save them and restore a portion of their health.",
+            "damage": null,
+            "mana_cost": 60,
+            "cast_time": 1,
+            "cooldown": 25,
+            "target_type": "single_allied",
+            "scaling": {},
+            "effects": [
+                {"type": "on_death_prevent", "heal_percent": 0.50, "duration": 5, "name": "Guardian Spirit"}
+            ]
+        },
+        {
+            "id": "holy_010",
+            "name": "Holy Word: Serenity",
+            "level": 9,
+            "source": "holy",
+            "type": "spell",
+            "description": "Utter a word of power, instantly healing a massive amount of damage on a single ally.",
+            "damage": null,
+            "mana_cost": 50,
+            "cast_time": 0,
+            "cooldown": 18,
+            "target_type": "single_allied",
+            "scaling": {"faith": 4.0},
+            "effects": [
+                {"type": "heal", "amount": "10d12"}
+            ]
+        },
+        {
+            "id": "holy_011",
+            "name": "Resurrection",
+            "level": 9,
+            "source": "holy",
+            "type": "spell",
+            "description": "Bring a fallen ally back from the dead with half of their health and mana.",
+            "damage": null,
+            "mana_cost": 80,
+            "cast_time": 3,
+            "cooldown": 30,
+            "target_type": "dead_allied",
+            "scaling": {},
+            "effects": [
+                {"type": "resurrect", "health_restored_percent": 0.50, "mana_restored_percent": 0.50}
+            ]
+        },
+        {
+            "id": "holy_012",
+            "name": "Divine Hymn",
+            "level": 10,
+            "source": "holy",
+            "type": "spell",
+            "description": "Become a conduit for divine power, channeling a hymn that heals all nearby allies every second for 3 seconds.",
+            "damage": null,
+            "mana_cost": 100,
+            "cast_time": 3,
+            "cooldown": 45,
+            "target_type": "caster_area_allied",
+            "radius": "30ft",
+            "scaling": {"faith": 1.5},
+            "effects": [
+                {"type": "channeled_aoe_heal", "heal_per_tick": "5d10", "ticks": 3, "interval": 1}
+            ]
+        }
+    ]
+}

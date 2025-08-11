@@ -1,0 +1,207 @@
+{
+    "spells": [
+        {
+            "id": "dark_001",
+            "name": "Shadow Spike",
+            "level": 1,
+            "source": "darkness",
+            "type": "spell",
+            "description": "Form a shard of solid shadow and fling it at an enemy.",
+            "damage": "1d8",
+            "mana_cost": 6,
+            "cast_time": 1,
+            "cooldown": 0,
+            "target_type": "single",
+            "scaling": {"intelligence": 0.3},
+            "effects": []
+        },
+        {
+            "id": "dark_002",
+            "name": "Gloom",
+            "level": 1,
+            "source": "darkness",
+            "type": "spell",
+            "description": "Cloud an enemy's mind and vision with shadows, reducing their accuracy.",
+            "damage": null,
+            "mana_cost": 9,
+            "cast_time": 1,
+            "cooldown": 5,
+            "target_type": "single",
+            "scaling": {},
+            "effects": [
+                {"type": "debuff", "stat": "accuracy", "value": -15, "duration": 3, "name": "Gloom"}
+            ]
+        },
+        {
+            "id": "dark_003",
+            "name": "Minor Drain",
+            "level": 2,
+            "source": "darkness",
+            "type": "spell",
+            "description": "Siphon a small amount of life force from a target to yourself.",
+            "damage": "1d6",
+            "mana_cost": 14,
+            "cast_time": 1,
+            "cooldown": 2,
+            "target_type": "single",
+            "scaling": {"intelligence": 0.25},
+            "effects": [
+                {"type": "lifesteal", "percentage": 0.50}
+            ]
+        },
+        {
+            "id": "dark_004",
+            "name": "Curse of Agony",
+            "level": 3,
+            "source": "darkness",
+            "type": "spell",
+            "description": "A vile curse that wracks the target with pain, dealing shadow damage over time.",
+            "damage": null,
+            "mana_cost": 18,
+            "cast_time": 1,
+            "cooldown": 2,
+            "target_type": "single",
+            "scaling": {},
+            "effects": [
+                {"type": "dot", "damage": "1d8", "duration": 4, "name": "Agony"}
+            ]
+        },
+        {
+            "id": "dark_005",
+            "name": "Terrify",
+            "level": 4,
+            "source": "darkness",
+            "type": "spell",
+            "description": "Instill deep-seated fear in an enemy, causing them to cower and lose their next action.",
+            "damage": null,
+            "mana_cost": 25,
+            "cast_time": 1,
+            "cooldown": 8,
+            "target_type": "single",
+            "scaling": {},
+            "effects": [
+                {"type": "fear", "duration": 1}
+            ]
+        },
+        {
+            "id": "dark_006",
+            "name": "Shadow Nova",
+            "level": 4,
+            "source": "darkness",
+            "type": "spell",
+            "description": "Unleash an explosion of dark energy from your body, damaging all nearby enemies.",
+            "damage": "3d8",
+            "mana_cost": 28,
+            "cast_time": 1,
+            "cooldown": 4,
+            "target_type": "area",
+            "radius": "10ft",
+            "scaling": {"intelligence": 0.5},
+            "effects": []
+        },
+        {
+            "id": "dark_007",
+            "name": "Vampiric Touch",
+            "level": 5,
+            "source": "darkness",
+            "type": "spell",
+            "description": "Touch an enemy and drain a significant portion of their vitality, healing you for the damage dealt.",
+            "damage": "4d8",
+            "mana_cost": 38,
+            "cast_time": 1,
+            "cooldown": 4,
+            "target_type": "single",
+            "scaling": {"intelligence": 0.6},
+            "effects": [
+                {"type": "lifesteal", "percentage": 1.0}
+            ]
+        },
+        {
+            "id": "dark_008",
+            "name": "Veil of Shadows",
+            "level": 6,
+            "source": "darkness",
+            "type": "spell",
+            "description": "Wrap yourself in pure darkness, becoming harder to hit and moving silently for a short time.",
+            "damage": null,
+            "mana_cost": 30,
+            "cast_time": 0,
+            "cooldown": 10,
+            "target_type": "self",
+            "scaling": {},
+            "effects": [
+                {"type": "buff", "stat": "evasion", "value": 50, "duration": 3, "name": "Shadow Veil"}
+            ]
+        },
+        {
+            "id": "dark_009",
+            "name": "Soul Sear",
+            "level": 7,
+            "source": "darkness",
+            "type": "spell",
+            "description": "A powerful bolt that attacks the target's very soul, bypassing most conventional armor.",
+            "damage": "6d10",
+            "mana_cost": 50,
+            "cast_time": 1,
+            "cooldown": 5,
+            "target_type": "single",
+            "scaling": {"intelligence": 0.8},
+            "effects": [
+                {"type": "armor_penetration", "value": 0.50}
+            ]
+        },
+        {
+            "id": "dark_010",
+            "name": "Summon Shade",
+            "level": 8,
+            "source": "darkness",
+            "type": "spell",
+            "description": "Pull a lesser horror from the void to fight for you for a limited time.",
+            "damage": null,
+            "mana_cost": 60,
+            "cast_time": 1,
+            "cooldown": 15,
+            "target_type": "summon",
+            "scaling": {},
+            "effects": [
+                {"type": "summon", "creature_id": "shade_01", "duration": 5, "name": "Shade"}
+            ]
+        },
+        {
+            "id": "dark_011",
+            "name": "Curse of Doom",
+            "level": 9,
+            "source": "darkness",
+            "type": "spell",
+            "description": "Places a lingering curse on the target. After 3 turns, the curse erupts, dealing massive damage.",
+            "damage": null,
+            "mana_cost": 40,
+            "cast_time": 1,
+            "cooldown": 12,
+            "target_type": "single",
+            "scaling": {},
+            "effects": [
+                {"type": "delayed_damage", "damage": "15d10", "delay": 3, "name": "Doom"}
+            ]
+        },
+        {
+            "id": "dark_012",
+            "name": "Unleash the Void",
+            "level": 10,
+            "source": "darkness",
+            "type": "spell",
+            "description": "Open a temporary rift to the void, pulling enemies toward it and crushing them with immense pressure.",
+            "damage": "10d12",
+            "mana_cost": 90,
+            "cast_time": 2,
+            "cooldown": 25,
+            "target_type": "area",
+            "radius": "20ft",
+            "scaling": {"intelligence": 1.75},
+            "effects": [
+                {"type": "pull", "strength": "strong", "destination": "center"},
+                {"type": "debuff", "stat": "all", "value": -10, "duration": 3, "name": "Void Touched"}
+            ]
+        }
+    ]
+}

@@ -1,6 +1,10 @@
 # unrpg
 Me learning how to make an rpg game with pygame using a.i. but not only to make it, but teach me.
 
+V-0.0.4
+---
+-Added spells for all magic types up to level 10 for now.
+
 V-0.0.3
 ---
 -Added the main menu buttons on the start up page.

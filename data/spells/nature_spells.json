@@ -1,0 +1,214 @@
+{
+    "spells": [
+        {
+            "id": "nature_001",
+            "name": "Thorn Whip",
+            "level": 1,
+            "source": "nature",
+            "type": "spell",
+            "description": "Create a vine-like whip covered in thorns that strikes an enemy and pulls them slightly closer.",
+            "damage": "1d6",
+            "mana_cost": 7,
+            "cast_time": 1,
+            "cooldown": 0,
+            "target_type": "single",
+            "scaling": {"intelligence": 0.25},
+            "effects": [
+                {"type": "pull", "distance": "5ft"}
+            ]
+        },
+        {
+            "id": "nature_002",
+            "name": "Rejuvenation",
+            "level": 1,
+            "source": "nature",
+            "type": "spell",
+            "description": "Cover an ally in a blanket of soothing moss, healing them gradually over time.",
+            "damage": null,
+            "mana_cost": 9,
+            "cast_time": 0,
+            "cooldown": 0,
+            "target_type": "single_allied",
+            "scaling": {"intelligence": 0.15},
+            "effects": [
+                {"type": "hot", "heal": "1d4", "duration": 5, "name": "Rejuvenation"}
+            ]
+        },
+        {
+            "id": "nature_003",
+            "name": "Entangling Roots",
+            "level": 2,
+            "source": "nature",
+            "type": "spell",
+            "description": "Roots burst from the ground, immobilizing a target. The roots break if the target takes enough damage.",
+            "damage": null,
+            "mana_cost": 15,
+            "cast_time": 1,
+            "cooldown": 8,
+            "target_type": "single",
+            "scaling": {},
+            "effects": [
+                {"type": "root", "duration": 3, "break_on_damage_threshold": 30, "name": "Entangled"}
+            ]
+        },
+        {
+            "id": "nature_004",
+            "name": "Sunfire",
+            "level": 3,
+            "source": "nature",
+            "type": "spell",
+            "description": "A quick blast of solar energy that damages a target and leaves them burning with faint light for a short time.",
+            "damage": "2d6",
+            "mana_cost": 18,
+            "cast_time": 1,
+            "cooldown": 0,
+            "target_type": "single",
+            "scaling": {"intelligence": 0.3},
+            "effects": [
+                {"type": "dot", "damage": "1d4", "duration": 3, "name": "Sunfire"}
+            ]
+        },
+        {
+            "id": "nature_005",
+            "name": "Poison Sting",
+            "level": 4,
+            "source": "nature",
+            "type": "spell",
+            "description": "Sting a target with a venomous barb, dealing nature damage over time.",
+            "damage": null,
+            "mana_cost": 22,
+            "cast_time": 1,
+            "cooldown": 2,
+            "target_type": "single",
+            "scaling": {},
+            "effects": [
+                {"type": "dot", "damage": "2d8", "duration": 4, "name": "Poisoned"}
+            ]
+        },
+        {
+            "id": "nature_006",
+            "name": "Spike Growth",
+            "level": 5,
+            "source": "nature",
+            "type": "spell",
+            "description": "The ground in an area erupts with hard, sharp spikes. Enemies moving through the area take damage and are slowed.",
+            "damage": null,
+            "mana_cost": 30,
+            "cast_time": 1,
+            "cooldown": 12,
+            "target_type": "zone",
+            "radius": "15ft",
+            "duration": 6,
+            "scaling": {},
+            "effects": [
+                {"type": "zone_dot", "damage": "2d4", "on": "movement"},
+                {"type": "zone_effect", "effect": "difficult_terrain", "name": "Spike Growth"}
+            ]
+        },
+        {
+            "id": "nature_007",
+            "name": "Barkskin",
+            "level": 6,
+            "source": "nature",
+            "type": "spell",
+            "description": "Your skin becomes as tough as ancient bark, reducing all incoming physical damage.",
+            "damage": null,
+            "mana_cost": 28,
+            "cast_time": 0,
+            "cooldown": 15,
+            "target_type": "self",
+            "scaling": {},
+            "effects": [
+                {"type": "buff", "stat": "damage_reduction_physical", "value": 0.30, "duration": 5, "name": "Barkskin"}
+            ]
+        },
+        {
+            "id": "nature_008",
+            "name": "Summon Wolves",
+            "level": 7,
+            "source": "nature",
+            "type": "spell",
+            "description": "Call two loyal spirit wolves to fight by your side for a short duration.",
+            "damage": null,
+            "mana_cost": 50,
+            "cast_time": 1,
+            "cooldown": 25,
+            "target_type": "summon",
+            "scaling": {},
+            "effects": [
+                {"type": "summon", "creature_id": "spirit_wolf_01", "count": 2, "duration": 5, "name": "Spirit Wolf"}
+            ]
+        },
+        {
+            "id": "nature_009",
+            "name": "Regrowth",
+            "level": 8,
+            "source": "nature",
+            "type": "spell",
+            "description": "A versatile heal that provides a large burst of healing upfront, followed by a smaller heal-over-time effect.",
+            "damage": null,
+            "mana_cost": 40,
+            "cast_time": 1,
+            "cooldown": 3,
+            "target_type": "single_allied",
+            "scaling": {"intelligence": 1.0},
+            "effects": [
+                {"type": "heal", "amount": "5d8"},
+                {"type": "hot", "heal": "2d8", "duration": 3, "name": "Regrowth"}
+            ]
+        },
+        {
+            "id": "nature_010",
+            "name": "Starfall",
+            "level": 9,
+            "source": "nature",
+            "type": "spell",
+            "description": "Call a shower of stars down over a targeted area, striking all enemies within it repeatedly.",
+            "damage": "8d8",
+            "mana_cost": 75,
+            "cast_time": 1,
+            "cooldown": 18,
+            "target_type": "zone",
+            "radius": "20ft",
+            "duration": 4,
+            "scaling": {"intelligence": 0.5},
+            "effects": []
+        },
+        {
+            "id": "nature_011",
+            "name": "Insect Swarm",
+            "level": 9,
+            "source": "nature",
+            "type": "spell",
+            "description": "Unleash a swarm of biting insects on a target, dealing damage over time and reducing their chance to hit.",
+            "damage": null,
+            "mana_cost": 35,
+            "cast_time": 1,
+            "cooldown": 2,
+            "target_type": "single",
+            "scaling": {},
+            "effects": [
+                {"type": "dot", "damage": "3d6", "duration": 6, "name": "Swarmed"},
+                {"type": "debuff", "stat": "accuracy", "value": -25, "duration": 6}
+            ]
+        },
+        {
+            "id": "nature_012",
+            "name": "Tranquility",
+            "level": 10,
+            "source": "nature",
+            "type": "spell",
+            "description": "Channel a wave of peace and life, healing all nearby allies for a massive amount over several seconds.",
+            "damage": null,
+            "mana_cost": 120,
+            "cast_time": 3,
+            "cooldown": 50,
+            "target_type": "caster_area_allied",
+            "radius": "30ft",
+            "scaling": {"intelligence": 1.8},
+            "effects": [
+                {"type": "channeled_aoe_heal", "heal_per_tick": "6d12", "ticks": 3, "interval": 1}
+            ]
+        }
+    ]
+}
