@@ -1,6 +1,10 @@
 # unrpg
 Me learning how to make an rpg game with pygame using a.i. but not only to make it, but teach me.
 
+V-0.0.3
+---
+-Added the main menu buttons on the start up page.
+
 v-0.0.2
 ---
 -Added a new folder called engine to store our Game class object

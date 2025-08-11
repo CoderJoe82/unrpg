@@ -2,27 +2,6 @@ from constants import *
 import pygame
 
 class Button():
-    # Initializing and passing all things to provide when making a button:
-    def __init__(self, color, text, text_color, x, y, width, height, font, font_size):
-        self.color = color
-        self.text = text
-        self.text_color = text_color
-        # x co-ords from left
-        self.x = x
-        # y co-ords from top
-        self.y = y
-        self.width = width
-        self.height = height
-        self.font = font
-        self.font_size = font_size
-        self.text_surface = self.font.render(self.text, True, self.text_color)
-        self.text_rect = self.text_surface.get_rect((x, y))
-    
-    def draw_button(self, surface):
-        pygame.draw.rect(surface, self.color, self.text_rect)
-        surface.blit(self.text_surface, self.text_rect)
-
-class Button():
     def __init__(self, x, y, width, height, text, color, text_color, font):
         # --- 1. The Main Button Box ---
         # We create the main rectangle for the button's background.

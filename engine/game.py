@@ -1,5 +1,8 @@
 import pygame
 from constants import *
+from menus.main_menu import MainMenu
+
+
 
 class Game:
     # The CONSTRUCTOR method. This runs ONCE when we create a Game object.
@@ -32,6 +35,8 @@ class Game:
         # It starts as True, and when we set it to False, the game ends.
         self.running = True
 
+        self.main_menu = MainMenu(self)
+
     # This method contains the main game loop. It's the 'engine' that runs over and over.
     def run_game(self):
         # As long as our on/off switch (`self.running`) is True, this loop will continue.
@@ -48,6 +53,7 @@ class Game:
             # --- DRAWING ---
             # Erase the previous frame by filling the entire screen with our background color.
             self.surface.fill(COLOR_BACKGROUND)
+            self.main_menu.draw()
             
             # Draw the 'stamped image' (`self.title_surface`) onto our main 'canvas' (`self.surface`)
             # at the position defined by `self.title_rect`.
@@ -57,3 +63,5 @@ class Game:
             # Update the full display. This takes everything we've drawn in memory and
             # shows it on the actual screen. This must happen last in the loop.
             pygame.display.flip()
+
+    
