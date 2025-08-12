@@ -1,0 +1,141 @@
+{
+    "daggers": [
+        {
+            "id": "dagger_001",
+            "name": "Rusty Dirk",
+            "level": 1,
+            "type": "dagger",
+            "hand_type": "one_handed",
+            "description": "A pitted and rusted dagger. It's sharp enough to be a threat, but just barely.",
+            "damage": "1d4",
+            "attack_speed": 0.8,
+            "scaling": {"dexterity": 0.5},
+            "effects": []
+        },
+        {
+            "id": "dagger_002",
+            "name": "Honed Shiv",
+            "level": 2,
+            "type": "dagger",
+            "hand_type": "one_handed",
+            "description": "A simple dagger that has been carefully sharpened. It's light, fast, and reliable.",
+            "damage": "1d4",
+            "attack_speed": 0.7,
+            "scaling": {"dexterity": 0.7},
+            "effects": []
+        },
+        {
+            "id": "dagger_003",
+            "name": "Glimmering Rondel",
+            "level": 3,
+            "type": "dagger",
+            "hand_type": "one_handed",
+            "description": "The pommel of this triangular-bladed dagger holds a small, enchanted pearl that slightly hastens the wielder's movements.",
+            "damage": "1d6",
+            "attack_speed": 0.8,
+            "scaling": {"dexterity": 0.8},
+            "effects": [
+                {"type": "passive_buff", "stat": "haste", "value": 0.05}
+            ]
+        },
+        {
+            "id": "dagger_004",
+            "name": "Assassin's Stiletto",
+            "level": 4,
+            "type": "dagger",
+            "hand_type": "one_handed",
+            "description": "A thin, deadly blade designed to find and exploit weaknesses in armor. It is favored by those who strike from the shadows.",
+            "damage": "1d6",
+            "attack_speed": 0.7,
+            "scaling": {"dexterity": 1.0},
+            "effects": [
+                {"type": "passive_buff", "stat": "crit_chance", "value": 5}
+            ]
+        },
+        {
+            "id": "dagger_005",
+            "name": "Serrated Kris",
+            "level": 5,
+            "type": "dagger",
+            "hand_type": "one_handed",
+            "description": "The wavy blade of this dagger is designed to tear flesh, leaving grievous wounds that bleed profusely.",
+            "damage": "2d4",
+            "attack_speed": 0.9,
+            "scaling": {"dexterity": 1.1},
+            "effects": [
+                {"type": "on_hit_dot", "damage": "1d4", "duration": 4, "name": "Bleed"}
+            ]
+        },
+        {
+            "id": "dagger_006",
+            "name": "Mage-Slayer's Dirk",
+            "level": 6,
+            "type": "dagger",
+            "hand_type": "one_handed",
+            "description": "Crafted from a dull, non-conductive metal, this dagger is enchanted to disrupt the flow of magic.",
+            "damage": "2d6",
+            "attack_speed": 0.8,
+            "scaling": {"dexterity": 1.3},
+            "effects": [
+                {"type": "on_hit_chance", "chance": 0.25, "effect": {"type": "silence", "duration": 2}}
+            ]
+        },
+        {
+            "id": "dagger_007",
+            "name": "Gut-Ripper",
+            "level": 7,
+            "type": "dagger",
+            "hand_type": "one_handed",
+            "description": "A cruel, hooked dagger that deals devastating critical strikes.",
+            "damage": "3d4",
+            "attack_speed": 0.8,
+            "scaling": {"dexterity": 1.5},
+            "effects": [
+                 {"type": "passive_buff", "stat": "crit_damage", "value": 0.50}
+            ]
+        },
+        {
+            "id": "dagger_008",
+            "name": "Shadowfang",
+            "level": 8,
+            "type": "dagger",
+            "hand_type": "one_handed",
+            "description": "This blade is forged from solidified shadow-stuff. Strikes with it seem to muffle sound and sight.",
+            "damage": "3d6",
+            "attack_speed": 0.7,
+            "scaling": {"dexterity": 1.8},
+            "effects": [
+                {"type": "on_hit_debuff", "stat": "accuracy", "value": -15, "duration": 3}
+            ]
+        },
+        {
+            "id": "dagger_009",
+            "name": "Kingsbane",
+            "level": 9,
+            "type": "dagger",
+            "hand_type": "one_handed",
+            "description": "A legendary weapon used to topple a dynasty. Its venom is infamous for its potency and persistence.",
+            "damage": "4d4",
+            "attack_speed": 0.8,
+            "scaling": {"dexterity": 2.0},
+            "effects": [
+                {"type": "on_hit_dot", "damage": "2d6", "duration": 5, "name": "King's Venom", "stacking": true, "max_stacks": 3}
+            ]
+        },
+        {
+            "id": "dagger_010",
+            "name": "The Murmur",
+            "level": 10,
+            "type": "dagger",
+            "hand_type": "one_handed",
+            "description": "A blade that exists partially out of phase with reality. It slips past armor as if it weren't there, striking true.",
+            "damage": "4d6",
+            "attack_speed": 0.6,
+            "scaling": {"dexterity": 2.5},
+            "effects": [
+                {"type": "armor_penetration", "value": 0.50},
+                {"type": "passive_buff", "stat": "crit_chance", "value": 10}
+            ]
+        }
+    ]
+}

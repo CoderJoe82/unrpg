@@ -1,0 +1,156 @@
+{
+    "staves": [
+        {
+            "id": "staff_001",
+            "name": "Apprentice's Walking Stick",
+            "level": 1,
+            "type": "staff",
+            "hand_type": "two_handed",
+            "description": "A simple but sturdy wooden staff, polished smooth by a novice's constant grip. It hums with a faint magical aura.",
+            "damage": "1d4",
+            "attack_speed": 1.4,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "intelligence", "value": 3}
+            ]
+        },
+        {
+            "id": "staff_002",
+            "name": "Acolyte's Prayer Staff",
+            "level": 2,
+            "type": "staff",
+            "hand_type": "two_handed",
+            "description": "A staff of ash wood topped with a simple, holy symbol. It feels warm to the touch.",
+            "damage": "1d4",
+            "attack_speed": 1.4,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "faith", "value": 5}
+            ]
+        },
+        {
+            "id": "staff_003",
+            "name": "Staff of Minor Focus",
+            "level": 3,
+            "type": "staff",
+            "hand_type": "two_handed",
+            "description": "A crystal embedded in the head of this staff helps the wielder gather and channel their mana more efficiently.",
+            "damage": "1d4",
+            "attack_speed": 1.4,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "intelligence", "value": 6},
+                {"type": "passive_buff", "stat": "mana_regen", "value": 2}
+            ]
+        },
+        {
+            "id": "staff_004",
+            "name": "Pyromancer's Kindling",
+            "level": 4,
+            "type": "staff",
+            "hand_type": "two_handed",
+            "description": "This staff is carved from charcoal-black wood and is perpetually warm. It enhances the power of fire magic.",
+            "damage": "1d6",
+            "attack_speed": 1.3,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "intelligence", "value": 8},
+                {"type": "passive_buff", "stat": "fire_damage_modifier", "value": 0.10}
+            ]
+        },
+        {
+            "id": "staff_005",
+            "name": "Glacial Rod",
+            "level": 5,
+            "type": "staff",
+            "hand_type": "two_handed",
+            "description": "A staff made of never-melting ice. It chills the air around it and empowers frost spells.",
+            "damage": "1d6",
+            "attack_speed": 1.3,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "intelligence", "value": 12},
+                {"type": "passive_buff", "stat": "frost_damage_modifier", "value": 0.15}
+            ]
+        },
+        {
+            "id": "staff_006",
+            "name": "Living Wood Staff",
+            "level": 6,
+            "type": "staff",
+            "hand_type": "two_handed",
+            "description": "A staff that seems to be alive, with small leaves sprouting from its surface. It amplifies healing and nature spells.",
+            "damage": "1d6",
+            "attack_speed": 1.3,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "intelligence", "value": 10},
+                {"type": "passive_buff", "stat": "faith", "value": 10},
+                {"type": "passive_buff", "stat": "healing_modifier", "value": 0.10}
+            ]
+        },
+        {
+            "id": "staff_007",
+            "name": "Void-Tainted Scepter",
+            "level": 7,
+            "type": "staff",
+            "hand_type": "two_handed",
+            "description": "This dark, twisted staff whispers to its wielder, promising power in exchange for a small price. Your shadow spells feel more potent.",
+            "damage": "1d8",
+            "attack_speed": 1.2,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "intelligence", "value": 18},
+                {"type": "passive_buff", "stat": "darkness_damage_modifier", "value": 0.15},
+                {"type": "passive_buff", "stat": "spell_lifesteal", "value": 0.05}
+            ]
+        },
+        {
+            "id": "staff_008",
+            "name": "Stormcaller's Beacon",
+            "level": 8,
+            "type": "staff",
+            "hand_type": "two_handed",
+            "description": "A staff of polished metal that crackles with latent energy. Your lightning spells cast faster and strike harder.",
+            "damage": "1d8",
+            "attack_speed": 1.2,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "intelligence", "value": 25},
+                {"type": "passive_buff", "stat": "haste", "value": 0.10}
+            ]
+        },
+        {
+            "id": "staff_009",
+            "name": "Staff of the Archmagi",
+            "level": 9,
+            "type": "staff",
+            "hand_type": "two_handed",
+            "description": "A legendary staff passed down through generations of powerful mages. It significantly reduces the cost of all spells.",
+            "damage": "1d8",
+            "attack_speed": 1.2,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "intelligence", "value": 30},
+                {"type": "passive_buff", "stat": "faith", "value": 30},
+                {"type": "passive_buff", "stat": "mana_cost_reduction", "value": 0.15}
+            ]
+        },
+        {
+            "id": "staff_010",
+            "name": "Celestial Pillar",
+            "level": 10,
+            "type": "staff",
+            "hand_type": "two_handed",
+            "description": "Said to be a shard of creation itself, this staff pulses with unimaginable power, increasing the critical effect of your spells.",
+            "damage": "2d6",
+            "attack_speed": 1.1,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "intelligence", "value": 45},
+                {"type": "passive_buff", "stat": "spell_crit_chance", "value": 15},
+                {"type": "passive_buff", "stat": "spell_crit_damage", "value": 0.50}
+            ]
+        }
+    ]
+}

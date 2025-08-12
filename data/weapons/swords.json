@@ -1,0 +1,180 @@
+{
+    "swords": [
+        {
+            "id": "sword_1h_001",
+            "name": "Rusted Shortsword",
+            "level": 1,
+            "type": "sword",
+            "hand_type": "one_handed",
+            "description": "A simple, worn-out shortsword. It's not much, but it's better than a sharp rock.",
+            "damage": "1d6",
+            "attack_speed": 1.0,
+            "scaling": {"strength": 0.3, "dexterity": 0.4},
+            "effects": []
+        },
+        {
+            "id": "sword_2h_001",
+            "name": "Iron Greatsword",
+            "level": 1,
+            "type": "sword",
+            "hand_type": "two_handed",
+            "description": "A heavy and unwieldy slab of iron, sharpened into a basic greatsword.",
+            "damage": "2d6",
+            "attack_speed": 1.3,
+            "scaling": {"strength": 0.8},
+            "effects": []
+        },
+        {
+            "id": "sword_1h_002",
+            "name": "Hardened Longsword",
+            "level": 2,
+            "type": "sword",
+            "hand_type": "one_handed",
+            "description": "A well-balanced longsword, its steel properly tempered for battle.",
+            "damage": "1d8",
+            "attack_speed": 1.0,
+            "scaling": {"strength": 0.5, "dexterity": 0.5},
+            "effects": []
+        },
+        {
+            "id": "sword_2h_002",
+            "name": "Steel Claymore",
+            "level": 3,
+            "type": "sword",
+            "hand_type": "two_handed",
+            "description": "A large two-handed sword that requires significant strength to wield effectively.",
+            "damage": "3d6",
+            "attack_speed": 1.4,
+            "scaling": {"strength": 1.0},
+            "effects": []
+        },
+        {
+            "id": "sword_1h_003",
+            "name": "Viper's Kiss",
+            "level": 4,
+            "type": "sword",
+            "hand_type": "one_handed",
+            "description": "A wickedly sharp rapier with grooves for holding poison. Its strikes are fast and venomous.",
+            "damage": "1d6",
+            "attack_speed": 0.8,
+            "scaling": {"dexterity": 0.9},
+            "effects": [
+                {"type": "on_hit_dot", "damage": "1d4", "duration": 3, "name": "Poison"}
+            ]
+        },
+        {
+            "id": "sword_1h_004",
+            "name": "Broadsword of the Guard",
+            "level": 5,
+            "type": "sword",
+            "hand_type": "one_handed",
+            "description": "A sturdy, reliable blade issued to royal guards. It offers a measure of protection to its wielder.",
+            "damage": "2d8",
+            "attack_speed": 1.1,
+            "scaling": {"strength": 0.8},
+            "effects": [
+                {"type": "passive_buff", "stat": "armor", "value": 15}
+            ]
+        },
+        {
+            "id": "sword_2h_003",
+            "name": "Executioner's Blade",
+            "level": 6,
+            "type": "sword",
+            "hand_type": "two_handed",
+            "description": "A grim, heavy-bladed sword designed for a single, decisive blow. It excels at finding weak points.",
+            "damage": "4d6",
+            "attack_speed": 1.5,
+            "scaling": {"strength": 1.2},
+            "effects": [
+                {"type": "passive_buff", "stat": "crit_chance", "value": 10}
+            ]
+        },
+        {
+            "id": "sword_1h_005",
+            "name": "Vampiric Falchion",
+            "level": 7,
+            "type": "sword",
+            "hand_type": "one_handed",
+            "description": "This curved blade seems to drink the life from those it cuts, transferring it to its master.",
+            "damage": "3d6",
+            "attack_speed": 1.0,
+            "scaling": {"strength": 0.6, "dexterity": 0.6},
+            "effects": [
+                {"type": "lifesteal", "percentage": 0.15}
+            ]
+        },
+        {
+            "id": "sword_2h_004",
+            "name": "Obsidian Zweihander",
+            "level": 8,
+            "type": "sword",
+            "hand_type": "two_handed",
+            "description": "Forged from volcanic glass, the edge of this massive sword is unnaturally sharp and can shear through armor.",
+            "damage": "4d8",
+            "attack_speed": 1.4,
+            "scaling": {"strength": 1.4},
+            "effects": [
+                {"type": "armor_penetration", "value": 0.25}
+            ]
+        },
+        {
+            "id": "sword_1h_006",
+            "name": "Blade of the Righteous",
+            "level": 9,
+            "type": "sword",
+            "hand_type": "one_handed",
+            "description": "A holy blade that shines with a soft, internal light. It is anathema to the undead.",
+            "damage": "4d8",
+            "attack_speed": 1.0,
+            "scaling": {"strength": 0.8, "faith": 0.8},
+            "effects": [
+                {"type": "conditional_damage", "target_type": "undead", "multiplier": 1.5}
+            ]
+        },
+        {
+            "id": "sword_2h_005",
+            "name": "Dragon's Tooth Greatsword",
+            "level": 9,
+            "type": "sword",
+            "hand_type": "two_handed",
+            "description": "Crafted from the tooth of a great dragon, this blade smolders with primal fire.",
+            "damage": "5d8",
+            "attack_speed": 1.6,
+            "scaling": {"strength": 1.8},
+            "effects": [
+                {"type": "on_hit_dot", "damage": "1d8", "duration": 3, "name": "Burning"}
+            ]
+        },
+        {
+            "id": "sword_1h_007",
+            "name": "Soul Reaver",
+            "level": 10,
+            "type": "sword",
+            "hand_type": "one_handed",
+            "description": "A legendary blade whispered to consume the very essence of its victims.",
+            "damage": "5d10",
+            "attack_speed": 0.9,
+            "scaling": {"strength": 1.2, "dexterity": 1.2},
+            "effects": [
+                {"type": "lifesteal", "percentage": 0.25},
+                {"type": "on_hit_debuff", "stat": "armor", "value": -20, "duration": 5}
+            ]
+        },
+        {
+            "id": "sword_2h_006",
+            "name": "Starforged Greatsword",
+            "level": 10,
+            "type": "sword",
+            "hand_type": "two_handed",
+            "description": "A colossal blade forged from the heart of a fallen star. Its weight can shatter worlds and its edge can cleave reality.",
+            "damage": "6d10",
+            "attack_speed": 1.5,
+            "scaling": {"strength": 2.5},
+            "effects": [
+                {"type": "on_hit_chance", "chance": 0.2, "effect": {"type": "stun", "duration": 1}},
+                {"type": "cleave", "max_targets": 2, "damage_falloff": 0.5}
+            ]
+        }
+    ]
+}

@@ -1,0 +1,147 @@
+{
+    "shields": [
+        {
+            "id": "shield_001",
+            "name": "Wooden Buckler",
+            "level": 1,
+            "type": "shield",
+            "hand_type": "off_hand",
+            "description": "A small, simple shield made of wood planks and a metal boss. Offers minimal protection.",
+            "armor": 5,
+            "block_chance": 10,
+            "block_value": 5,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "shield_002",
+            "name": "Reinforced Round Shield",
+            "level": 2,
+            "type": "shield",
+            "hand_type": "off_hand",
+            "description": "A sturdy round shield, its wood reinforced with bands of iron for greater durability.",
+            "armor": 10,
+            "block_chance": 12,
+            "block_value": 8,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "shield_003",
+            "name": "Soldier's Heater Shield",
+            "level": 3,
+            "type": "shield",
+            "hand_type": "off_hand",
+            "description": "The standard-issue shield for a professional soldier. Well-balanced and reliable.",
+            "armor": 18,
+            "block_chance": 15,
+            "block_value": 12,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "health", "value": 20}
+            ]
+        },
+        {
+            "id": "shield_004",
+            "name": "Steel Kite Shield",
+            "level": 4,
+            "type": "shield",
+            "hand_type": "off_hand",
+            "description": "A large, teardrop-shaped shield made entirely of steel. It offers excellent protection against arrows and swords.",
+            "armor": 28,
+            "block_chance": 18,
+            "block_value": 20,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "shield_005",
+            "name": "Guardian's Aegis",
+            "level": 5,
+            "type": "shield",
+            "hand_type": "off_hand",
+            "description": "This shield is enchanted to deflect blows with greater ease. Its surface shimmers with protective magic.",
+            "armor": 35,
+            "block_chance": 20,
+            "block_value": 25,
+            "scaling": {"strength": 0.2},
+            "effects": []
+        },
+        {
+            "id": "shield_006",
+            "name": "Dwarven Tower Shield",
+            "level": 6,
+            "type": "shield",
+            "hand_type": "off_hand",
+            "description": "An incredibly heavy and durable shield of dwarven make. It can serve as a portable wall in a pinch.",
+            "armor": 50,
+            "block_chance": 22,
+            "block_value": 40,
+            "scaling": {"strength": 0.5},
+            "effects": [
+                {"type": "passive_buff", "stat": "stun_resistance", "value": 0.25}
+            ]
+        },
+        {
+            "id": "shield_007",
+            "name": "Spellbreaker's Ward",
+            "level": 7,
+            "type": "shield",
+            "hand_type": "off_hand",
+            "description": "Crafted from magically inert materials, this shield is designed to dissipate incoming spells.",
+            "armor": 45,
+            "block_chance": 20,
+            "block_value": 30,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "magic_damage_reduction", "value": 0.15}
+            ]
+        },
+        {
+            "id": "shield_008",
+            "name": "Shield of Thorns",
+            "level": 8,
+            "type": "shield",
+            "hand_type": "off_hand",
+            "description": "This living shield is covered in razor-sharp iron thorns that lash out at anyone foolish enough to strike it.",
+            "armor": 60,
+            "block_chance": 25,
+            "block_value": 50,
+            "scaling": {},
+            "effects": [
+                {"type": "on_block_effect", "effect": {"type": "retaliation_damage", "damage": "2d8"}}
+            ]
+        },
+        {
+            "id": "shield_009",
+            "name": "Bulwark of the Ancients",
+            "level": 9,
+            "type": "shield",
+            "hand_type": "off_hand",
+            "description": "An immense shield carved from a single piece of petrified Ironwood. Successfully blocking a blow reinforces your resolve.",
+            "armor": 80,
+            "block_chance": 28,
+            "block_value": 65,
+            "scaling": {"strength": 0.8},
+            "effects": [
+                {"type": "on_block_chance", "chance": 0.5, "effect": {"type": "buff", "stat": "damage_reduction_physical", "value": 0.10, "duration": 3, "name": "Steadfast"}}
+            ]
+        },
+        {
+            "id": "shield_010",
+            "name": "Aegis of the Unbroken",
+            "level": 10,
+            "type": "shield",
+            "hand_type": "off_hand",
+            "description": "A legendary shield that is said to be unbreakable. When an attack is blocked, the shield's divine power can heal its wielder.",
+            "armor": 110,
+            "block_chance": 35,
+            "block_value": 90,
+            "scaling": {"strength": 1.0},
+            "effects": [
+                {"type": "on_block_chance", "chance": 0.25, "effect": {"type": "heal", "amount": "3d10"}},
+                {"type": "passive_buff", "stat": "crit_immunity", "value": true}
+            ]
+        }
+    ]
+}
