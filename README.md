@@ -1,6 +1,11 @@
 # unrpg
 Me learning how to make an rpg game with pygame using a.i. but not only to make it, but teach me.
 
+V-0.0.6
+---
+-Finished building out the inits for CharacterClass and CharacterRace
+-Started adding methods for both classes. More methods are next on the list.
+
 V-0.0.5
 ---
 -Added .json files for a few weapons of sevearl types for level 1 - 10
