@@ -18,7 +18,8 @@ class CharacterClass:
                 progression,
                 saving_throw_progression,
                 role_type,
-                specializations
+                specializations,
+                allowed_ability_source
                  ):
         self.name = name
         self.description = description
@@ -31,12 +32,12 @@ class CharacterClass:
         self.armors_allowed = armors_allowed if armors_allowed is not None else ()
         self.weapons_allowed = weapons_allowed if weapons_allowed is not None else ()
         self.primary_stats = primary_stats if primary_stats is not None else ()
-        self.abilities = starting_abilities if starting_abilities is not None else {}
         self.progression = progression if progression is not None else {}
         self.saving_throw_progression = saving_throw_progression if saving_throw_progression is not None else {}
         self.role_type = role_type
         self.specializations = specializations if specializations is not None else ()
         self.starting_abilities = starting_abilities if starting_abilities is not None else ()
+        self.allowed_ability_source = allowed_ability_source if allowed_ability_source is not None else ()
 
     def get_summary(self):
         class_summary = {
@@ -62,10 +63,35 @@ class CharacterClass:
         return False
     
     def get_benefits_for_level(self, character_level):
-        return self.progression.get(character_level, {})
-        # <-- This will have more to add here, but for now, I'm leaving it at this.
-        
+        return {
+            "progression": self.progression.get(character_level, {}),
+            "saving_throw_progression" : self.saving_throw_progression.get(character_level, {}),
+        }
+
+    def is_role(self, role_name):
+        if role_name == self.role_type:
+            return True
+        return False
     
+    def can_learn_ability(self, ability_source):
+        if ability_source in self.allowed_ability_source:
+            return True
+        return False
+    
+    def get_starting_kit(self):
+        return {
+            "mechanics" : self.unique_mechanics if self.unique_mechanics is not None else {},
+            "starting_equipment" : self.starting_equipment,
+            "starting_abilities" : self.starting_abilities,
+            "primary_resource" : self.primary_resource,
+            "hit_dice" : self.hit_dice,
+            "passive_ability_bonus" : self.passive_ability_bonus,
+            "bonus_stats" : self.bonus_stats
+        }
+
+    # --- Finished with methods for CharacterClass. May add more later.
+        
+
 class CharacterRace:
     def __init__(
                 self,
@@ -79,6 +105,7 @@ class CharacterRace:
                 resistance_bonuses,
                 general_alignment,
                 life_span,
+                racial_traits
                 # <-- This will be a spot for skill bonuses
                 # <-- This will be a spot for sub races
                 # <-- This will be a spot for proficiences
@@ -89,11 +116,12 @@ class CharacterRace:
         self.description = description
         self.racial_abilities = racial_abilities if racial_abilities is not None else ()
         self.racial_stat_bonuses = racial_stat_bonuses if racial_stat_bonuses is not None else {}
-        self.movement_speed = movement_speed
+        self.movement_speed = movement_speed if movement_speed is not None else {}
         self.languages = languages if languages is not None else ()
         self.resistance_bonuses = resistance_bonuses if resistance_bonuses is not None else {}
         self.general_alignment = general_alignment
         self.life_span = life_span
+        self.racial_traits = racial_traits if racial_traits is not None else ()
 
     def get_summary(self):
         race_summary = {
@@ -110,3 +138,30 @@ class CharacterRace:
 
         }
         return race_summary
+    
+    def get_racial_bonuses(self):
+        return {
+            "stat_bonuses" : self.racial_stat_bonuses,
+            "racial_abilities" : self.racial_abilities,
+            "resistance_bonuses" : self.resistance_bonuses,
+            "languages" : self.languages,
+            # <--- later, skill_bonuses/proficiencies
+        }
+    
+    def has_trait(self, trait_name):
+        if trait_name in self.racial_traits:
+            return True
+        return False
+
+    def can_speak(self, language_name):
+        if language_name in self.langugaes:
+            return True
+        return False
+    
+    def get_speed_in(self, environment_type):
+        return self.movement_speed.get(environment_type, self.movement_speed['land'])
+        
+    
+    # <----- possible future check for if a character has any racial proficiencies.
+
+    # <----- possible subrace method here later.
