@@ -1,6 +1,11 @@
 # unrpg
 Me learning how to make an rpg game with pygame using a.i. but not only to make it, but teach me.
 
+V-0.0.8
+---
+-Added a Character method to get final stats on creation
+-Added a Character method to get all the player's starting abilities on character creation
+
 V-0.0.7
 ---
 -Finished (currently) CharacterClass and CharacterRace object.

@@ -33,10 +33,27 @@ STATS = {
     },
     "wisdom" : {
         "name" : "Wisdom",
-        "description" : "This stat governs your ability to reason things out and also influences a few things"
+        "description" : "This stat governs your ability to reason things out and also influences a few things. Also is the source of magic for druids and rangers"
     },
     "faith" : {
         "name" : "Faith",
         "description" : "This stat governs your connection to divinity and holy magics. The stronger it is, the stronger your holy spells are."
     }
+}
+
+BASE_STATS = {
+    "strength" : 10,
+    "dexterity" : 10,
+    "constitution" : 10,
+    "intelligence" : 10,
+    "charisma" : 10,
+    "wisdom" : 10,
+    "faith" : 10
+}
+
+ABILITIES = {
+    "racial" : (),
+    "spell" : (),
+    "attack" : (),
+    "hot" : ()
 }

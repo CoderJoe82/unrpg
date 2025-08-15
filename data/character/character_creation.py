@@ -1,4 +1,5 @@
-
+from constants import BASE_STATS, ABILITIES
+from engine.data_loader import load_all_spells
 
 class CharacterClass:
     def __init__(
@@ -165,3 +166,42 @@ class CharacterRace:
     # <----- possible future check for if a character has any racial proficiencies.
 
     # <----- possible subrace method here later.
+
+class Character:
+    def __init__(self,
+                 game,
+                 character_name,
+                 character_class,
+                 character_race,
+                 ):
+        self.game = game
+        self.character_name = character_name
+        self.character_class = character_class if character_class is not None else {}
+        self.character_race = character_race if character_race is not None else {}
+
+    def _get_finalized_stats(self):
+        finalized_stats = BASE_STATS.copy()
+        for stat in self.character_class.bonus_stats:
+            finalized_stats[stat] += self.character_class.bonus_stats[stat]
+        for stat in self.character_race.racial_stat_bonuses:
+            finalized_stats[stat] += self.character_race.racial_stat_bonuses[stat]
+        self.finalized_stats = finalized_stats
+
+    def _get_abilities(self, abilities):
+        player_abilities = ABILITIES.copy()
+        book = self.master_spellbook
+        for spell_id in abilities:
+            if spell_id in book:
+                spell_data = book[spell_id]
+                ability_type = spell_data['type']
+                player_abilities[ability_type] += (spell_data['id'], )
+        return player_abilities
+
+                        # spell_ids = ("nature_007", "nature_005", "nature_012")
+        # for spell_id in spell_ids:
+        #     for spell in self.master_spellbook.values():
+        #         if spell_id == spell['id']:
+        #             for spell_type in ABILITIES:
+        #                 if spell_type == spell['type']:
+        #                     ABILITIES[spell_type] += (spell['id'], )
+        # print(ABILITIES)
