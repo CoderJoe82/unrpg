@@ -1,6 +1,14 @@
 # unrpg
 Me learning how to make an rpg game with pygame using a.i. but not only to make it, but teach me.
 
+V-0.0.11
+---
+Yes. That's right! I feel like I skipped three minor versions this upload!
+-Added all sorts of Character methods
+-Added the actual character_classes file filled with character classes, all having their starting abilities and starting equipment all added.
+-Added three functions: load_all_abilities load_all_armors() load_all_weapons() to give the game master dictioinaries with all oft hose things
+-Refined some things already in my code
+
 V-0.0.8
 ---
 -Added a Character method to get final stats on creation
