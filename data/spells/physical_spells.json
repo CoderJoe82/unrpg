@@ -1,0 +1,222 @@
+{
+    "spells": [
+        {
+            "id": "phys_001",
+            "name": "Heroic Strike",
+            "level": 1,
+            "source": "physical",
+            "type": "attack",
+            "description": "A powerful, focused blow that deals additional damage based on your weapon.",
+            "damage": "1d6",
+            "resource_cost": 10,
+            "cast_time": 0,
+            "cooldown": 2,
+            "target_type": "single",
+            "scaling": {"strength": 0.5},
+            "effects": []
+        },
+        {
+            "id": "phys_002",
+            "name": "Sinister Strike",
+            "level": 1,
+            "source": "physical",
+            "type": "attack",
+            "description": "A swift, opportunistic strike that generates a combo point.",
+            "damage": "1d4",
+            "resource_cost": 15,
+            "cast_time": 0,
+            "cooldown": 0,
+            "target_type": "single",
+            "scaling": {"dexterity": 0.4},
+            "effects": [
+                {"type": "generate_resource", "resource": "combo_point", "value": 1}
+            ]
+        },
+        {
+            "id": "phys_003",
+            "name": "Aimed Shot",
+            "level": 2,
+            "source": "physical",
+            "type": "attack",
+            "description": "A carefully aimed shot that deals significant damage but requires a moment to line up.",
+            "damage": "2d8",
+            "resource_cost": 20,
+            "cast_time": 1,
+            "cooldown": 0,
+            "target_type": "single",
+            "scaling": {"dexterity": 0.8},
+            "effects": []
+        },
+        {
+            "id": "phys_004",
+            "name": "Charge",
+            "level": 3,
+            "source": "physical",
+            "type": "attack",
+            "description": "Charge to an enemy, stunning them for a brief moment.",
+            "damage": "1d4",
+            "resource_cost": 10,
+            "cast_time": 0,
+            "cooldown": 8,
+            "target_type": "single",
+            "range": "25ft",
+            "scaling": {},
+            "effects": [
+                {"type": "charge_to_target"},
+                {"type": "stun", "duration": 1}
+            ]
+        },
+        {
+            "id": "phys_005",
+            "name": "Eviscerate",
+            "level": 3,
+            "source": "physical",
+            "type": "attack",
+            "description": "A vicious finishing move that consumes all combo points to deal massive damage.",
+            "damage": "1d10",
+            "resource_cost": 25,
+            "cast_time": 0,
+            "cooldown": 0,
+            "target_type": "single",
+            "scaling": {"dexterity": 0.2},
+            "effects": [
+                {"type": "consume_resource", "resource": "combo_point", "scaling_per_point": "1d10"}
+            ]
+        },
+        {
+            "id": "phys_006",
+            "name": "Sunder Armor",
+            "level": 4,
+            "source": "physical",
+            "type": "attack",
+            "description": "A forceful blow that shatters the target's armor, reducing its effectiveness for a short time. Can be applied multiple times.",
+            "damage": "1d6",
+            "resource_cost": 15,
+            "cast_time": 0,
+            "cooldown": 0,
+            "target_type": "single",
+            "scaling": {"strength": 0.3},
+            "effects": [
+                {"type": "debuff", "stat": "armor", "value": -50, "duration": 8, "name": "Sundered", "stacking": true, "max_stacks": 3}
+            ]
+        },
+        {
+            "id": "phys_007",
+            "name": "Rupture",
+            "level": 5,
+            "source": "physical",
+            "type": "attack",
+            "description": "A finishing move that tears a deep wound in the target, causing them to bleed heavily over time. The duration and damage increases with combo points.",
+            "damage": null,
+            "resource_cost": 20,
+            "cast_time": 0,
+            "cooldown": 0,
+            "target_type": "single",
+            "scaling": {},
+            "effects": [
+                {"type": "consume_resource", "resource": "combo_point", "effect": {"type": "dot", "damage": "2d6", "duration": 8, "name": "Ruptured"}}
+            ]
+        },
+        {
+            "id": "phys_008",
+            "name": "Whirlwind",
+            "level": 6,
+            "source": "physical",
+            "type": "attack",
+            "description": "Unleash a spinning attack, striking all nearby enemies with your weapon.",
+            "damage": "2d8",
+            "resource_cost": 30,
+            "cast_time": 0,
+            "cooldown": 6,
+            "target_type": "caster_area",
+            "radius": "8ft",
+            "scaling": {"strength": 0.6},
+            "effects": []
+        },
+        {
+            "id": "phys_009",
+            "name": "Bloodthirst",
+            "level": 6,
+            "source": "physical",
+            "type": "attack",
+            "description": "A ferocious attack that deals damage and generates a large amount of Rage.",
+            "damage": "2d6",
+            "resource_cost": 0,
+            "cast_time": 0,
+            "cooldown": 3,
+            "target_type": "single",
+            "scaling": {"strength": 0.7},
+            "effects": [
+                {"type": "generate_resource", "resource": "rage", "value": 20}
+            ]
+        },
+        {
+            "id": "phys_010",
+            "name": "Execute",
+            "level": 8,
+            "source": "physical",
+            "type": "attack",
+            "description": "Attempt to finish off a foe, dealing massive damage to targets with low health.",
+            "damage": "3d10",
+            "resource_cost": 15,
+            "cast_time": 0,
+            "cooldown": 0,
+            "target_type": "single",
+            "scaling": {"strength": 1.2},
+            "effects": [
+                {"type": "conditional_damage", "condition": "target_health_below_20_percent", "multiplier": 3}
+            ]
+        },
+        {
+            "id": "phys_011",
+            "name": "Evasion",
+            "level": 9,
+            "source": "physical",
+            "type": "attack",
+            "description": "Heighten your senses and move with supernatural speed, drastically increasing your chance to dodge all incoming attacks for a short time.",
+            "damage": null,
+            "resource_cost": 10,
+            "cast_time": 0,
+            "cooldown": 20,
+            "target_type": "self",
+            "scaling": {},
+            "effects": [
+                {"type": "buff", "stat": "dodge_chance", "value": 75, "duration": 3, "name": "Evasion"}
+            ]
+        },
+        {
+            "id": "phys_012",
+            "name": "Avatar",
+            "level": 10,
+            "source": "physical",
+            "type": "attack",
+            "description": "Transform into an unstoppable colossus for a short time, increasing your strength, health, and granting immunity to movement impairing effects.",
+            "damage": null,
+            "resource_cost": 50,
+            "cast_time": 0,
+            "cooldown": 45,
+            "target_type": "self",
+            "scaling": {},
+            "effects": [
+                {"type": "buff", "stat": "strength", "value": 20, "duration": 10, "name": "Avatar"},
+                {"type": "buff", "stat": "health", "value": 100, "duration": 10},
+                {"type": "buff", "stat": "root_immunity", "value": true, "duration": 10}
+            ]
+        },
+        {
+            "id": "phys_013",
+            "name": "Raging Blow",
+            "level": 1,
+            "source": "physical",
+            "type": "attack",
+            "description": "A savage blow fueled by rage, dealing moderate damage.",
+            "damage": "1d8",
+            "resource_cost": 15,
+            "cast_time": 0,
+            "cooldown": 0,
+            "target_type": "single",
+            "scaling": {"strength": 0.7},
+            "effects": []
+        }
+    ]
+}

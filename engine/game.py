@@ -3,7 +3,7 @@ from constants import *
 from menus.main_menu import MainMenu
 from data.character.character_creation import Character
 #---- Testing imports ----
-from engine.data_loader import load_all_spells
+from engine.data_loader import load_all_abilities, load_all_weapons, load_all_armors
 #--- End of Testing imports ---
 
 
@@ -28,31 +28,34 @@ class Game:
 
         # self.character = Character(self)
 
-        self.master_spellbook = load_all_spells()
+        self.master_ability_compendium = load_all_abilities()
 
+        self.master_weapon_rack = load_all_weapons()
 
+        self.master_armory = load_all_armors()
         #=== Tester functions --- 
-        ABILITIES = {
-            "racial" : (),
-            "spell" : (),
-            "attack" : (),
-            "hot" : ()
+
+        level = 8
+        new_dict = {
+            'armor' : 0
         }
 
-        spell_ids = ("nature_007", "nature_005", "nature_012")
+        resistances_progression={
+            5: {"armor": 15},
+            10: {"armor": 25}
+        }
 
-        book = self.master_spellbook
-        for spell_id in spell_ids:
-            if spell_id in book:
-                print(book[spell_id]['id'])
-                ABILITIES[book[spell_id]['type']] += (book[spell_id]['id'], )
+            
+        for things in resistances_progression.keys():
+            for key, value in resistances_progression[things].items():
+                if level >= things:
+                    print("key", key)
+                    print('value', value)
+                    new_dict[key] += value
 
-
-
-
-        print(ABILITIES)
+        print("new dict", new_dict)
+        # ---- end of tester functions ---
         
-        #=== end of tester functions---
 
     def run_game(self):
         while self.running:

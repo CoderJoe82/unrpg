@@ -42,13 +42,13 @@ STATS = {
 }
 
 BASE_STATS = {
-    "strength" : 10,
-    "dexterity" : 10,
-    "constitution" : 10,
-    "intelligence" : 10,
-    "charisma" : 10,
-    "wisdom" : 10,
-    "faith" : 10
+    "strength" : 5,
+    "dexterity" : 5,
+    "constitution" : 5,
+    "intelligence" : 5,
+    "charisma" : 5,
+    "wisdom" : 5,
+    "faith" : 5
 }
 
 ABILITIES = {
@@ -57,3 +57,25 @@ ABILITIES = {
     "attack" : (),
     "hot" : ()
 }
+
+RESISTANCES = {
+    "magic": {
+        "fire" : 0,
+        "frost" : 0,
+        "darkness" : 0,
+        "holy" : 0,
+        "lightning" : 0,
+        "nature" : 0
+    },
+    "physical" :{
+        "armor" : 0
+    }
+}
+
+PLAYER_STARTING_LEVEL = 1
+
+ARMOR_SCALING_FACTOR = 50
+
+MAGIC_RESISTANCE_SCALING_FACTOR = 40
+
+BASE_XP_TO_LEVEL = 1000

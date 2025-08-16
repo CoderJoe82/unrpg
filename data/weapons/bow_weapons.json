@@ -8,6 +8,7 @@
             "hand_type": "two_handed",
             "description": "A simple, unadorned bow made from a single piece of hickory. It's reliable for a novice archer.",
             "damage": "1d6",
+            "damage_type" : "physical",
             "attack_speed": 1.2,
             "scaling": {"dexterity": 0.6},
             "effects": []
@@ -20,6 +21,7 @@
             "hand_type": "two_handed",
             "description": "The curved limbs of this bow store more energy, allowing for a more powerful shot than a standard shortbow.",
             "damage": "1d8",
+            "damage_type" : "physical",
             "attack_speed": 1.1,
             "scaling": {"dexterity": 0.7},
             "effects": []
@@ -32,6 +34,7 @@
             "hand_type": "two_handed",
             "description": "A well-balanced bow favored by trackers and hunters. The grip is worn smooth from years of patient use.",
             "damage": "1d8",
+            "damage_type" : "physical",
             "attack_speed": 1.1,
             "scaling": {"dexterity": 0.8},
             "effects": [
@@ -46,6 +49,7 @@
             "hand_type": "two_handed",
             "description": "Crafted from supple yew wood with elegant, sweeping curves, this bow is deceptively powerful and remarkably light.",
             "damage": "2d6",
+            "damage_type" : "physical",
             "attack_speed": 1.3,
             "scaling": {"dexterity": 1.0},
             "effects": []
@@ -58,6 +62,7 @@
             "hand_type": "two_handed",
             "description": "This bow is cool to the touch, and arrows nocked to its string are imbued with a chilling magic.",
             "damage": "2d8",
+            "damage_type" : "physical",
             "attack_speed": 1.2,
             "scaling": {"dexterity": 1.1},
             "effects": [
@@ -72,6 +77,7 @@
             "hand_type": "two_handed",
             "description": "Made from layers of horn, wood, and sinew. It requires considerable strength to draw, but its arrows fly with incredible force.",
             "damage": "3d6",
+            "damage_type" : "physical",
             "attack_speed": 1.4,
             "scaling": {"strength": 0.5, "dexterity": 0.8},
             "effects": []
@@ -84,6 +90,7 @@
             "hand_type": "two_handed",
             "description": "A masterfully crafted bow that feels like an extension of the wielder's arm, making it easy to find and strike vital points.",
             "damage": "3d8",
+            "damage_type" : "physical",
             "attack_speed": 1.1,
             "scaling": {"dexterity": 1.5},
             "effects": [
@@ -98,6 +105,7 @@
             "hand_type": "two_handed",
             "description": "This bow hums with captured wind, allowing the archer to loose arrows with supernatural speed.",
             "damage": "4d6",
+            "damage_type" : "physical",
             "attack_speed": 1.0,
             "scaling": {"dexterity": 1.8},
             "effects": [
@@ -112,6 +120,7 @@
             "hand_type": "two_handed",
             "description": "An infamous bow, said to guide its arrows past armor and hide to find the heart of its target.",
             "damage": "4d8",
+            "damage_type" : "physical",
             "attack_speed": 1.2,
             "scaling": {"dexterity": 2.0},
             "effects": [
@@ -126,6 +135,7 @@
             "hand_type": "two_handed",
             "description": "A legendary bow made from the branch of a celestial tree. Its arrows fly silently and split the very air, sometimes striking more than one foe at once.",
             "damage": "5d8",
+            "damage_type" : "physical",
             "attack_speed": 1.1,
             "scaling": {"dexterity": 2.5},
             "effects": [

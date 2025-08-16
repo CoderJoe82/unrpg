@@ -1,5 +1,5 @@
-from constants import BASE_STATS, ABILITIES
-from engine.data_loader import load_all_spells
+from constants import BASE_STATS, ABILITIES, PLAYER_STARTING_LEVEL, RESISTANCES
+from engine.mechanics import calculate_max_hp, calculate_damage_taken, calculate_xp_to_next_level
 
 class CharacterClass:
     def __init__(
@@ -8,7 +8,7 @@ class CharacterClass:
                 description,
                 primary_resource,
                 unique_mechanics,
-                hit_dice,
+                base_hp_per_level,
                 bonus_stats,
                 passive_ability_bonus,
                 starting_equipment,
@@ -17,7 +17,7 @@ class CharacterClass:
                 primary_stats,
                 starting_abilities,
                 progression,
-                saving_throw_progression,
+                resistances_progression,
                 role_type,
                 specializations,
                 allowed_ability_source
@@ -26,7 +26,7 @@ class CharacterClass:
         self.description = description
         self.primary_resource = primary_resource
         self.unique_mechanics = unique_mechanics if unique_mechanics is not None else {}
-        self.hit_dice = hit_dice
+        self.base_hp_per_level = base_hp_per_level
         self.bonus_stats = bonus_stats if bonus_stats is not None else {}
         self.passive_ability_bonus = passive_ability_bonus if passive_ability_bonus is not None else {}
         self.starting_equipment = starting_equipment if starting_equipment is not None else ()
@@ -34,7 +34,7 @@ class CharacterClass:
         self.weapons_allowed = weapons_allowed if weapons_allowed is not None else ()
         self.primary_stats = primary_stats if primary_stats is not None else ()
         self.progression = progression if progression is not None else {}
-        self.saving_throw_progression = saving_throw_progression if saving_throw_progression is not None else {}
+        self.resistances_progression = resistances_progression if resistances_progression is not None else {}
         self.role_type = role_type
         self.specializations = specializations if specializations is not None else ()
         self.starting_abilities = starting_abilities if starting_abilities is not None else ()
@@ -45,7 +45,7 @@ class CharacterClass:
             "name" : self.name,
             "description" : self.description,
             "role" : self.role_type,
-            "hit_dice" : self.hit_dice,
+            "base_hp_per_level" : self.base_hp_per_level,
             "passive"  : self.passive_ability_bonus,
             "weapons_allowed" : self.weapons_allowed,
             "primary_stats" : self.primary_stats,
@@ -155,7 +155,7 @@ class CharacterRace:
         return False
 
     def can_speak(self, language_name):
-        if language_name in self.langugaes:
+        if language_name in self.languages:
             return True
         return False
     
@@ -173,11 +173,23 @@ class Character:
                  character_name,
                  character_class,
                  character_race,
+                 character_level = PLAYER_STARTING_LEVEL
                  ):
         self.game = game
         self.character_name = character_name
         self.character_class = character_class if character_class is not None else {}
         self.character_race = character_race if character_race is not None else {}
+        self.character_level = character_level
+        self.character_stats = self._get_finalized_stats()
+        self.character_current_hp = self.character_max_hp
+        self.character_abilities = self._get_abilities()
+        self.character_is_alive = True
+        self.character_xp = 0
+        self.character_xp_to_next_level = self._get_xp_to_next_level()
+        self.character_resistances = self.get_finalized_resistances()
+        self.character_block_chance = 0 #<-- placeholder
+        
+
 
     def _get_finalized_stats(self):
         finalized_stats = BASE_STATS.copy()
@@ -185,23 +197,134 @@ class Character:
             finalized_stats[stat] += self.character_class.bonus_stats[stat]
         for stat in self.character_race.racial_stat_bonuses:
             finalized_stats[stat] += self.character_race.racial_stat_bonuses[stat]
-        self.finalized_stats = finalized_stats
+        return finalized_stats
 
-    def _get_abilities(self, abilities):
+    def _get_abilities(self):
+        class_abilities = self.character_class.starting_abilities
+        race_abilities = self.character_race.racial_abilities
+        all_abilities = class_abilities + race_abilities
         player_abilities = ABILITIES.copy()
-        book = self.master_spellbook
-        for spell_id in abilities:
+        book = self.game.master_ability_compendium
+        for spell_id in all_abilities:
             if spell_id in book:
                 spell_data = book[spell_id]
                 ability_type = spell_data['type']
                 player_abilities[ability_type] += (spell_data['id'], )
         return player_abilities
+    
+    def _get_hp(self, bonuses):
+        base_hp = calculate_max_hp(self.character_level, self.character_stats['constitution'], self.character_class.base_hp_per_level)
+        bonuses = ()
+        for number in bonuses:
+            base_hp += number
+        return base_hp
 
-                        # spell_ids = ("nature_007", "nature_005", "nature_012")
-        # for spell_id in spell_ids:
-        #     for spell in self.master_spellbook.values():
-        #         if spell_id == spell['id']:
-        #             for spell_type in ABILITIES:
-        #                 if spell_type == spell['type']:
-        #                     ABILITIES[spell_type] += (spell['id'], )
-        # print(ABILITIES)
+        
+    def _take_damage(self, resistance_value, attack_source):
+        damage_taken = calculate_damage_taken(resistance_value, attack_source)
+        if damage_taken >= self.character_current_hp:
+            self.character_current_hp = 0
+            self.character_is_alive = False
+        else:
+            self.character_current_hp -= damage_taken
+
+    def _get_healed(self, healed_amount):
+        if self.character_is_alive == False:
+            return
+        self.character_current_hp += healed_amount
+        self.character_current_hp = min(self.character_max_hp, self.character_current_hp)
+
+    def _get_xp_to_next_level(self):
+        xp_needed= calculate_xp_to_next_level(self.character_level)
+        return xp_needed
+    
+    def _get_finalized_resistances(self):
+        final_resistances = {
+            "magic" : RESISTANCES['magic'].copy(),
+            "physical" : RESISTANCES['physical'].copy()
+        }
+
+        race_resistances = self.character_race.resistance_bonuses
+        class_resistances = self.character_class.resistances_progression
+        level = self.character_level
+
+
+        resistance_bonus = (self.character_stats['wisdom'] * 2) + self.character_stats['faith']
+        for resistance in race_resistances:
+            if resistance in final_resistances['magic']:
+                final_resistances['magic'][resistance] += race_resistances[resistance]
+            else:
+                final_resistances['physical'][resistance] += race_resistances[resistance]
+
+        for resistance in final_resistances['magic']:
+            final_resistances['magic'][resistance] += resistance_bonus
+
+        for things in class_resistances.keys():
+            for key, value in class_resistances[things].items():
+                if level >= things:
+                    if key in final_resistances['magic']:
+                        final_resistances['magic'][key] += value
+                    else:
+                        final_resistances['physical'][key] += value
+
+        return final_resistances
+
+
+
+        #         level = 8
+        # new_dict = {
+        #     'armor' : 0
+        # }
+
+        # resistances_progression={
+        #     5: {"armor": 15},
+        #     10: {"armor": 25}
+        # }
+
+            
+        # for things in resistances_progression.keys():
+        #     for key, value in resistances_progression[things].items():
+        #         if level >= things:
+        #             print("key", key)
+        #             print('value', value)
+        #             new_dict[key] += value
+
+        # print("new dict", new_dict)
+            
+
+
+
+    
+#                                      STAT PHILOSOPHY
+# ======================================================================================
+# --- CORE STAT SYSTEM PHILOSOPHY: "The Foundation and Keystone Model" ---
+#
+# This document outlines the guiding principles for character stats and progression.
+# All future stat, ability, and item design should align with this philosophy.
+#
+# --- 1. CORE GOALS ---
+#    - Replayability: Encourage players to start new characters to try different builds.
+#    - Experimentation: Support creative and "un-optimized" builds without punishing the player.
+#    - Meaningful Choice: Every point invested should feel impactful.
+#    - Avoid "Useless" Builds: No path should lead to a non-viable character.
+#
+# --- 2. STARTING BASELINE ---
+#    - All player characters begin with a baseline of 5 in every primary stat.
+#    - This represents a "Competent Adventurer" - capable, but with significant room for growth.
+#    - This ensures a smooth early game and provides good pacing towards the first milestone.
+#
+# --- 3. THE "FOUNDATION" (Incremental Growth) ---
+#    - Every single point invested in a primary stat provides a small, direct, and permanent bonus.
+#    - This is the "Foundation" of the build. It guarantees constant, tangible progression.
+#    - Example: +1 Strength might always grant +5 Health and +0.5% Melee Damage.
+#    - This system ensures that no point is ever wasted.
+#
+# --- 4. THE "KEYSTONES" (Milestone Perks) ---
+#    - At major stat thresholds (e.g., 25, 50, 75), the player unlocks a "Keystone" perk choice.
+#    - These are powerful, build-defining passive abilities that create a character's unique identity.
+#    - When a threshold is reached, the player will be presented with a choice between 2-3 unique perks.
+#    - Example: At 25 Dexterity, a player might choose between a "Dual Wielding" perk
+#      or a "Lethal Precision" perk that dramatically increases critical damage.
+#    - These Keystone choices are the primary driver for build diversity and replayability.
+#
+# ======================================================================================
