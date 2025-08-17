@@ -1,0 +1,368 @@
+{
+    "light_armors": [
+        {
+            "id": "light_head_001",
+            "name": "Tattered Linen Cowl",
+            "level": 1,
+            "type": "armor",
+            "category": "cloth",
+            "equip_slot": "head",
+            "description": "A simple cowl made of frayed linen. It offers more comfort than protection.",
+            "armor": 4,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "light_chest_001",
+            "name": "Tattered Linen Robe",
+            "level": 1,
+            "type": "armor",
+            "category": "cloth",
+            "equip_slot": "chest",
+            "description": "A threadbare robe that has seen better days. Better than nothing.",
+            "armor": 6,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "light_shoulders_001",
+            "name": "Tattered Linen Mantle",
+            "level": 1,
+            "type": "armor",
+            "category": "cloth",
+            "equip_slot": "shoulders",
+            "description": "A simple wrap for the shoulders, offering minimal protection from the elements.",
+            "armor": 3,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "light_wrist_001",
+            "name": "Tattered Linen Bracers",
+            "level": 1,
+            "type": "armor",
+            "category": "cloth",
+            "equip_slot": "wrist",
+            "description": "Strips of cloth wrapped around the wrists.",
+            "armor": 2,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "light_hand_001",
+            "name": "Tattered Linen Gloves",
+            "level": 1,
+            "type": "armor",
+            "category": "cloth",
+            "equip_slot": "hand",
+            "description": "Simple gloves that keep your hands from getting calloused.",
+            "armor": 3,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "light_waist_001",
+            "name": "Rope Belt",
+            "level": 1,
+            "type": "armor",
+            "category": "cloth",
+            "equip_slot": "waist",
+            "description": "A length of frayed rope used to hold up one's trousers.",
+            "armor": 2,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "light_legs_001",
+            "name": "Tattered Linen Breeches",
+            "level": 1,
+            "type": "armor",
+            "category": "cloth",
+            "equip_slot": "legs",
+            "description": "Well-worn pants with several patches.",
+            "armor": 5,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "light_feet_001",
+            "name": "Tattered Linen Wraps",
+            "level": 1,
+            "type": "armor",
+            "category": "cloth",
+            "equip_slot": "feet",
+            "description": "Cloth strips wrapped around the feet. Not as good as real boots.",
+            "armor": 3,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "light_chest_002",
+            "name": "Apprentice's Vest",
+            "level": 2,
+            "type": "armor",
+            "category": "cloth",
+            "equip_slot": "chest",
+            "description": "A simple vest with numerous pockets for reagents and trinkets.",
+            "armor": 10,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "intelligence", "value": 1}
+            ]
+        },
+        {
+            "id": "light_legs_002",
+            "name": "Scout's Trousers",
+            "level": 2,
+            "type": "armor",
+            "category": "leather",
+            "equip_slot": "legs",
+            "description": "Light leather trousers, reinforced at the knees for climbing and crawling.",
+            "armor": 8,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "dexterity", "value": 1}
+            ]
+        },
+        {
+            "id": "light_feet_002",
+            "name": "Soft Leather Boots",
+            "level": 2,
+            "type": "armor",
+            "category": "leather",
+            "equip_slot": "feet",
+            "description": "These boots have soft soles, ideal for moving quietly.",
+            "armor": 6,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "light_hand_003",
+            "name": "Acolyte's Gloves",
+            "level": 3,
+            "type": "armor",
+            "category": "cloth",
+            "equip_slot": "hand",
+            "description": "Fine silk gloves that seem to help channel delicate energies.",
+            "armor": 8,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "wisdom", "value": 2}
+            ]
+        },
+        {
+            "id": "light_waist_003",
+            "name": "Scout's Utility Belt",
+            "level": 3,
+            "type": "armor",
+            "category": "leather",
+            "equip_slot": "waist",
+            "description": "A sturdy belt with pouches and loops for tools and supplies.",
+            "armor": 6,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "constitution", "value": 2}
+            ]
+        },
+        {
+            "id": "light_head_004",
+            "name": "Shadow-Stitched Hood",
+            "level": 4,
+            "type": "armor",
+            "category": "cloth",
+            "equip_slot": "head",
+            "description": "A dark hood that seems to deepen the shadows around your face.",
+            "armor": 15,
+            "scaling": {"dexterity": 0.1},
+            "effects": [
+                {"type": "passive_buff", "stat": "crit_chance", "value": 2}
+            ]
+        },
+        {
+            "id": "light_shoulders_004",
+            "name": "Stalker's Pauldrons",
+            "level": 4,
+            "type": "armor",
+            "category": "leather",
+            "equip_slot": "shoulders",
+            "description": "Hardened leather pauldrons that don't restrict movement.",
+            "armor": 12,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "dexterity", "value": 3}
+            ]
+        },
+        {
+            "id": "light_chest_005",
+            "name": "Swiftwood Jerkin",
+            "level": 5,
+            "type": "armor",
+            "category": "leather",
+            "equip_slot": "chest",
+            "description": "A vest made from the supple, magically lightened wood of the Swiftwood tree.",
+            "armor": 28,
+            "scaling": {"dexterity": 0.2},
+            "effects": [
+                {"type": "passive_buff", "stat": "haste", "value": 0.05}
+            ]
+        },
+        {
+            "id": "light_wrist_005",
+            "name": "Bands of the Quick",
+            "level": 5,
+            "type": "armor",
+            "category": "leather",
+            "equip_slot": "wrist",
+            "description": "These bracers feel unusually light, seeming to urge your hands to move faster.",
+            "armor": 10,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "dexterity", "value": 4}
+            ]
+        },
+        {
+            "id": "light_legs_006",
+            "name": "Nightstalker's Leggings",
+            "level": 6,
+            "type": "armor",
+            "category": "leather",
+            "equip_slot": "legs",
+            "description": "Dark leather leggings, oiled to be silent and waterproof.",
+            "armor": 25,
+            "scaling": {"dexterity": 0.2},
+            "effects": [
+                {"type": "passive_buff", "stat": "crit_chance", "value": 3}
+            ]
+        },
+        {
+            "id": "light_feet_006",
+            "name": "Boots of the Silent Step",
+            "level": 6,
+            "type": "armor",
+            "category": "leather",
+            "equip_slot": "feet",
+            "description": "Enchanted boots that muffle the sound of your footsteps.",
+            "armor": 18,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "dexterity", "value": 5}
+            ]
+        },
+        {
+            "id": "light_hand_007",
+            "name": "Gloves of the Spellweaver",
+            "level": 7,
+            "type": "armor",
+            "category": "cloth",
+            "equip_slot": "hand",
+            "description": "These gloves are interwoven with arcane thread, quickening your spellcasting.",
+            "armor": 20,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "haste", "value": 0.08}
+            ]
+        },
+        {
+            "id": "light_waist_007",
+            "name": "Cinch of the Wind",
+            "level": 7,
+            "type": "armor",
+            "category": "cloth",
+            "equip_slot": "waist",
+            "description": "This sash is light as air and flows as if in a constant breeze.",
+            "armor": 15,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "dexterity", "value": 7}
+            ]
+        },
+        {
+            "id": "light_head_008",
+            "name": "Cowl of the Stars",
+            "level": 8,
+            "type": "armor",
+            "category": "cloth",
+            "equip_slot": "head",
+            "description": "A deep blue cowl that shimmers with faint, distant lights, enhancing your connection to magical energies.",
+            "armor": 30,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "intelligence", "value": 10},
+                {"type": "passive_buff", "stat": "spell_crit_chance", "value": 5}
+            ]
+        },
+        {
+            "id": "light_shoulders_008",
+            "name": "Mantle of the Unseen",
+            "level": 8,
+            "type": "armor",
+            "category": "cloth",
+            "equip_slot": "shoulders",
+            "description": "These pauldrons seem to bend light around them, making you harder to spot.",
+            "armor": 24,
+            "scaling": {"dexterity": 0.3},
+            "effects": [
+                {"type": "passive_buff", "stat": "dodge_chance", "value": 5}
+            ]
+        },
+        {
+            "id": "light_chest_009",
+            "name": "Gryphon Rider's Tunic",
+            "level": 9,
+            "type": "armor",
+            "category": "leather",
+            "equip_slot": "chest",
+            "description": "A masterfully crafted tunic, enchanted to resist high winds and sudden impacts.",
+            "armor": 50,
+            "scaling": {"dexterity": 0.4},
+            "effects": [
+                {"type": "passive_buff", "stat": "dexterity", "value": 15},
+                {"type": "passive_buff", "stat": "frost_resistance", "value": 15}
+            ]
+        },
+        {
+            "id": "light_wrist_009",
+            "name": "Wraps of a Thousand Skies",
+            "level": 9,
+            "type": "armor",
+            "category": "cloth",
+            "equip_slot": "wrist",
+            "description": "These bindings are incredibly light and grant the wearer a surprising burst of speed.",
+            "armor": 18,
+            "scaling": {},
+            "effects": [
+                {"type": "on_hit_chance", "chance": 0.1, "effect": {"type": "buff", "stat": "haste", "value": 0.20, "duration": 3, "name": "Swiftness"}}
+            ]
+        },
+        {
+            "id": "light_legs_010",
+            "name": "Leggings of Celestial Silk",
+            "level": 10,
+            "type": "armor",
+            "category": "cloth",
+            "equip_slot": "legs",
+            "description": "Pants woven from a material that feels like moonlight. It makes movement effortless.",
+            "armor": 45,
+            "scaling": {"intelligence": 0.2},
+            "effects": [
+                {"type": "passive_buff", "stat": "intelligence", "value": 12},
+                {"type": "passive_buff", "stat": "mana_cost_reduction", "value": 0.05}
+            ]
+        },
+        {
+            "id": "light_feet_010",
+            "name": "Sandals of the Wanderer",
+            "level": 10,
+            "type": "armor",
+            "category": "leather",
+            "equip_slot": "feet",
+            "description": "Said to have walked a thousand roads, these sandals make even the longest journey feel short.",
+            "armor": 35,
+            "scaling": {"dexterity": 0.5},
+            "effects": [
+                {"type": "passive_buff", "stat": "dexterity", "value": 12},
+                {"type": "passive_buff", "stat": "stamina_regen", "value": 5}
+            ]
+        }
+    ]
+}

@@ -1,0 +1,126 @@
+{
+    "charms": [
+        {
+            "id": "charm_001",
+            "name": "Carved Wooden Bird",
+            "level": 1,
+            "type": "charm",
+            "slot": "charm",
+            "description": "A small, crudely carved bird that feels surprisingly light in your hand. A simple good luck charm.",
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "dexterity", "value": 2}
+            ]
+        },
+        {
+            "id": "charm_002",
+            "name": "Scrying Stone Fragment",
+            "level": 2,
+            "type": "charm",
+            "slot": "charm",
+            "description": "A shard of a larger crystal, it seems to drink in ambient light and hums with a faint energy.",
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "mana_regen", "value": 1}
+            ]
+        },
+        {
+            "id": "charm_003",
+            "name": "Bound Earth Totem",
+            "level": 3,
+            "type": "charm",
+            "slot": "charm",
+            "description": "A small bundle of sticks and stones tied with enchanted sinew. It feels solid and reassuring.",
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "armor", "value": 15}
+            ]
+        },
+        {
+            "id": "charm_004",
+            "name": "Idol of the Predator",
+            "level": 4,
+            "type": "charm",
+            "slot": "charm",
+            "description": "A small stone idol of a jungle cat, poised to strike. It encourages you to find your enemy's weaknesses.",
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "crit_chance", "value": 3}
+            ]
+        },
+        {
+            "id": "charm_005",
+            "name": "Sunstone Locket",
+            "level": 5,
+            "type": "charm",
+            "slot": "charm",
+            "description": "This locket contains a small, polished sunstone that glows with inner warmth, making you more receptive to healing energies.",
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "faith", "value": 6},
+                {"type": "passive_buff", "stat": "healing_received_modifier", "value": 0.05}
+            ]
+        },
+        {
+            "id": "charm_006",
+            "name": "Flask of Volatile Ichor",
+            "level": 6,
+            "type": "charm",
+            "slot": "charm",
+            "description": "A sealed flask containing a swirling, caustic liquid. Sometimes, a drop splashes onto your weapon.",
+            "scaling": {},
+            "effects": [
+                {"type": "on_hit_chance", "chance": 0.10, "effect": {"type": "damage", "amount": "2d6", "damage_type": "nature"}}
+            ]
+        },
+        {
+            "id": "charm_007",
+            "name": "Bloodstone Fetish",
+            "level": 7,
+            "type": "charm",
+            "slot": "charm",
+            "description": "This dark, pulsating stone seems to feed on the life force of fallen foes, transferring some of their energy to you.",
+            "scaling": {},
+            "effects": [
+                {"type": "on_kill_chance", "chance": 0.25, "effect": {"type": "restore_primary_resource", "percentage": 0.10}}
+            ]
+        },
+        {
+            "id": "charm_008",
+            "name": "Tome of Tenacity",
+            "level": 8,
+            "type": "charm",
+            "slot": "charm",
+            "description": "A miniature, iron-bound book whose passages speak of endurance and willpower, steeling your resolve against effects that would hinder you.",
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "cc_duration_reduction", "value": 0.20}
+            ]
+        },
+        {
+            "id": "charm_009",
+            "name": "Shard of Unstable Power",
+            "level": 9,
+            "type": "charm",
+            "slot": "charm",
+            "description": "This crystalline shard vibrates erratically, occasionally surging with immense power when you engage in combat.",
+            "scaling": {},
+            "effects": [
+                {"type": "on_damage_chance", "chance": 0.15, "effect": {"type": "buff", "stat": "primary_stat_increase", "value": 50, "duration": 8, "name": "Unstable Power"}}
+            ]
+        },
+        {
+            "id": "charm_010",
+            "name": "Heart of the Aspects",
+            "level": 10,
+            "type": "charm",
+            "slot": "charm",
+            "description": "A legendary artifact that channels raw elemental and arcane power, sometimes aligning perfectly with your own spells.",
+            "scaling": {"intelligence": 0.15},
+            "effects": [
+                {"type": "passive_buff", "stat": "intelligence", "value": 25},
+                {"type": "on_spell_cast_chance", "chance": 0.08, "effect": {"type": "buff", "stat": "next_spell_free_and_instant", "value": true, "duration": 1, "name": "Flow of Magic"}}
+            ]
+        }
+    ]
+}

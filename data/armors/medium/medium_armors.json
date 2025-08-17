@@ -1,0 +1,354 @@
+{
+    "medium_armors": [
+        {
+            "id": "medium_head_001",
+            "name": "Rusty Chain Coif",
+            "level": 1,
+            "type": "armor",
+            "category": "mail",
+            "equip_slot": "head",
+            "description": "A hood of interlocking metal rings, many of which are rusted and broken. Offers marginal protection.",
+            "armor": 7,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "medium_chest_001",
+            "name": "Rusty Chain Hauberk",
+            "level": 1,
+            "type": "armor",
+            "category": "mail",
+            "equip_slot": "chest",
+            "description": "A long shirt of rusted mail. It's heavy, noisy, and missing several links.",
+            "armor": 10,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "medium_shoulders_001",
+            "name": "Scrap Metal Pauldrons",
+            "level": 1,
+            "type": "armor",
+            "category": "mail",
+            "equip_slot": "shoulders",
+            "description": "A pair of poorly-shaped metal plates tied to the shoulders with leather cord.",
+            "armor": 5,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "medium_wrist_001",
+            "name": "Worn Leather Bracers",
+            "level": 1,
+            "type": "armor",
+            "category": "leather",
+            "equip_slot": "wrist",
+            "description": "Thick leather cuffs that have seen much use.",
+            "armor": 4,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "medium_hand_001",
+            "name": "Roughspun Gloves",
+            "level": 1,
+            "type": "armor",
+            "category": "leather",
+            "equip_slot": "hand",
+            "description": "Simple leather gloves to improve one's grip.",
+            "armor": 5,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "medium_waist_001",
+            "name": "Thick Leather Belt",
+            "level": 1,
+            "type": "armor",
+            "category": "leather",
+            "equip_slot": "waist",
+            "description": "A wide belt of stiff leather.",
+            "armor": 4,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "medium_legs_001",
+            "name": "Rusty Chain Leggings",
+            "level": 1,
+            "type": "armor",
+            "category": "mail",
+            "equip_slot": "legs",
+            "description": "Mail leggings that chafe and clink with every step.",
+            "armor": 8,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "medium_feet_001",
+            "name": "Hard Leather Boots",
+            "level": 1,
+            "type": "armor",
+            "category": "leather",
+            "equip_slot": "feet",
+            "description": "Sturdy boots with worn-down soles.",
+            "armor": 6,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "medium_chest_002",
+            "name": "Infantryman's Tunic",
+            "level": 2,
+            "type": "armor",
+            "category": "mail",
+            "equip_slot": "chest",
+            "description": "Standard-issue mail for a common soldier. Dependable and functional.",
+            "armor": 18,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "constitution", "value": 1}
+            ]
+        },
+        {
+            "id": "medium_legs_002",
+            "name": "Infantryman's Legguards",
+            "level": 2,
+            "type": "armor",
+            "category": "mail",
+            "equip_slot": "legs",
+            "description": "Mail leggings with leather straps for a secure fit.",
+            "armor": 14,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "medium_feet_003",
+            "name": "Hobnailed Boots",
+            "level": 3,
+            "type": "armor",
+            "category": "leather",
+            "equip_slot": "feet",
+            "description": "Boots with small nails hammered into the soles for better traction on difficult terrain.",
+            "armor": 12,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "constitution", "value": 2}
+            ]
+        },
+        {
+            "id": "medium_hand_003",
+            "name": "Brawler's Gloves",
+            "level": 3,
+            "type": "armor",
+            "category": "leather",
+            "equip_slot": "hand",
+            "description": "Reinforced gloves that protect the knuckles during a brawl.",
+            "armor": 10,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "strength", "value": 2}
+            ]
+        },
+        {
+            "id": "medium_head_004",
+            "name": "Marauder's Helmet",
+            "level": 4,
+            "type": "armor",
+            "category": "mail",
+            "equip_slot": "head",
+            "description": "An open-faced helmet with a reinforced nasal guard.",
+            "armor": 22,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "strength", "value": 3}
+            ]
+        },
+        {
+            "id": "medium_waist_004",
+            "name": "Marauder's Girdle",
+            "level": 4,
+            "type": "armor",
+            "category": "mail",
+            "equip_slot": "waist",
+            "description": "A belt of interlocking rings that protects the lower torso.",
+            "armor": 14,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "health", "value": 20}
+            ]
+        },
+        {
+            "id": "medium_chest_005",
+            "name": "Wyvern Scale Breastplate",
+            "level": 5,
+            "type": "armor",
+            "category": "scale",
+            "equip_slot": "chest",
+            "description": "A chestpiece made from the tough, overlapping scales of a wyvern. Naturally resistant to toxins.",
+            "armor": 40,
+            "scaling": {"strength": 0.2},
+            "effects": [
+                {"type": "passive_buff", "stat": "nature_resistance", "value": 10}
+            ]
+        },
+        {
+            "id": "medium_shoulders_005",
+            "name": "Mercenary's Pauldrons",
+            "level": 5,
+            "type": "armor",
+            "category": "mail",
+            "equip_slot": "shoulders",
+            "description": "Practical and unadorned shoulder guards that get the job done.",
+            "armor": 20,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "strength", "value": 4}
+            ]
+        },
+        {
+            "id": "medium_legs_006",
+            "name": "Serpent Scale Leggings",
+            "level": 6,
+            "type": "armor",
+            "category": "scale",
+            "equip_slot": "legs",
+            "description": "Flexible leggings made of hundreds of small, interlocking metal scales.",
+            "armor": 35,
+            "scaling": {"strength": 0.2},
+            "effects": [
+                {"type": "passive_buff", "stat": "dexterity", "value": 5}
+            ]
+        },
+        {
+            "id": "medium_wrist_006",
+            "name": "Vambraces of the Veteran",
+            "level": 6,
+            "type": "armor",
+            "category": "scale",
+            "equip_slot": "wrist",
+            "description": "Forearm guards scarred from countless deflected blows.",
+            "armor": 18,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "block_value", "value": 5}
+            ]
+        },
+        {
+            "id": "medium_hand_007",
+            "name": "Gauntlets of Sundering",
+            "level": 7,
+            "type": "armor",
+            "category": "mail",
+            "equip_slot": "hand",
+            "description": "These heavy gauntlets allow you to grip your weapon with crushing force.",
+            "armor": 25,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "crit_damage", "value": 0.10}
+            ]
+        },
+        {
+            "id": "medium_feet_007",
+            "name": "Sabatons of the Front Line",
+            "level": 7,
+            "type": "armor",
+            "category": "scale",
+            "equip_slot": "feet",
+            "description": "Scaled boots that are surprisingly stable and protective.",
+            "armor": 28,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "constitution", "value": 7}
+            ]
+        },
+        {
+            "id": "medium_head_008",
+            "name": "Warlord's Greathelm",
+            "level": 8,
+            "type": "armor",
+            "category": "mail",
+            "equip_slot": "head",
+            "description": "An imposing helmet that inspires allies and intimidates foes.",
+            "armor": 45,
+            "scaling": {"strength": 0.3},
+            "effects": [
+                {"type": "passive_buff", "stat": "strength", "value": 10},
+                {"type": "passive_buff", "stat": "charisma", "value": 5}
+            ]
+        },
+        {
+            "id": "medium_waist_008",
+            "name": "Belt of the Stalwart",
+            "level": 8,
+            "type": "armor",
+            "category": "mail",
+            "equip_slot": "waist",
+            "description": "A thick, reinforced belt that helps you stand your ground.",
+            "armor": 28,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "knockback_resistance", "value": 0.25}
+            ]
+        },
+        {
+            "id": "medium_chest_009",
+            "name": "Beastmaster's Harness",
+            "level": 9,
+            "type": "armor",
+            "category": "mail",
+            "equip_slot": "chest",
+            "description": "A harness of mail, leather, and bone, worn by those who fight alongside savage beasts.",
+            "armor": 70,
+            "scaling": {"strength": 0.4},
+            "effects": [
+                {"type": "passive_buff", "stat": "strength", "value": 15},
+                {"type": "passive_buff", "stat": "health", "value": 50}
+            ]
+        },
+        {
+            "id": "medium_shoulders_009",
+            "name": "Spaulders of the Unbreakable",
+            "level": 9,
+            "type": "armor",
+            "category": "scale",
+            "equip_slot": "shoulders",
+            "description": "Heavy spaulders that occasionally deflect a blow that should have been lethal.",
+            "armor": 40,
+            "scaling": {},
+            "effects": [
+                {"type": "on_hit_chance", "chance": 0.05, "effect": {"type": "damage_reduction_physical", "value": 1.0, "duration": 0, "name": "Deflected"}}
+            ]
+        },
+        {
+            "id": "medium_legs_010",
+            "name": "Greaves of the Stampede",
+            "level": 10,
+            "type": "armor",
+            "category": "scale",
+            "equip_slot": "legs",
+            "description": "Greaves made from the scales of a colossal beast. Felling a foe grants a burst of speed.",
+            "armor": 65,
+            "scaling": {"strength": 0.5},
+            "effects": [
+                {"type": "passive_buff", "stat": "strength", "value": 12},
+                {"type": "on_kill_chance", "chance": 1.0, "effect": {"type": "buff", "stat": "speed", "value": 30, "duration": 3, "name": "Stampede"}}
+            ]
+        },
+        {
+            "id": "medium_wrist_010",
+            "name": "Bracers of the Iron Will",
+            "level": 10,
+            "type": "armor",
+            "category": "mail",
+            "equip_slot": "wrist",
+            "description": "These bracers are imbued with the wearer's resolve, shortening the duration of hindering effects.",
+            "armor": 35,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "constitution", "value": 12},
+                {"type": "passive_buff", "stat": "cc_duration_reduction", "value": 0.15}
+            ]
+        }
+    ]
+}

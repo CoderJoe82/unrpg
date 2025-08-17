@@ -72,10 +72,10 @@ warrior = CharacterClass(
     starting_abilities=("phys_001",),
     progression={},
     resistances_progression={
-        3: {"armor": 20},
-        6: {"armor": 30},
-        9: {"armor": 50}
-    }, # Warriors master their armor and become physically tougher.
+        3: {"physical": 2},
+        6: {"physical": 5},
+        9: {"physical": 8} # <--- These will change. They will be different than berserker, and likely a flat bonus repeating every few levels.
+    }, # Warriors become battle-hardened, shrugging off a portion of physical damage.
     role_type="Melee Damage / Tank",
     specializations=("Arms", "Protection"),
     allowed_ability_source=("attack",)
@@ -120,9 +120,9 @@ ranger = CharacterClass(
     starting_abilities=("nature_001",),
     progression={},
     resistances_progression={
-        4: {"nature": 15},
-        8: {"armor": 25}
-    }, # Rangers are hardy survivalists, resistant to nature and toughened by the wild.
+        4: {"nature": 15, "physical" : 3},
+        8: {"physical": 6} # <-- physical here will probably be like warrior. Less frequent, and flat. Also less value than warriors.
+    }, # Rangers are hardy survivalists, toughened by the wild.
     role_type="Ranged Damage",
     specializations=("Marksmanship", "Beast Mastery"),
     allowed_ability_source=("attack", "nature")
@@ -192,9 +192,11 @@ berserker = CharacterClass(
     starting_abilities=("phys_009", "phys_013"),
     progression={},
     resistances_progression={
-        5: {"armor": 15},
-        10: {"armor": 25}
-    }, # Berserkers shrug off physical blows through sheer toughness.
+        1: {"physical" : 2},
+        4: {"physical": 3},
+        7: {"physical": 5},
+        10: {"physical": 8} # <---- philosopy: Berserkers should get 'tougher' every 3 levels and the amount going up from lvl 1 should increase incrementally by 1 every 3 levels. i.e.. At level 1, 2 + 0. At level 4, 2 + 1. At level 7, 2 + 2. At level 10, 2 + 3, etc..
+    }, # Berserkers shrug off physical blows through sheer, unbridled toughness.
     role_type="Melee Damage",
     specializations=("Fury", "Juggernaut"),
     allowed_ability_source=("attack",)

@@ -12,18 +12,18 @@ def calculate_damage_reduction(resistance_value, toughness):
 def calculate_damage_taken(resistance_value, attack_source):
     attack_data = attack_source
     damage_source = attack_data.get('damage_source', 'physical')
-    if damage_source == "physical":
-        resist = resistance_value['physical']['armor']
-        toughness = attack_data.get('attacker_level', 1) * ARMOR_SCALING_FACTOR
+    mob_level = attack_data.get('attacker_level', 1)
+    damage = attack_data.get('damage_amount', 1)
+    resist = resistance_value.get(damage_source, 0)
+    character_resistances = resistance_value
+
+    if damage_source in character_resistances:
+        toughness = mob_level * MAGIC_RESISTANCE_SCALING_FACTOR
     else:
-        if damage_source in resistance_value.get('magic', {}):
-            resist = resistance_value['magic'].get(damage_source, 5)
-            toughness = attack_data.get('attacker_level', 1) * MAGIC_RESISTANCE_SCALING_FACTOR
-        else:
-            resist = 1
-            toughness = 1
+        toughness = 1
+    
     reduction = calculate_damage_reduction(resist, toughness)
-    final_damage = attack_data.get('damage_amount', 1) * (1 - reduction)
+    final_damage = damage * (1 - reduction)
     return final_damage
 
 def calculate_xp_to_next_level(level):
@@ -37,6 +37,9 @@ def get_total_xp_for_level(level):
     for i in range(1, level):
         xp += calculate_xp_to_next_level(i)
     return xp
+
+def get_equipment_list():
+    pass
 
 # def get_hp_bonuses(gear, spell_effect, other)
 #     hp_bonuses = 0

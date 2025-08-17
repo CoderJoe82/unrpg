@@ -1,4 +1,4 @@
-from constants import BASE_STATS, ABILITIES, PLAYER_STARTING_LEVEL, RESISTANCES
+from constants import BASE_STATS, ABILITIES, PLAYER_STARTING_LEVEL, RESISTANCES, BASE_ARMOR, EQUIPMENT
 from engine.mechanics import calculate_max_hp, calculate_damage_taken, calculate_xp_to_next_level
 
 class CharacterClass:
@@ -183,10 +183,12 @@ class Character:
         self.character_stats = self._get_finalized_stats()
         self.character_current_hp = self.character_max_hp
         self.character_abilities = self._get_abilities()
+        self.character_equipment = self._get_equipment()
         self.character_is_alive = True
         self.character_xp = 0
         self.character_xp_to_next_level = self._get_xp_to_next_level()
-        self.character_resistances = self.get_finalized_resistances()
+        self.character_resistances = self._get_finalized_resistances()
+        self.charcter_current_armor = 0  #< ---- placeholder
         self.character_block_chance = 0 #<-- placeholder
         
 
@@ -239,10 +241,7 @@ class Character:
         return xp_needed
     
     def _get_finalized_resistances(self):
-        final_resistances = {
-            "magic" : RESISTANCES['magic'].copy(),
-            "physical" : RESISTANCES['physical'].copy()
-        }
+        final_resistances = RESISTANCES.copy()
 
         race_resistances = self.character_race.resistance_bonuses
         class_resistances = self.character_class.resistances_progression
@@ -250,81 +249,91 @@ class Character:
 
 
         resistance_bonus = (self.character_stats['wisdom'] * 2) + self.character_stats['faith']
+
         for resistance in race_resistances:
-            if resistance in final_resistances['magic']:
-                final_resistances['magic'][resistance] += race_resistances[resistance]
-            else:
-                final_resistances['physical'][resistance] += race_resistances[resistance]
+            final_resistances[resistance] += race_resistances[resistance]
 
-        for resistance in final_resistances['magic']:
-            final_resistances['magic'][resistance] += resistance_bonus
+        for keys in class_resistances.keys():
+            for key, value in class_resistances[keys].items():
+                if level >= keys:
+                    if key in final_resistances:
+                        final_resistances[key] += value
 
-        for things in class_resistances.keys():
-            for key, value in class_resistances[things].items():
-                if level >= things:
-                    if key in final_resistances['magic']:
-                        final_resistances['magic'][key] += value
-                    else:
-                        final_resistances['physical'][key] += value
+        for resistance_to_apply_bonus_to in final_resistances:
+            final_resistances[resistance_to_apply_bonus_to] += resistance_bonus
 
         return final_resistances
-
-
-
-        #         level = 8
-        # new_dict = {
-        #     'armor' : 0
-        # }
-
-        # resistances_progression={
-        #     5: {"armor": 15},
-        #     10: {"armor": 25}
-        # }
-
-            
-        # for things in resistances_progression.keys():
-        #     for key, value in resistances_progression[things].items():
-        #         if level >= things:
-        #             print("key", key)
-        #             print('value', value)
-        #             new_dict[key] += value
-
-        # print("new dict", new_dict)
-            
-
-
-
     
-#                                      STAT PHILOSOPHY
+    def _get_equipment(self):
+        starting_equipment = self.character_class.starting_equipment
+        full_equipment_list = self.game.master_equipment_compendium
+        character_equipment = EQUIPMENT.copy()
+
+        for equipment_id in starting_equipment:
+            if equipment_id in full_equipment_list:
+                equipment_data = full_equipment_list.get(equipment_id, "ID INCORRECT")
+                equipment_type = equipment_data['type']
+                if equipment_type in character_equipment:
+                    character_equipment[equipment_type].append(equipment_data)
+                else:
+                    print(f'{equipment_type} does not exist in EQUIPMENT.')
+
+        return character_equipment
+
+    def _get_total_armor(self):
+        armor_amount = 0
+        
+        for item in self.character_equipped_items:
+            item_type = self.character_equipped_items[item]['type']
+            if item_type == "shield" or "armor":
+                armor_amount += item['armor']
+
+        for item in self.character_current_bonuses:
+            if item == 'armor':
+                armor_amount += item
+
+        # THIS IS NEXT TO FINISH
+
+        return armor_amount
+        
+    
+# STAT & SKILL SYSTEM PHILOSOPHY
 # ======================================================================================
-# --- CORE STAT SYSTEM PHILOSOPHY: "The Foundation and Keystone Model" ---
-#
-# This document outlines the guiding principles for character stats and progression.
-# All future stat, ability, and item design should align with this philosophy.
-#
+# --- CORE STAT & SKILL SYSTEM PHILOSOPHY ---
+# This document outlines the guiding principles for character stats, skills, and progression. All future ability and item design should align with this philosophy.
 # --- 1. CORE GOALS ---
-#    - Replayability: Encourage players to start new characters to try different builds.
-#    - Experimentation: Support creative and "un-optimized" builds without punishing the player.
-#    - Meaningful Choice: Every point invested should feel impactful.
-#    - Avoid "Useless" Builds: No path should lead to a non-viable character.
-#
-# --- 2. STARTING BASELINE ---
-#    - All player characters begin with a baseline of 5 in every primary stat.
-#    - This represents a "Competent Adventurer" - capable, but with significant room for growth.
-#    - This ensures a smooth early game and provides good pacing towards the first milestone.
-#
-# --- 3. THE "FOUNDATION" (Incremental Growth) ---
-#    - Every single point invested in a primary stat provides a small, direct, and permanent bonus.
-#    - This is the "Foundation" of the build. It guarantees constant, tangible progression.
-#    - Example: +1 Strength might always grant +5 Health and +0.5% Melee Damage.
-#    - This system ensures that no point is ever wasted.
-#
-# --- 4. THE "KEYSTONES" (Milestone Perks) ---
-#    - At major stat thresholds (e.g., 25, 50, 75), the player unlocks a "Keystone" perk choice.
-#    - These are powerful, build-defining passive abilities that create a character's unique identity.
-#    - When a threshold is reached, the player will be presented with a choice between 2-3 unique perks.
-#    - Example: At 25 Dexterity, a player might choose between a "Dual Wielding" perk
-#      or a "Lethal Precision" perk that dramatically increases critical damage.
-#    - These Keystone choices are the primary driver for build diversity and replayability.
-#
+# Replayability: Encourage players to start new characters to try different builds.
+# Experimentation: Support creative and "un-optimized" builds without punishing the player.
+# Meaningful Choice: Every point invested and every action taken should feel impactful.
+# Avoid "Useless" Builds: No path should lead to a non-viable character.
+# --- 2. PRIMARY STATS: The "Foundation and Keystone Model" ---
+# Primary stats represent a character's innate talent and core aptitudes. They are improved through deliberate investment upon leveling up.
+# 2a. STARTING BASELINE
+# All player characters begin with a baseline of 5 in every primary stat.
+# This represents a "Competent Adventurer" - capable, but with significant room for growth.
+# This ensures a smooth early game and provides good pacing towards the first milestone.
+# 2b. THE "FOUNDATION" (Incremental Growth)
+# Every single point invested in a primary stat provides a small, direct, and permanent bonus.
+# This is the "Foundation" of the build. It guarantees constant, tangible progression.
+# Example: +1 Strength might always grant +5 Health and +0.5% Melee Damage.
+# This system ensures that no point is ever wasted.
+# 2c. THE "KEYSTONES" (Milestone Perks)
+# At major stat thresholds (e.g., 25, 50, 75), the player unlocks a "Keystone" perk choice.
+# These are powerful, build-defining passive abilities that create a character's unique identity.
+# Example: At 25 Dexterity, a player might choose between a "Dual Wielding" perk or a "Lethal Precision" perk that dramatically increases critical damage.
+# These Keystone choices are the primary driver for build diversity and replayability.
+# --- 3. SKILLS: The "Mastery Through Practice" Model ---
+# While primary stats represent innate talent, skills represent learned expertise. They are improved not by spending points, but by taking direct action in the world.
+# 3a. LEARNING BY DOING
+# The world itself is the training ground. Every relevant action grants a small amount of "skill experience" to the corresponding skill behind the scenes.
+# This system rewards active engagement. Brewing a potion improves Alchemy, mining an ore vein improves Mining, and successfully identifying an item improves Identification. The character grows by doing.
+# 3b. PASSIVE BENEFITS
+# Each level gained in a skill provides a small, incremental, and permanent passive bonus.
+# This reflects a growing mastery. For example, a higher Metalsmithing level might slightly reduce the materials needed for crafting, while a higher Herbology level could increase the yield gathered from plants. These bonuses are automatically applied as the skill improves.
+# 3c. SKILL CATEGORIES
+# Skills are organized into several practical and magical disciplines, including:
+# Crafting: Woodworking, Metalsmithing, etc.
+# Gathering: Mining, Herbology, Surveying (runecrafting related)
+# Magical: Enchanting, Alchemy, Runecrafting
+# Practical: Identification, etc.
 # ======================================================================================

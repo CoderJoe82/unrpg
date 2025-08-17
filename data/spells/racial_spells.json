@@ -1,0 +1,108 @@
+{
+    "spells": [
+        {
+            "id": "racial_human_01",
+            "name": "Rallying Cry",
+            "level": 1,
+            "source": "racial",
+            "type": "racial",
+            "description": "Let out a cry of encouragement, bolstering the resolve of yourself and nearby allies for a short time.",
+            "damage": null,
+            "resource_cost": 0,
+            "cast_time": 0,
+            "cooldown": 20,
+            "target_type": "caster_area_allied",
+            "radius": "15ft",
+            "scaling": {},
+            "effects": [
+                {"type": "buff", "stat": "all", "value": 5, "duration": 3, "name": "Inspired"}
+            ]
+        },
+        {
+            "id": "racial_elf_01",
+            "name": "Grasping Vines",
+            "level": 1,
+            "source": "racial",
+            "type": "racial",
+            "description": "Coax thorny vines from the earth to wrap around an enemy's legs, holding them in place.",
+            "damage": null,
+            "resource_cost": 0,
+            "cast_time": 1,
+            "cooldown": 12,
+            "target_type": "single",
+            "scaling": {},
+            "effects": [
+                {"type": "root", "duration": 2, "name": "Entangled"}
+            ]
+        },
+        {
+            "id": "racial_dwarf_01",
+            "name": "Stoneform",
+            "level": 1,
+            "source": "racial",
+            "type": "racial",
+            "description": "Harden your skin to the consistency of living stone, greatly increasing your physical resilience and purging yourself of poisons.",
+            "damage": null,
+            "resource_cost": 0,
+            "cast_time": 0,
+            "cooldown": 25,
+            "target_type": "self",
+            "scaling": {},
+            "effects": [
+                {"type": "buff", "stat": "damage_reduction_physical", "value": 0.40, "duration": 3, "name": "Stoneform"},
+                {"type": "cleanse", "category": ["poison"], "count": 99}
+            ]
+        },
+        {
+            "id": "racial_verdant_01",
+            "name": "Photosynthesis",
+            "level": 1,
+            "source": "racial",
+            "type": "racial",
+            "description": "Root yourself in place and draw energy from the ambient light, healing your wounds over a few moments. Cannot take other actions while channeling.",
+            "damage": null,
+            "resource_cost": 0,
+            "cast_time": 3,
+            "cooldown": 15,
+            "target_type": "self",
+            "scaling": {"wisdom": 0.5},
+            "effects": [
+                {"type": "channeled_heal", "heal_per_tick": "2d10", "ticks": 3, "interval": 1}
+            ]
+        },
+        {
+            "id": "racial_geodekin_01",
+            "name": "Focus Magic",
+            "level": 1,
+            "source": "racial",
+            "type": "racial",
+            "description": "Use your crystalline form to gather and condense ambient magic. Your next spell costs no mana.",
+            "damage": null,
+            "resource_cost": 0,
+            "cast_time": 0,
+            "cooldown": 15,
+            "target_type": "self",
+            "scaling": {},
+            "effects": [
+                {"type": "buff", "stat": "mana_cost_reduction_next_spell", "value": 1.0, "duration": 1, "name": "Focused"}
+            ]
+        },
+        {
+            "id": "racial_kithrin_01",
+            "name": "Caustic Secretion",
+            "level": 1,
+            "source": "racial",
+            "type": "racial",
+            "description": "Spit a glob of acidic enzymes at a foe, dealing minor nature damage and weakening their armor.",
+            "damage": "1d8",
+            "resource_cost": 0,
+            "cast_time": 1,
+            "cooldown": 8,
+            "target_type": "single",
+            "scaling": {"dexterity": 0.2},
+            "effects": [
+                {"type": "debuff", "stat": "armor", "value": -30, "duration": 5, "name": "Corroded"}
+            ]
+        }
+    ]
+}

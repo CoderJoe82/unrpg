@@ -1,0 +1,273 @@
+{
+    "heavy_armors": [
+        {
+            "id": "heavy_head_001",
+            "name": "Dented Iron Helm",
+            "level": 1,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "head",
+            "description": "A crude, heavy helmet beaten into shape from scrap iron. It's seen a few too many impacts.",
+            "armor": 12,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "heavy_chest_001",
+            "name": "Dented Iron Breastplate",
+            "level": 1,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "chest",
+            "description": "A solid plate of iron that covers the torso. It's uncomfortable and pitted with rust.",
+            "armor": 18,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "heavy_shoulders_001",
+            "name": "Dented Iron Pauldrons",
+            "level": 1,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "shoulders",
+            "description": "Simple, curved plates of iron strapped to the shoulders.",
+            "armor": 9,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "heavy_wrist_001",
+            "name": "Dented Iron Vambraces",
+            "level": 1,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "wrist",
+            "description": "Heavy iron cuffs to protect the forearms.",
+            "armor": 7,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "heavy_hand_001",
+            "name": "Dented Iron Gauntlets",
+            "level": 1,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "hand",
+            "description": "Clumsy iron gloves that make fine manipulation difficult.",
+            "armor": 8,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "heavy_waist_001",
+            "name": "Iron-Plated Belt",
+            "level": 1,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "waist",
+            "description": "A thick leather belt reinforced with small iron plates.",
+            "armor": 6,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "heavy_legs_001",
+            "name": "Dented Iron Legplates",
+            "level": 1,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "legs",
+            "description": "Heavy and loud, these greaves offer excellent protection for the legs.",
+            "armor": 14,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "heavy_feet_001",
+            "name": "Dented Iron Sabatons",
+            "level": 1,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "feet",
+            "description": "Clunky iron boots that protect the feet from being crushed.",
+            "armor": 10,
+            "scaling": {},
+            "effects": []
+        },
+        {
+            "id": "heavy_chest_002",
+            "name": "Soldier's Steel Cuirass",
+            "level": 2,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "chest",
+            "description": "Well-smithed steel armor issued to city guards and foot soldiers.",
+            "armor": 30,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "health", "value": 20}
+            ]
+        },
+        {
+            "id": "heavy_legs_003",
+            "name": "Soldier's Steel Greaves",
+            "level": 3,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "legs",
+            "description": "Polished steel greaves that are articulated at the knee for better movement.",
+            "armor": 25,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "constitution", "value": 2}
+            ]
+        },
+        {
+            "id": "heavy_hand_004",
+            "name": "Knight's Gauntlets",
+            "level": 4,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "hand",
+            "description": "Finely crafted gauntlets that protect the hand without completely sacrificing dexterity.",
+            "armor": 20,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "strength", "value": 3}
+            ]
+        },
+        {
+            "id": "heavy_feet_004",
+            "name": "Knight's Sabatons",
+            "level": 4,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "feet",
+            "description": "Reinforced steel boots designed to withstand the crushing weight of a cavalry charge.",
+            "armor": 22,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "stun_resistance", "value": 0.10}
+            ]
+        },
+        {
+            "id": "heavy_head_005",
+            "name": "Templar's Helm",
+            "level": 5,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "head",
+            "description": "An enclosed helm bearing the insignia of a holy order. It feels reassuring to wear.",
+            "armor": 40,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "faith", "value": 4},
+                {"type": "passive_buff", "stat": "holy_resistance", "value": 10}
+            ]
+        },
+        {
+            "id": "heavy_waist_005",
+            "name": "Girdle of the Mountain",
+            "level": 5,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "waist",
+            "description": "A massive belt of steel plates that makes you feel rooted to the ground.",
+            "armor": 25,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "constitution", "value": 5}
+            ]
+        },
+        {
+            "id": "heavy_chest_006",
+            "name": "Bulwark of the Sentinel",
+            "level": 6,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "chest",
+            "description": "An exceptionally thick breastplate designed for those who stand guard over sacred places.",
+            "armor": 65,
+            "scaling": {"strength": 0.3},
+            "effects": [
+                {"type": "passive_buff", "stat": "damage_reduction_physical", "value": 0.05}
+            ]
+        },
+        {
+            "id": "heavy_shoulders_007",
+            "name": "Spaulders of the Juggernaut",
+            "level": 7,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "shoulders",
+            "description": "Huge, layered pauldrons that can absorb the force of a devastating blow.",
+            "armor": 45,
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "strength", "value": 8}
+            ]
+        },
+        {
+            "id": "heavy_wrist_008",
+            "name": "Vambraces of Retribution",
+            "level": 8,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "wrist",
+            "description": "These forearm guards are covered in holy runes that sometimes lash out when you block an attack.",
+            "armor": 38,
+            "scaling": {"faith": 0.2},
+            "effects": [
+                {"type": "on_block_effect", "effect": {"type": "retaliation_damage", "damage": "2d4", "damage_type": "holy"}}
+            ]
+        },
+        {
+            "id": "heavy_legs_009",
+            "name": "Legplates of the Colossus",
+            "level": 9,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "legs",
+            "description": "Impossibly heavy legplates that make you an immovable object on the battlefield.",
+            "armor": 80,
+            "scaling": {"strength": 0.4},
+            "effects": [
+                {"type": "passive_buff", "stat": "constitution", "value": 15},
+                {"type": "passive_buff", "stat": "knockback_resistance", "value": 0.50}
+            ]
+        },
+        {
+            "id": "heavy_chest_010",
+            "name": "Heart of the Forge",
+            "level": 10,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "chest",
+            "description": "The masterpiece of a legendary dwarven smith, this breastplate is still warm from the forge-fires of a mountain's heart.",
+            "armor": 120,
+            "scaling": {"strength": 0.6},
+            "effects": [
+                {"type": "passive_buff", "stat": "strength", "value": 20},
+                {"type": "passive_buff", "stat": "fire_resistance", "value": 25},
+                {"type": "on_hit_chance", "chance": 0.2, "effect": {"type": "absorb_shield", "health": 150, "duration": 8, "name": "Forgemaster's Ward"}}
+            ]
+        },
+        {
+            "id": "heavy_head_010",
+            "name": "Crown of the Undaunted",
+            "level": 10,
+            "type": "armor",
+            "category": "plate",
+            "equip_slot": "head",
+            "description": "A helm worn by a king who never retreated. Its presence grants immunity to fear.",
+            "armor": 75,
+            "scaling": {"strength": 0.5},
+            "effects": [
+                {"type": "passive_buff", "stat": "constitution", "value": 18},
+                {"type": "passive_buff", "stat": "fear_immunity", "value": true}
+            ]
+        }
+    ]
+}

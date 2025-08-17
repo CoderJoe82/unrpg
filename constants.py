@@ -58,19 +58,27 @@ ABILITIES = {
     "hot" : ()
 }
 
-RESISTANCES = {
-    "magic": {
-        "fire" : 0,
-        "frost" : 0,
-        "darkness" : 0,
-        "holy" : 0,
-        "lightning" : 0,
-        "nature" : 0
-    },
-    "physical" :{
-        "armor" : 0
-    }
+EQUIPMENT = {
+    "armor" : [],
+    "weapon" : [],
+    "ring" : [],
+    "charm" : [],
+    "shield" : [],
+    "amulets" : []
 }
+
+RESISTANCES = {
+    "fire" : 0,
+    "frost" : 0,
+    "darkness" : 0,
+    "holy" : 0,
+    "lightning" : 0,
+    "nature" : 0,
+    "psychic" : 0,
+    "physical": 0
+}
+
+BASE_ARMOR = 0
 
 PLAYER_STARTING_LEVEL = 1
 

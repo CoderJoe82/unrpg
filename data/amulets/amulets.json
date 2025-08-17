@@ -1,0 +1,138 @@
+{
+    "amulets": [
+        {
+            "id": "amulet_001",
+            "name": "Simple Stone Pendant",
+            "level": 1,
+            "type": "amulet",
+            "category": "amulet",
+            "equip_slot": "neck",
+            "description": "A smooth, river-worn stone tied to a leather cord. It feels calming to hold.",
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "constitution", "value": 2}
+            ]
+        },
+        {
+            "id": "amulet_002",
+            "name": "Carved Bone Charm",
+            "level": 2,
+            "type": "amulet",
+            "category": "amulet",
+            "equip_slot": "neck",
+            "description": "A small piece of animal bone, carved with a symbol of strength.",
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "strength", "value": 3}
+            ]
+        },
+        {
+            "id": "amulet_003",
+            "name": "Amulet of Minor Restoration",
+            "level": 3,
+            "type": "amulet",
+            "category": "amulet",
+            "equip_slot": "neck",
+            "description": "This silver amulet provides a faint, constant trickle of healing energy.",
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "health_regen", "value": 2}
+            ]
+        },
+        {
+            "id": "amulet_004",
+            "name": "Medallion of the Scholar",
+            "level": 4,
+            "type": "amulet",
+            "category": "amulet",
+            "equip_slot": "neck",
+            "description": "A bronze medallion that sharpens the wearer's mind and magical aptitude.",
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "intelligence", "value": 5},
+                {"type": "passive_buff", "stat": "mana_regen", "value": 1}
+            ]
+        },
+        {
+            "id": "amulet_005",
+            "name": "Warding Charm",
+            "level": 5,
+            "type": "amulet",
+            "category": "amulet",
+            "equip_slot": "neck",
+            "description": "A small charm made of Rowan wood, known for its protective properties against harmful magic.",
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "fire_resistance", "value": 15}
+            ]
+        },
+        {
+            "id": "amulet_006",
+            "name": "Talisman of the Leech",
+            "level": 6,
+            "type": "amulet",
+            "category": "amulet",
+            "equip_slot": "neck",
+            "description": "This dark stone talisman seems to pulse faintly when blood is spilled nearby.",
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "lifesteal", "value": 0.05}
+            ]
+        },
+        {
+            "id": "amulet_007",
+            "name": "Sorcerer's Eye",
+            "level": 7,
+            "type": "amulet",
+            "category": "amulet",
+            "equip_slot": "neck",
+            "description": "A polished obsidian sphere set in silver. It seems to find the weaknesses in magical defenses.",
+            "scaling": {},
+            "effects": [
+                {"type": "passive_buff", "stat": "intelligence", "value": 10},
+                {"type": "passive_buff", "stat": "spell_crit_chance", "value": 7}
+            ]
+        },
+        {
+            "id": "amulet_008",
+            "name": "Guardian's Locket",
+            "level": 8,
+            "type": "amulet",
+            "category": "amulet",
+            "equip_slot": "neck",
+            "description": "This heavy locket is enchanted to flare with protective energy at the last possible moment.",
+            "scaling": {},
+            "effects": [
+                {"type": "on_hit_chance", "chance": 0.1, "effect": {"type": "absorb_shield", "health": 200, "duration": 6, "name": "Guardian's Ward"}}
+            ]
+        },
+        {
+            "id": "amulet_009",
+            "name": "Pendant of the Wild Gods",
+            "level": 9,
+            "type": "amulet",
+            "category": "amulet",
+            "equip_slot": "neck",
+            "description": "A pendant of woven, living vines that enhances your connection to the natural world.",
+            "scaling": {"wisdom": 0.3},
+            "effects": [
+                {"type": "passive_buff", "stat": "wisdom", "value": 15},
+                {"type": "passive_buff", "stat": "healing_modifier", "value": 0.10}
+            ]
+        },
+        {
+            "id": "amulet_010",
+            "name": "Heart of the Titan",
+            "level": 10,
+            "type": "amulet",
+            "category": "amulet",
+            "equip_slot": "neck",
+            "description": "A fragment of a petrified giant's heart. Its immense fortitude can be yours in times of great need.",
+            "scaling": {"strength": 0.2, "constitution": 0.2},
+            "effects": [
+                {"type": "passive_buff", "stat": "constitution", "value": 25},
+                {"type": "on_health_below_30_percent", "chance": 1.0, "effect": {"type": "buff", "stat": "damage_reduction_all", "value": 0.50, "duration": 5, "name": "Titan's Will"}, "cooldown": 30}
+            ]
+        }
+    ]
+}
