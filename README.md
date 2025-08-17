@@ -1,6 +1,15 @@
 # unrpg
 Me learning how to make an rpg game with pygame using a.i. but not only to make it, but teach me.
 
+v-0.0.12
+---
+I just get going and forget to commit and push. Bad habit, huh?
+-Added all the weapon files, and armor files for a start point of levels 1 - 10, like everything else.
+-Added all the class and race data that was missing.
+-Built multiple database 'lists' to hold all the data of every item and spell and ability, and a master equipment list
+-Added new item types
+-A few more refactors and bug fixes.
+
 V-0.0.11
 ---
 Yes. That's right! I feel like I skipped three minor versions this upload!
