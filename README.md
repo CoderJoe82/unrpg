@@ -1,6 +1,12 @@
 # unrpg
 Me learning how to make an rpg game with pygame using a.i. but not only to make it, but teach me.
 
+v-0.0.13
+---
+-Changed _get_starting_equipment to _get_starting_inventory
+-Added a new EQUIPMENT dictionary with keys of each equipment location for the characters
+-Added a _check_if_slot_full helper function to use for when someone tries to equip something
+
 v-0.0.12
 ---
 I just get going and forget to commit and push. Bad habit, huh?

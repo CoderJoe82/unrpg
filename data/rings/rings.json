@@ -5,7 +5,7 @@
             "name": "Ring of Minor Vigor",
             "level": 1,
             "type": "ring",
-            "slot": "finger",
+            "equip_slot" : "fingers",
             "description": "A simple copper band that seems to radiate a faint, healthy warmth.",
             "scaling": {},
             "effects": [
@@ -17,7 +17,7 @@
             "name": "Signet of the Apprentice",
             "level": 2,
             "type": "ring",
-            "slot": "finger",
+            "equip_slot" : "fingers",
             "description": "A silver ring with a small, unadorned sapphire. It helps focus the mind.",
             "scaling": {},
             "effects": [
@@ -29,7 +29,7 @@
             "name": "Band of Quickness",
             "level": 3,
             "type": "ring",
-            "slot": "finger",
+            "equip_slot" : "fingers",
             "description": "This smooth, lightweight band seems to lighten the wearer's movements.",
             "scaling": {},
             "effects": [
@@ -41,7 +41,7 @@
             "name": "Warrior's Clasp",
             "level": 4,
             "type": "ring",
-            "slot": "finger",
+            "equip_slot" : "fingers",
             "description": "An iron ring, thick and heavy, favored by front-line fighters.",
             "scaling": {},
             "effects": [
@@ -54,7 +54,7 @@
             "name": "Sage's Loop",
             "level": 5,
             "type": "ring",
-            "slot": "finger",
+            "equip_slot" : "fingers",
             "description": "A twisted golden loop that seems to hum with latent energy, aiding in the recovery of magical power.",
             "scaling": {},
             "effects": [
@@ -67,7 +67,7 @@
             "name": "Ring of the Firebrand",
             "level": 6,
             "type": "ring",
-            "slot": "finger",
+            "equip_slot" : "fingers",
             "description": "This obsidian ring holds a flickering ember at its center. Sometimes, its heat lashes out at your foes.",
             "scaling": {},
             "effects": [
@@ -79,7 +79,7 @@
             "name": "Warden's Seal",
             "level": 7,
             "type": "ring",
-            "slot": "finger",
+            "equip_slot" : "fingers",
             "description": "Carved from petrified wood, this ring bolsters your defenses against the elements.",
             "scaling": {},
             "effects": [
@@ -92,7 +92,7 @@
             "name": "Executioner's Band",
             "level": 8,
             "type": "ring",
-            "slot": "finger",
+            "equip_slot" : "fingers",
             "description": "A grim steel band that seems to guide your strikes toward an enemy's weak points.",
             "scaling": {},
             "effects": [
@@ -105,7 +105,7 @@
             "name": "Bulwark Ring",
             "level": 9,
             "type": "ring",
-            "slot": "finger",
+            "equip_slot" : "fingers",
             "description": "This wide, adamantine ring occasionally flares with protective energy when you are struck.",
             "scaling": {},
             "effects": [
@@ -117,7 +117,7 @@
             "name": "Archmage's Soulstone",
             "level": 10,
             "type": "ring",
-            "slot": "finger",
+            "equip_slot" : "fingers",
             "description": "A legendary ring housing a crystal that resonates with your own magical essence, sometimes preserving it.",
             "scaling": {"intelligence": 0.1},
             "effects": [

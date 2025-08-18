@@ -1,4 +1,4 @@
-from constants import BASE_STATS, ABILITIES, PLAYER_STARTING_LEVEL, RESISTANCES, BASE_ARMOR, EQUIPMENT
+from constants import BASE_STATS, ABILITIES, PLAYER_STARTING_LEVEL, RESISTANCES, INVENTORY, EQUIPPED_GEAR
 from engine.mechanics import calculate_max_hp, calculate_damage_taken, calculate_xp_to_next_level
 
 class CharacterClass:
@@ -183,11 +183,12 @@ class Character:
         self.character_stats = self._get_finalized_stats()
         self.character_current_hp = self.character_max_hp
         self.character_abilities = self._get_abilities()
-        self.character_equipment = self._get_equipment()
+        self.character_starting_inventory = self._get_starting_inventory()
         self.character_is_alive = True
         self.character_xp = 0
         self.character_xp_to_next_level = self._get_xp_to_next_level()
         self.character_resistances = self._get_finalized_resistances()
+        self.character_equipped_gear = []
         self.charcter_current_armor = 0  #< ---- placeholder
         self.character_block_chance = 0 #<-- placeholder
         
@@ -264,37 +265,101 @@ class Character:
 
         return final_resistances
     
-    def _get_equipment(self):
+    def _get_starting_inventory(self):
         starting_equipment = self.character_class.starting_equipment
         full_equipment_list = self.game.master_equipment_compendium
-        character_equipment = EQUIPMENT.copy()
+        character_inventory = INVENTORY.copy()
 
         for equipment_id in starting_equipment:
             if equipment_id in full_equipment_list:
                 equipment_data = full_equipment_list.get(equipment_id, "ID INCORRECT")
-                equipment_type = equipment_data['type']
-                if equipment_type in character_equipment:
-                    character_equipment[equipment_type].append(equipment_data)
+                character_inventory[equipment_id] = equipment_data
+            else:
+                print(f'The object: {equipment_data} was not found')
+
+        return character_inventory
+    
+    def _check_if_slot_full(self, equipped_gear_list, gear_item):
+        equip_slot = gear_item.get('equip_slot', "Equipment slot not found")
+        main_hand = equipped_gear_list['main_hand'].items()
+        off_hand = equipped_gear_list['off_hand'].items()
+
+        if equip_slot == ["main_hand", "off_hand"]:
+            for key, value in main_hand:
+                if value is not None:
+                    return True
+            for key, value in off_hand:
+                if value is not None:
+                    return True
+        else:
+            equip_slot_allowed_positions = list(equipped_gear_list[equip_slot].values())
+            equip_slots_amount = len(equip_slot_allowed_positions)
+            if equip_slot in equipped_gear_list:
+
+                if equip_slots_amount > 1:
+                    if equip_slot_allowed_positions[0] == None or equip_slot_allowed_positions[1] == None:
+                        return False
+                    if equip_slot_allowed_positions[0] is not None and equip_slot_allowed_positions[1] is not None:
+                        return True
                 else:
-                    print(f'{equipment_type} does not exist in EQUIPMENT.')
+                    if equip_slot_allowed_positions[0] is not None:
+                        return True
+                    else:
+                        return False
+            else:
+                print("Could not find slot in equipment slots")
+                return
 
-        return character_equipment
-
-    def _get_total_armor(self):
-        armor_amount = 0
+        return False
         
-        for item in self.character_equipped_items:
-            item_type = self.character_equipped_items[item]['type']
-            if item_type == "shield" or "armor":
-                armor_amount += item['armor']
+            
+                    
+                
 
-        for item in self.character_current_bonuses:
-            if item == 'armor':
-                armor_amount += item
 
-        # THIS IS NEXT TO FINISH
 
-        return armor_amount
+
+        # for item in equipped_gear_list:
+        #     for key, value in item.items():
+        #         if item.get('type', 'id') == "weapon" and key[value] == ["main_hand", "off_hand"]:
+        #             return True
+        #         elif len(item.keys()) > 1:
+        #             if list(item.keys())[0] == None and list(item.keys())[1] == None:
+        #                 return False
+        #             elif list(item.keys())[0] is not None and list(item.keys())[1] is not None:
+        #                 return True
+        #             else:
+        #                 return False
+        #         elif item[value] == None:
+        #             return False
+                
+
+
+    def _get_starting_equipped_gear(self):
+        equipped_gear = EQUIPPED_GEAR.copy()
+        for item in self.character_starting_inventory:
+            item_data = item
+            item_equip_slot = item_data['equip_slot']
+            
+
+
+
+
+    # def _get_total_armor(self):
+    #     armor_amount = 0
+        
+    #     for item in self.character_equipped_items:
+    #         item_type = self.character_equipped_items[item]['type']
+    #         if item_type == "shield" or "armor":
+    #             armor_amount += item['armor']
+
+    #     for item in self.character_current_bonuses:
+    #         if item == 'armor':
+    #             armor_amount += item
+
+    #     # THIS IS NEXT TO FINISH
+
+    #     return armor_amount
         
     
 # STAT & SKILL SYSTEM PHILOSOPHY

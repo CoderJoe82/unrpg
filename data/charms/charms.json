@@ -5,7 +5,7 @@
             "name": "Carved Wooden Bird",
             "level": 1,
             "type": "charm",
-            "slot": "charm",
+            "equip_slot" : "charms",
             "description": "A small, crudely carved bird that feels surprisingly light in your hand. A simple good luck charm.",
             "scaling": {},
             "effects": [
@@ -17,7 +17,7 @@
             "name": "Scrying Stone Fragment",
             "level": 2,
             "type": "charm",
-            "slot": "charm",
+            "equip_slot" : "charms",
             "description": "A shard of a larger crystal, it seems to drink in ambient light and hums with a faint energy.",
             "scaling": {},
             "effects": [
@@ -29,7 +29,7 @@
             "name": "Bound Earth Totem",
             "level": 3,
             "type": "charm",
-            "slot": "charm",
+            "equip_slot" : "charms",
             "description": "A small bundle of sticks and stones tied with enchanted sinew. It feels solid and reassuring.",
             "scaling": {},
             "effects": [
@@ -41,7 +41,7 @@
             "name": "Idol of the Predator",
             "level": 4,
             "type": "charm",
-            "slot": "charm",
+            "equip_slot" : "charms",
             "description": "A small stone idol of a jungle cat, poised to strike. It encourages you to find your enemy's weaknesses.",
             "scaling": {},
             "effects": [
@@ -53,7 +53,7 @@
             "name": "Sunstone Locket",
             "level": 5,
             "type": "charm",
-            "slot": "charm",
+            "equip_slot" : "charms",
             "description": "This locket contains a small, polished sunstone that glows with inner warmth, making you more receptive to healing energies.",
             "scaling": {},
             "effects": [
@@ -66,7 +66,7 @@
             "name": "Flask of Volatile Ichor",
             "level": 6,
             "type": "charm",
-            "slot": "charm",
+            "equip_slot" : "charms",
             "description": "A sealed flask containing a swirling, caustic liquid. Sometimes, a drop splashes onto your weapon.",
             "scaling": {},
             "effects": [
@@ -78,7 +78,7 @@
             "name": "Bloodstone Fetish",
             "level": 7,
             "type": "charm",
-            "slot": "charm",
+            "equip_slot" : "charms",
             "description": "This dark, pulsating stone seems to feed on the life force of fallen foes, transferring some of their energy to you.",
             "scaling": {},
             "effects": [
@@ -90,7 +90,7 @@
             "name": "Tome of Tenacity",
             "level": 8,
             "type": "charm",
-            "slot": "charm",
+            "equip_slot" : "charms",
             "description": "A miniature, iron-bound book whose passages speak of endurance and willpower, steeling your resolve against effects that would hinder you.",
             "scaling": {},
             "effects": [
@@ -102,7 +102,7 @@
             "name": "Shard of Unstable Power",
             "level": 9,
             "type": "charm",
-            "slot": "charm",
+            "equip_slot" : "charms",
             "description": "This crystalline shard vibrates erratically, occasionally surging with immense power when you engage in combat.",
             "scaling": {},
             "effects": [
@@ -114,7 +114,7 @@
             "name": "Heart of the Aspects",
             "level": 10,
             "type": "charm",
-            "slot": "charm",
+            "equip_slot" : "charms",
             "description": "A legendary artifact that channels raw elemental and arcane power, sometimes aligning perfectly with your own spells.",
             "scaling": {"intelligence": 0.15},
             "effects": [
