@@ -1,5 +1,6 @@
 from constants import BASE_STATS, ABILITIES, PLAYER_STARTING_LEVEL, RESISTANCES, INVENTORY, EQUIPPED_GEAR
 from engine.mechanics import calculate_max_hp, calculate_damage_taken, calculate_xp_to_next_level
+import copy
 
 class CharacterClass:
     def __init__(
@@ -188,11 +189,15 @@ class Character:
         self.character_xp = 0
         self.character_xp_to_next_level = self._get_xp_to_next_level()
         self.character_resistances = self._get_finalized_resistances()
-        self.character_equipped_gear = []
+        self.character_equipped_gear = copy.deepcopy(EQUIPPED_GEAR)
+        self.character_active_modifiers = {
+            'buffs',
+            'debuffs'
+        }
         self.charcter_current_armor = 0  #< ---- placeholder
         self.character_block_chance = 0 #<-- placeholder
         
-
+    # --- Stats methods ---
 
     def _get_finalized_stats(self):
         finalized_stats = BASE_STATS.copy()
@@ -201,19 +206,6 @@ class Character:
         for stat in self.character_race.racial_stat_bonuses:
             finalized_stats[stat] += self.character_race.racial_stat_bonuses[stat]
         return finalized_stats
-
-    def _get_abilities(self):
-        class_abilities = self.character_class.starting_abilities
-        race_abilities = self.character_race.racial_abilities
-        all_abilities = class_abilities + race_abilities
-        player_abilities = ABILITIES.copy()
-        book = self.game.master_ability_compendium
-        for spell_id in all_abilities:
-            if spell_id in book:
-                spell_data = book[spell_id]
-                ability_type = spell_data['type']
-                player_abilities[ability_type] += (spell_data['id'], )
-        return player_abilities
     
     def _get_hp(self, bonuses):
         base_hp = calculate_max_hp(self.character_level, self.character_stats['constitution'], self.character_class.base_hp_per_level)
@@ -221,8 +213,7 @@ class Character:
         for number in bonuses:
             base_hp += number
         return base_hp
-
-        
+    
     def _take_damage(self, resistance_value, attack_source):
         damage_taken = calculate_damage_taken(resistance_value, attack_source)
         if damage_taken >= self.character_current_hp:
@@ -237,10 +228,6 @@ class Character:
         self.character_current_hp += healed_amount
         self.character_current_hp = min(self.character_max_hp, self.character_current_hp)
 
-    def _get_xp_to_next_level(self):
-        xp_needed= calculate_xp_to_next_level(self.character_level)
-        return xp_needed
-    
     def _get_finalized_resistances(self):
         final_resistances = RESISTANCES.copy()
 
@@ -265,20 +252,11 @@ class Character:
 
         return final_resistances
     
-    def _get_starting_inventory(self):
-        starting_equipment = self.character_class.starting_equipment
-        full_equipment_list = self.game.master_equipment_compendium
-        character_inventory = INVENTORY.copy()
-
-        for equipment_id in starting_equipment:
-            if equipment_id in full_equipment_list:
-                equipment_data = full_equipment_list.get(equipment_id, "ID INCORRECT")
-                character_inventory[equipment_id] = equipment_data
-            else:
-                print(f'The object: {equipment_data} was not found')
-
-        return character_inventory
+    #--- Equipment methods ---
     
+    def _get_equipment(self):
+        return self.character_equipped_gear
+
     def _check_if_slot_full(self, equipped_gear_list, gear_item):
         equip_slot = gear_item.get('equip_slot', "Equipment slot not found")
         main_hand = equipped_gear_list['main_hand'].items()
@@ -311,55 +289,147 @@ class Character:
                 return
 
         return False
+    
+    def _get_stat_modifiers_from_gear_effects(self, effects_dictionary, wanted_key, wanted_key_2):
+        ed = effects_dictionary
+        if wanted_key in ed or wanted_key_2 in ed:
+            modifier_data = {
+                "type" : ed.get('type', 'Type not found'),
+                "stat" : ed.get('stat', "Stat not found"),
+                "value" : ed.get('value', "Value not found"),
+                "duration" : ed.get('duration', 'Duration not found')
+            }
+
+            return modifier_data
         
-            
+        for key, value in ed.items():
+            if isinstance(value, dict):
+                result = self._get_stat_modifiers_from_gear_effects(value, wanted_key, wanted_key_2)
+
+                if result is not None:
+                    return result
+                
+        return None
+    
+    #--- Stat modifications ---
+    #   THIS IS WHAT i'M WORKING ON TOMORROW, THIS FUNCTION NEEDS MODIFIED. FORGOT TO INCLUDE IF AN ITEM HAS MORE THAN ONE STAT BONUS IN THE SAME ITEM.
+    def _add_modifiers_from_equipment(self):
+        modifier_list = {
+            'buffs' : {
+
+            },
+            'debuffs' : {
+
+            }
+        }
+        eg = self.character_equipped_gear
+        for equipment_slot, equipment_slot_items in eg.items():
+            items = equipment_slot_items
+            for equipment, equipment_info in items.items():
+                if equipment_info is not None:
+                    effects = equipment_info['effects']
+                    buff_equipment_name = equipment_info['name']
                     
-                
+                    for index, data in enumerate(effects):
+                        if buff_equipment_name in modifier_list['buffs'] or buff_equipment_name in modifier_list['debuffs']:
+                            modifier_list['buffs'][buff_equipment_name]['value'] += data['value']
+                        else:
+                            buff_data = {
+                            'stat' : data['stat'],
+                            'value' : data['value'],
+                        }
+                        buff_key = modifier_list['buffs']
+                        if buff_equipment_name in modifier_list['buffs']:
+                            modifier_list['buffs'][buff_equipment_name] = buff_data
+                        else:
+                            modifier_list['debuffs'][buff_equipment_name] = buff_data
+                            
+        return modifier_list
 
-
-
-
-        # for item in equipped_gear_list:
-        #     for key, value in item.items():
-        #         if item.get('type', 'id') == "weapon" and key[value] == ["main_hand", "off_hand"]:
-        #             return True
-        #         elif len(item.keys()) > 1:
-        #             if list(item.keys())[0] == None and list(item.keys())[1] == None:
-        #                 return False
-        #             elif list(item.keys())[0] is not None and list(item.keys())[1] is not None:
-        #                 return True
-        #             else:
-        #                 return False
-        #         elif item[value] == None:
-        #             return False
-                
-
-
-    def _get_starting_equipped_gear(self):
-        equipped_gear = EQUIPPED_GEAR.copy()
-        for item in self.character_starting_inventory:
-            item_data = item
-            item_equip_slot = item_data['equip_slot']
+        # trace:
+        # #eg.items() = 'head' : {
+        #     'item' : None
+        # },
+        # items.items() = {
+        #   'item' : None
+        # }
+        # ie.keys() {
+        #   item_id : {item_dictionary}
+        # }
+        #  equipment_info = {
+                # "id": "bow_005",
+                # "name": "Frost-Tipped Bow",
+                # "level": 5,
+                # "type": "weapon",
+                # "category": "bow",
+                # "hand_type": "two_handed",
+                # "equip_slot" : ["main_hand", "off_hand"],
+                # "description": "This bow is cool to the touch, and arrows nocked to its string are imbued with a chilling magic.",
+                # "damage": "2d8",
+                # "damage_type" : "physical",
+                # "attack_speed": 1.2,
+                # "scaling": {"dexterity": 1.1},
+                # "effects": [
+                    # {"type": "on_hit_chance", "chance": 0.2, "effect": {"type": "debuff", "stat": "speed", "value": -25, "duration": 2, "name": "Chilled"}}
+                # ]
+        #   },
             
-
-
-
-
-    # def _get_total_armor(self):
-    #     armor_amount = 0
         
-    #     for item in self.character_equipped_items:
-    #         item_type = self.character_equipped_items[item]['type']
-    #         if item_type == "shield" or "armor":
-    #             armor_amount += item['armor']
 
-    #     for item in self.character_current_bonuses:
-    #         if item == 'armor':
-    #             armor_amount += item
+    # def _check_for_equipment_stat_modifiers(self, wanted_key):
 
-    #     # THIS IS NEXT TO FINISH
+    
+    #--- Abilities methods ---
+    
+    def _get_abilities(self):
+        class_abilities = self.character_class.starting_abilities
+        race_abilities = self.character_race.racial_abilities
+        all_abilities = class_abilities + race_abilities
+        player_abilities = ABILITIES.copy()
+        book = self.game.master_ability_compendium
+        for spell_id in all_abilities:
+            if spell_id in book:
+                spell_data = book[spell_id]
+                ability_type = spell_data['type']
+                player_abilities[ability_type] += (spell_data['id'], )
+        return player_abilities    
+    
+    #--- Experience methods ---        
 
-    #     return armor_amount
+    def _get_xp_to_next_level(self):
+        xp_needed= calculate_xp_to_next_level(self.character_level)
+        return xp_needed
+    
+    #--- Inventory methods ---
+
+    def _get_starting_inventory(self):
+        starting_equipment = self.character_class.starting_equipment
+        full_equipment_list = self.game.master_equipment_compendium
+        character_inventory = INVENTORY.copy()
+
+        for equipment_id in starting_equipment:
+            if equipment_id in full_equipment_list:
+                equipment_data = full_equipment_list.get(equipment_id, "ID INCORRECT")
+                character_inventory[equipment_id] = equipment_data
+            else:
+                print(f'The object: {equipment_data} was not found')
+
+        return character_inventory
+    
+    
+
+    
+   
+   
+   
+   
+   
+   
+   
+   
+    #--- Area to remind me of things to create ---
+
+
         
     
 # STAT & SKILL SYSTEM PHILOSOPHY

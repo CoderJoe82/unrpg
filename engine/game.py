@@ -28,54 +28,12 @@ class Game:
         self.master_medium_armor_catalogue = load_all_medium_armors()
         self.master_heavy_armor_catalogue = load_all_heavy_armors()
         self.master_equipment_compendium = load_all_equipment()
-        #=== Tester functions --- 
-        EQUIPPED_GEAR = {
-            'head' : {
-                'item' : None
-            },
-            'shoulders' : {
-                'item' : None
-            },
-            'wrist' : {
-                'item' : None
-            },
-            'hands' : {
-                'item' : None
-            },
-            'chest' : {
-                'item' : None
-            },
-            'waist' : {
-                'item' : None
-            },
-            'legs' : {
-                'item' : None
-            },
-            'feet' : {
-                'item' : None
-            },
-            'neck' : {
-                'item' : None
-            },
-            'main_hand' : {
-                'item' : None
-            },
-            'off_hand' : {
-                'item' : None
-            },
-            'fingers' : {
-                'ring_1' : None,
-                'ring_2' : None
-            },
-            'charms' : {
-                'charm_1' : None,
-                'charm_2' : None
-            }
-        }
 
-        print(EQUIPPED_GEAR['off_hand'])
-        # ---- end of tester functions ---
-        
+
+        #=== Tester functions --- 
+        print(self.master_equipment_compendium)
+    
+        #--- End of tester Fucntions ---# 
 
     def run_game(self):
         while self.running:
