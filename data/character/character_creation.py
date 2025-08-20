@@ -311,70 +311,31 @@ class Character:
                 
         return None
     
+
+    def get_stat_modifiers_from_gear(self):
+        modifiers = []
+        gear_list = self.character_equipped_gear
+        for gear_equip_slot, gear_equipped_dictionary in gear_list.items():
+            for gear_item, gear_data in gear_equipped_dictionary.items():
+                for data_id, data_details in gear_data.items():
+                    pass  
+                # gear_equip_slot = 'hands', 'neck', etc.
+                # gear_equipped_dictionary = {'item' : None}
+                # gear_id =    
+                
+                
+
+    
     #--- Stat modifications ---
     #   THIS IS WHAT i'M WORKING ON TOMORROW, THIS FUNCTION NEEDS MODIFIED. FORGOT TO INCLUDE IF AN ITEM HAS MORE THAN ONE STAT BONUS IN THE SAME ITEM.
     def _add_modifiers_from_equipment(self):
-        modifier_list = {
-            'buffs' : {
+        modifiers = []
 
-            },
-            'debuffs' : {
 
-            }
-        }
-        eg = self.character_equipped_gear
-        for equipment_slot, equipment_slot_items in eg.items():
-            items = equipment_slot_items
-            for equipment, equipment_info in items.items():
-                if equipment_info is not None:
-                    effects = equipment_info['effects']
-                    buff_equipment_name = equipment_info['name']
-                    
-                    for index, data in enumerate(effects):
-                        if buff_equipment_name in modifier_list['buffs'] or buff_equipment_name in modifier_list['debuffs']:
-                            modifier_list['buffs'][buff_equipment_name]['value'] += data['value']
-                        else:
-                            buff_data = {
-                            'stat' : data['stat'],
-                            'value' : data['value'],
-                        }
-                        buff_key = modifier_list['buffs']
-                        if buff_equipment_name in modifier_list['buffs']:
-                            modifier_list['buffs'][buff_equipment_name] = buff_data
-                        else:
-                            modifier_list['debuffs'][buff_equipment_name] = buff_data
-                            
-        return modifier_list
+        pass
+      
 
-        # trace:
-        # #eg.items() = 'head' : {
-        #     'item' : None
-        # },
-        # items.items() = {
-        #   'item' : None
-        # }
-        # ie.keys() {
-        #   item_id : {item_dictionary}
-        # }
-        #  equipment_info = {
-                # "id": "bow_005",
-                # "name": "Frost-Tipped Bow",
-                # "level": 5,
-                # "type": "weapon",
-                # "category": "bow",
-                # "hand_type": "two_handed",
-                # "equip_slot" : ["main_hand", "off_hand"],
-                # "description": "This bow is cool to the touch, and arrows nocked to its string are imbued with a chilling magic.",
-                # "damage": "2d8",
-                # "damage_type" : "physical",
-                # "attack_speed": 1.2,
-                # "scaling": {"dexterity": 1.1},
-                # "effects": [
-                    # {"type": "on_hit_chance", "chance": 0.2, "effect": {"type": "debuff", "stat": "speed", "value": -25, "duration": 2, "name": "Chilled"}}
-                # ]
-        #   },
-            
-        
+
 
     # def _check_for_equipment_stat_modifiers(self, wanted_key):
 
