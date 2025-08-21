@@ -1,6 +1,10 @@
 # unrpg
 Me learning how to make an rpg game with pygame using a.i. but not only to make it, but teach me.
 
+V-0.0.16
+---
+-Finally have checking all the player's gear out and then adding them all together for stat modifiers and also added a dictionary for holding any special statuses and their true or false flags
+
 V-0.0.15
 ---
 -Got a function working to loop over all the character's gear and grab any passive buffs or debuffs, and those are all shoved into a list.

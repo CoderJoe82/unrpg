@@ -2,27 +2,28 @@ from constants import BASE_STATS, ABILITIES, PLAYER_STARTING_LEVEL, RESISTANCES,
 from engine.mechanics import calculate_max_hp, calculate_damage_taken, calculate_xp_to_next_level
 import copy
 
+
 class CharacterClass:
     def __init__(
-                self,
-                name,
-                description,
-                primary_resource,
-                unique_mechanics,
-                base_hp_per_level,
-                bonus_stats,
-                passive_ability_bonus,
-                starting_equipment,
-                armors_allowed,
-                weapons_allowed,
-                primary_stats,
-                starting_abilities,
-                progression,
-                resistances_progression,
-                role_type,
-                specializations,
-                allowed_ability_source
-                 ):
+        self,
+        name,
+        description,
+        primary_resource,
+        unique_mechanics,
+        base_hp_per_level,
+        bonus_stats,
+        passive_ability_bonus,
+        starting_equipment,
+        armors_allowed,
+        weapons_allowed,
+        primary_stats,
+        starting_abilities,
+        progression,
+        resistances_progression,
+        role_type,
+        specializations,
+        allowed_ability_source
+    ):
         self.name = name
         self.description = description
         self.primary_resource = primary_resource
@@ -43,76 +44,76 @@ class CharacterClass:
 
     def get_summary(self):
         class_summary = {
-            "name" : self.name,
-            "description" : self.description,
-            "role" : self.role_type,
-            "base_hp_per_level" : self.base_hp_per_level,
-            "passive"  : self.passive_ability_bonus,
-            "weapons_allowed" : self.weapons_allowed,
-            "primary_stats" : self.primary_stats,
-            "primary_resource" : self.primary_resource,
-            "unique_mechanics" : self.unique_mechanics,
-            "armors_allowed" : self.armors_allowed,
-            "specializations" : self.specializations,
-            "starting_abilities" : self.starting_abilities,
+            "name": self.name,
+            "description": self.description,
+            "role": self.role_type,
+            "base_hp_per_level": self.base_hp_per_level,
+            "passive": self.passive_ability_bonus,
+            "weapons_allowed": self.weapons_allowed,
+            "primary_stats": self.primary_stats,
+            "primary_resource": self.primary_resource,
+            "unique_mechanics": self.unique_mechanics,
+            "armors_allowed": self.armors_allowed,
+            "specializations": self.specializations,
+            "starting_abilities": self.starting_abilities,
 
-        }        
+        }
         return class_summary
 
     def check_proficiencies(self, equipment_type):
         if equipment_type in self.weapons_allowed or equipment_type in self.armors_allowed:
             return True
         return False
-    
+
     def get_benefits_for_level(self, character_level):
         return {
             "progression": self.progression.get(character_level, {}),
-            "saving_throw_progression" : self.saving_throw_progression.get(character_level, {}),
+            "saving_throw_progression": self.saving_throw_progression.get(character_level, {}),
         }
 
     def is_role(self, role_name):
         if role_name == self.role_type:
             return True
         return False
-    
+
     def can_learn_ability(self, ability_source):
         if ability_source in self.allowed_ability_source:
             return True
         return False
-    
+
     def get_starting_kit(self):
         return {
-            "mechanics" : self.unique_mechanics if self.unique_mechanics is not None else {},
-            "starting_equipment" : self.starting_equipment,
-            "starting_abilities" : self.starting_abilities,
-            "primary_resource" : self.primary_resource,
-            "hit_dice" : self.hit_dice,
-            "passive_ability_bonus" : self.passive_ability_bonus,
-            "bonus_stats" : self.bonus_stats
+            "mechanics": self.unique_mechanics if self.unique_mechanics is not None else {},
+            "starting_equipment": self.starting_equipment,
+            "starting_abilities": self.starting_abilities,
+            "primary_resource": self.primary_resource,
+            "hit_dice": self.hit_dice,
+            "passive_ability_bonus": self.passive_ability_bonus,
+            "bonus_stats": self.bonus_stats
         }
 
     # --- Finished with methods for CharacterClass. May add more later.
-        
+
 
 class CharacterRace:
     def __init__(
-                self,
-                name,
-                description,
-                racial_abilities,
-                racial_stat_bonuses,
-                size,
-                movement_speed,
-                languages,
-                resistance_bonuses,
-                general_alignment,
-                life_span,
-                racial_traits
-                # <-- This will be a spot for skill bonuses
-                # <-- This will be a spot for sub races
-                # <-- This will be a spot for proficiences
-                # <-- For starting location, IF I go into that much.
-                 ):
+        self,
+        name,
+        description,
+        racial_abilities,
+        racial_stat_bonuses,
+        size,
+        movement_speed,
+        languages,
+        resistance_bonuses,
+        general_alignment,
+        life_span,
+        racial_traits
+        # <-- This will be a spot for skill bonuses
+        # <-- This will be a spot for sub races
+        # <-- This will be a spot for proficiences
+        # <-- For starting location, IF I go into that much.
+    ):
         self.size = size
         self.name = name
         self.description = description
@@ -127,29 +128,29 @@ class CharacterRace:
 
     def get_summary(self):
         race_summary = {
-            "name" : self.name,
-            "description" : self.description,
-            "racial_abilities" : self.racial_abilities,
-            "racial_stat_bonuses" : self.racial_stat_bonuses,
-            "size" : self.size,
-            "movement_speed" : self.movement_speed,
-            "languages" : self.languages,
-            "resistance_bonuses" : self.resistance_bonuses,
-            "general_alignment" : self.general_alignment,
-            "life_span" : self.life_span
+            "name": self.name,
+            "description": self.description,
+            "racial_abilities": self.racial_abilities,
+            "racial_stat_bonuses": self.racial_stat_bonuses,
+            "size": self.size,
+            "movement_speed": self.movement_speed,
+            "languages": self.languages,
+            "resistance_bonuses": self.resistance_bonuses,
+            "general_alignment": self.general_alignment,
+            "life_span": self.life_span
 
         }
         return race_summary
-    
+
     def get_racial_bonuses(self):
         return {
-            "stat_bonuses" : self.racial_stat_bonuses,
-            "racial_abilities" : self.racial_abilities,
-            "resistance_bonuses" : self.resistance_bonuses,
-            "languages" : self.languages,
+            "stat_bonuses": self.racial_stat_bonuses,
+            "racial_abilities": self.racial_abilities,
+            "resistance_bonuses": self.resistance_bonuses,
+            "languages": self.languages,
             # <--- later, skill_bonuses/proficiencies
         }
-    
+
     def has_trait(self, trait_name):
         if trait_name in self.racial_traits:
             return True
@@ -159,14 +160,14 @@ class CharacterRace:
         if language_name in self.languages:
             return True
         return False
-    
+
     def get_speed_in(self, environment_type):
         return self.movement_speed.get(environment_type, self.movement_speed['land'])
-        
-    
+
     # <----- possible future check for if a character has any racial proficiencies.
 
     # <----- possible subrace method here later.
+
 
 class Character:
     def __init__(self,
@@ -174,7 +175,7 @@ class Character:
                  character_name,
                  character_class,
                  character_race,
-                 character_level = PLAYER_STARTING_LEVEL
+                 character_level=PLAYER_STARTING_LEVEL
                  ):
         self.game = game
         self.character_name = character_name
@@ -194,9 +195,9 @@ class Character:
             'buffs',
             'debuffs'
         }
-        self.charcter_current_armor = 0  #< ---- placeholder
-        self.character_block_chance = 0 #<-- placeholder
-        
+        self.charcter_current_armor = 0  # < ---- placeholder
+        self.character_block_chance = 0  # <-- placeholder
+
     # --- Stats methods ---
 
     def _get_finalized_stats(self):
@@ -206,14 +207,15 @@ class Character:
         for stat in self.character_race.racial_stat_bonuses:
             finalized_stats[stat] += self.character_race.racial_stat_bonuses[stat]
         return finalized_stats
-    
+
     def _get_hp(self, bonuses):
-        base_hp = calculate_max_hp(self.character_level, self.character_stats['constitution'], self.character_class.base_hp_per_level)
+        base_hp = calculate_max_hp(
+            self.character_level, self.character_stats['constitution'], self.character_class.base_hp_per_level)
         bonuses = ()
         for number in bonuses:
             base_hp += number
         return base_hp
-    
+
     def _take_damage(self, resistance_value, attack_source):
         damage_taken = calculate_damage_taken(resistance_value, attack_source)
         if damage_taken >= self.character_current_hp:
@@ -226,7 +228,8 @@ class Character:
         if self.character_is_alive == False:
             return
         self.character_current_hp += healed_amount
-        self.character_current_hp = min(self.character_max_hp, self.character_current_hp)
+        self.character_current_hp = min(
+            self.character_max_hp, self.character_current_hp)
 
     def _get_finalized_resistances(self):
         final_resistances = RESISTANCES.copy()
@@ -235,8 +238,8 @@ class Character:
         class_resistances = self.character_class.resistances_progression
         level = self.character_level
 
-
-        resistance_bonus = (self.character_stats['wisdom'] * 2) + self.character_stats['faith']
+        resistance_bonus = (
+            self.character_stats['wisdom'] * 2) + self.character_stats['faith']
 
         for resistance in race_resistances:
             final_resistances[resistance] += race_resistances[resistance]
@@ -251,9 +254,9 @@ class Character:
             final_resistances[resistance_to_apply_bonus_to] += resistance_bonus
 
         return final_resistances
-    
-    #--- Equipment methods ---
-    
+
+    # --- Equipment methods ---
+
     def _get_equipment(self):
         return self.character_equipped_gear
 
@@ -270,7 +273,8 @@ class Character:
                 if value is not None:
                     return True
         else:
-            equip_slot_allowed_positions = list(equipped_gear_list[equip_slot].values())
+            equip_slot_allowed_positions = list(
+                equipped_gear_list[equip_slot].values())
             equip_slots_amount = len(equip_slot_allowed_positions)
             if equip_slot in equipped_gear_list:
 
@@ -289,28 +293,28 @@ class Character:
                 return
 
         return False
-    
+
     def _get_stat_modifiers_from_gear_effects(self, effects_dictionary, wanted_key, wanted_key_2):
         ed = effects_dictionary
         if wanted_key in ed or wanted_key_2 in ed:
             modifier_data = {
-                "type" : ed.get('type', 'Type not found'),
-                "stat" : ed.get('stat', "Stat not found"),
-                "value" : ed.get('value', "Value not found"),
-                "duration" : ed.get('duration', 'Duration not found')
+                "type": ed.get('type', 'Type not found'),
+                "stat": ed.get('stat', "Stat not found"),
+                "value": ed.get('value', "Value not found"),
+                "duration": ed.get('duration', 'Duration not found')
             }
 
             return modifier_data
-        
+
         for key, value in ed.items():
             if isinstance(value, dict):
-                result = self._get_stat_modifiers_from_gear_effects(value, wanted_key, wanted_key_2)
+                result = self._get_stat_modifiers_from_gear_effects(
+                    value, wanted_key, wanted_key_2)
 
                 if result is not None:
                     return result
-                
+
         return None
-    
 
     def get_stat_modifiers_from_gear(self):
         modifiers = []
@@ -318,27 +322,20 @@ class Character:
         for gear_equip_slot, gear_equipped_dictionary in gear_list.items():
             for gear_item, gear_data in gear_equipped_dictionary.items():
                 for data_id, data_details in gear_data.items():
-                    pass  
+                    pass
                 # gear_equip_slot = 'hands', 'neck', etc.
                 # gear_equipped_dictionary = {'item' : None}
-                # gear_id =    
-                
-                
+                # gear_id =
 
     def _add_modifiers_from_equipment(self):
         modifiers = []
 
-
         pass
-      
-
-
 
     # def _check_for_equipment_stat_modifiers(self, wanted_key):
 
-    
-    #--- Abilities methods ---
-    
+    # --- Abilities methods ---
+
     def _get_abilities(self):
         class_abilities = self.character_class.starting_abilities
         race_abilities = self.character_race.racial_abilities
@@ -350,15 +347,15 @@ class Character:
                 spell_data = book[spell_id]
                 ability_type = spell_data['type']
                 player_abilities[ability_type] += (spell_data['id'], )
-        return player_abilities    
-    
-    #--- Experience methods ---        
+        return player_abilities
+
+    # --- Experience methods ---
 
     def _get_xp_to_next_level(self):
-        xp_needed= calculate_xp_to_next_level(self.character_level)
+        xp_needed = calculate_xp_to_next_level(self.character_level)
         return xp_needed
-    
-    #--- Inventory methods ---
+
+    # --- Inventory methods ---
 
     def _get_starting_inventory(self):
         starting_equipment = self.character_class.starting_equipment
@@ -367,29 +364,67 @@ class Character:
 
         for equipment_id in starting_equipment:
             if equipment_id in full_equipment_list:
-                equipment_data = full_equipment_list.get(equipment_id, "ID INCORRECT")
+                equipment_data = full_equipment_list.get(
+                    equipment_id, "ID INCORRECT")
                 character_inventory[equipment_id] = equipment_data
             else:
                 print(f'The object: {equipment_data} was not found')
 
         return character_inventory
-    
-    
 
+    def _get_gear_player_buffs_and_debuffs_from_gear(self):
+        gear_list = self.character_equipped_gear
+        gear_effects_data = {}
+        for slot_where_gear_is_worn, key_is_id_and_value_is_dictionary_with_item_label_key_and_gear_data_value in gear_list.items():
+            gear_slot = slot_where_gear_is_worn
+            gear_box_of_each_gear_slot = key_is_id_and_value_is_dictionary_with_item_label_key_and_gear_data_value
+            item_label_names = gear_box_of_each_gear_slot.keys()
+            for label in item_label_names:
+             # <---- Dictionary just holding only gear data
+                gear_data = gear_box_of_each_gear_slot[label]
+                
+                if gear_data:
+                    gear_effects = gear_data.get('effects', [])
+                    gear_effects_container = []
+                    for index, effects in enumerate(gear_effects):
+                        if effects['type'] == 'passive_buff' or effects['type'] == 'debuff':
+                            gear_effects_container.append(
+                                {
+                                    'name': gear_data['name'],
+                                    'modifier_type': effects['type'],
+                                    'stat': effects['stat'],
+                                    'value': effects['value']
+                                }
+                            )
+                    gear_effects_data[gear_data['id']] = gear_effects_container
+        return gear_effects_data
     
-   
-   
-   
-   
-   
-   
-   
-   
-    #--- Area to remind me of things to create ---
+    def _apply_stat_modifiers_from_gear(self):
+        final_stat_modifiers = {}
+        special_effects_statuses = {}
+        stat_modifiers = self._get_gear_player_buffs_and_debuffs_from_gear()
+        for key, value in stat_modifiers.items():
+            gear_data_list = value
+            for gear_data in gear_data_list:
+                stat_value = gear_data['value']
+                stat_name = gear_data['stat']
+                if isinstance(stat_value, (int, float)) and not isinstance(stat_value, bool):
+                    if stat_name in final_stat_modifiers:
+                        final_stat_modifiers[stat_name] += stat_value
+                    else:
+                        final_stat_modifiers[stat_name] = stat_value
+                else:
+                    special_effects_statuses[stat_name] = stat_value
+        print([final_stat_modifiers, special_effects_statuses])
+        # Possibly adding a feature that measures stat modifier 'priority' numbers so that if a cursed object is equipped that induces fear can negate fear immunity, etc..
+        return {
+                'stat_modifiers': final_stat_modifiers,
+                'effect_statuses': special_effects_statuses
+        }
+
+    # --- Area to remind me of things to create ---
 
 
-        
-    
 # STAT & SKILL SYSTEM PHILOSOPHY
 # ======================================================================================
 # --- CORE STAT & SKILL SYSTEM PHILOSOPHY ---

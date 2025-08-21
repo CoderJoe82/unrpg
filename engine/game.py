@@ -289,14 +289,13 @@ class Game:
             }
         }
 
-        def get_stat_modifiers_from_gear():
+        def _get_gear_player_buffs_and_debuffs_from_gear():
             gear_list = EQUIPPED_GEAR
+            gear_effects_data = {}
             for slot_where_gear_is_worn, key_is_id_and_value_is_dictionary_with_item_label_key_and_gear_data_value in gear_list.items():
 
                 gear_slot = slot_where_gear_is_worn
                 gear_box_of_each_gear_slot = key_is_id_and_value_is_dictionary_with_item_label_key_and_gear_data_value
-
-                gear_effects_data = {}
 
                 item_label_names = gear_box_of_each_gear_slot.keys()
                 for label in item_label_names:
@@ -307,53 +306,45 @@ class Game:
                     # <----- Dictionary just holding each gear_data's effects list
                     gear_effects = gear_data['effects']
 
+                    gear_effects_container = []
                     for index, effects in enumerate(gear_effects):
-                        # YOU NEED TO LOOP THROUGH effects INSIDE THIS LOOP!!!!
-                        if effects['type'] == "passive_buff" or effects['type'] == 'debuff':
-                            gear_name = gear_data['name']
-                            effect_type = effects['type']
-                            effect_stat = effects['stat']
-                            effect_value = effects['value']
-                            gear_id = gear_data['id']
-                            print(f'effects : {effects}')
-                            if gear_id in gear_effects_data:
-                                
-                                gear_effects_data[gear_id].update(
-                                    {
-                                        'gear_slot': gear_slot,
-                                        'name': gear_name,
-                                        'type': effect_type,
-                                        'stat': effect_stat,
-                                        'value': effect_value
-                                    }
-                                )
-                            else:
-                                gear_effects_data[gear_id] = {
-                                    'gear_slot': gear_slot,
-                                    'name': gear_name,
-                                    'type': effect_type,
-                                    'stat': effect_stat,
-                                    'value': effect_value
+                        if effects['type'] == 'passive_buff' or effects['type'] == 'debuff':
+                            gear_effects_container.append(
+                                {
+                                    'name' : gear_data['name'],
+                                    'modifier_type' : effects['type'],
+                                    'stat' : effects['stat'],
+                                    'value' : effects['value']
                                 }
+                            )                       
+                    gear_effects_data[gear_data['id']] = gear_effects_container                               
+            
+            return gear_effects_data
 
-                        # if len(gear_effects) == 1:
-                            # gear_name = gear_data['name']
-                            # effect_type = effects['type']
-                            # effect_stat = effects['stat']
-                            # effect_value = effects['value']
-                            # gear_effects_data.append(
-                            # {
-                            # 'gear_slot' : gear_slot,
-                            # 'name' : gear_name,
-                            # 'type': effect_type,
-                            # 'stat': effect_stat,
-                            # 'value': effect_value
-                            # }
-                            # )
+        def _apply_stat_modifiers_from_gear():
+            final_stat_modifiers = {}
+            special_effects_statuses = {}
+            stat_modifiers = _get_gear_player_buffs_and_debuffs_from_gear()
+            for key, value in stat_modifiers.items():
+                gear_data_list = value
+                for gear_data in gear_data_list:
+                    stat_value = gear_data['value']
+                    stat_name = gear_data['stat']
+                    if isinstance(stat_value, (int, float)) and not isinstance(stat_value, bool):                        
+                        if stat_name in final_stat_modifiers:
+                            final_stat_modifiers[stat_name] += stat_value
+                        else:
+                            final_stat_modifiers[stat_name] = stat_value
+                    else:
+                        special_effects_statuses[stat_name] = stat_value
 
-                print(gear_effects_data)
+            print([final_stat_modifiers, special_effects_statuses])
+            return{
+                'stat_modifiers' : final_stat_modifiers,
+                'effect_statuses' : special_effects_statuses
+            }          
 
-        get_stat_modifiers_from_gear()
+        _apply_stat_modifiers_from_gear()
         # --- End of tester Fucntions ---#
 
     def run_game(self):
