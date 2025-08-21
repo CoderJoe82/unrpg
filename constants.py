@@ -10,6 +10,7 @@ COLOR_TEXT_DEFAULT = (220, 215, 200)
 # --- Game fonts path ---
 GAME_FONT_PATH = "assets/EBGaramond-VariableFont_wght.ttf"
 
+#--- Stats ---
 STATS = {
     "strength" : {
         "name" : "Strength",
@@ -51,6 +52,20 @@ BASE_STATS = {
     "faith" : 5
 }
 
+RESISTANCES = {
+    "fire" : 0,
+    "frost" : 0,
+    "darkness" : 0,
+    "holy" : 0,
+    "lightning" : 0,
+    "nature" : 0,
+    "psychic" : 0,
+    "physical": 0
+}
+
+BASE_ARMOR = 0
+
+#--- Abilities---
 ABILITIES = {
     "racial" : (),
     "spell" : (),
@@ -58,8 +73,10 @@ ABILITIES = {
     "hot" : ()
 }
 
+#--- Inventory ---
 INVENTORY = {}
 
+#--- Gear ---
 EQUIPPED_GEAR = {
     'head' : {
         'item' : None
@@ -104,23 +121,17 @@ EQUIPPED_GEAR = {
     }
 }
 
-RESISTANCES = {
-    "fire" : 0,
-    "frost" : 0,
-    "darkness" : 0,
-    "holy" : 0,
-    "lightning" : 0,
-    "nature" : 0,
-    "psychic" : 0,
-    "physical": 0
-}
-
-BASE_ARMOR = 0
-
+#--- Starting Level ---
 PLAYER_STARTING_LEVEL = 1
 
+#--- XP ---
+BASE_XP_TO_LEVEL = 1000
+
+#--- Tuning knob ---
 ARMOR_SCALING_FACTOR = 50
 
 MAGIC_RESISTANCE_SCALING_FACTOR = 40
 
-BASE_XP_TO_LEVEL = 1000
+HP_PER_CONSTITUTION_POINT = 8
+
+BASE_HP_POOL = 50

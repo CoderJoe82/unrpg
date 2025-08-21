@@ -1,5 +1,5 @@
-from constants import BASE_STATS, ABILITIES, PLAYER_STARTING_LEVEL, RESISTANCES, INVENTORY, EQUIPPED_GEAR
-from engine.mechanics import calculate_max_hp, calculate_damage_taken, calculate_xp_to_next_level
+from constants import BASE_STATS, ABILITIES, PLAYER_STARTING_LEVEL, RESISTANCES, INVENTORY, EQUIPPED_GEAR, HP_PER_CONSTITUTION_POINT, BASE_HP_POOL
+from engine.mechanics import calculate_damage_taken, calculate_xp_to_next_level
 import copy
 
 
@@ -24,72 +24,71 @@ class CharacterClass:
         specializations,
         allowed_ability_source
     ):
-        self.name = name
-        self.description = description
-        self.primary_resource = primary_resource
-        self.unique_mechanics = unique_mechanics if unique_mechanics is not None else {}
-        self.base_hp_per_level = base_hp_per_level
-        self.bonus_stats = bonus_stats if bonus_stats is not None else {}
-        self.passive_ability_bonus = passive_ability_bonus if passive_ability_bonus is not None else {}
-        self.starting_equipment = starting_equipment if starting_equipment is not None else ()
-        self.armors_allowed = armors_allowed if armors_allowed is not None else ()
-        self.weapons_allowed = weapons_allowed if weapons_allowed is not None else ()
-        self.primary_stats = primary_stats if primary_stats is not None else ()
-        self.progression = progression if progression is not None else {}
-        self.resistances_progression = resistances_progression if resistances_progression is not None else {}
-        self.role_type = role_type
-        self.specializations = specializations if specializations is not None else ()
-        self.starting_abilities = starting_abilities if starting_abilities is not None else ()
-        self.allowed_ability_source = allowed_ability_source if allowed_ability_source is not None else ()
+        self.character_class_name = name
+        self.character_class_description = description
+        self.character_class_primary_resource = primary_resource
+        self.character_class_unique_mechanics = unique_mechanics if unique_mechanics is not None else {}
+        self.character_class_base_hp_per_level = base_hp_per_level
+        self.character_class_bonus_stats = bonus_stats if bonus_stats is not None else {}
+        self.character_class_passive_ability_bonus = passive_ability_bonus if passive_ability_bonus is not None else {}
+        self.character_class_starting_equipment = starting_equipment if starting_equipment is not None else ()
+        self.character_class_armors_allowed = armors_allowed if armors_allowed is not None else ()
+        self.character_class_weapons_allowed = weapons_allowed if weapons_allowed is not None else ()
+        self.character_class_primary_stats = primary_stats if primary_stats is not None else ()
+        self.character_class_progression = progression if progression is not None else {}
+        self.character_class_resistances_progression = resistances_progression if resistances_progression is not None else {}
+        self.character_class_role_type = role_type
+        self.character_class_specializations = specializations if specializations is not None else ()
+        self.character_class_starting_abilities = starting_abilities if starting_abilities is not None else ()
+        self.character_class_allowed_ability_source = allowed_ability_source if allowed_ability_source is not None else ()
 
     def get_summary(self):
         class_summary = {
-            "name": self.name,
-            "description": self.description,
-            "role": self.role_type,
-            "base_hp_per_level": self.base_hp_per_level,
-            "passive": self.passive_ability_bonus,
-            "weapons_allowed": self.weapons_allowed,
-            "primary_stats": self.primary_stats,
-            "primary_resource": self.primary_resource,
-            "unique_mechanics": self.unique_mechanics,
-            "armors_allowed": self.armors_allowed,
-            "specializations": self.specializations,
-            "starting_abilities": self.starting_abilities,
-
+            "name": self.character_class_name,
+            "description": self.character_class_description,
+            "role": self.character_class_role_type,
+            "base_hp_per_level": self.character_class_base_hp_per_level,
+            "passive": self.character_class_passive_ability_bonus,
+            "weapons_allowed": self.character_class_weapons_allowed,
+            "primary_stats": self.character_class_primary_stats,
+            "primary_resource": self.character_class_primary_resource,
+            "unique_mechanics": self.character_class_unique_mechanics,
+            "armors_allowed": self.character_class_armors_allowed,
+            "specializations": self.character_class_specializations,
+            "starting_abilities": self.character_class_starting_abilities,
         }
         return class_summary
 
     def check_proficiencies(self, equipment_type):
-        if equipment_type in self.weapons_allowed or equipment_type in self.armors_allowed:
+        if equipment_type in self.character_class_weapons_allowed or equipment_type in self.character_class_armors_allowed:
             return True
         return False
 
     def get_benefits_for_level(self, character_level):
         return {
-            "progression": self.progression.get(character_level, {}),
-            "saving_throw_progression": self.saving_throw_progression.get(character_level, {}),
+            "progression": self.character_class_progression.get(character_level, {}),
+            "resistances_progression": self.character_class_resistances_progression.get(character_level, {}),
         }
 
     def is_role(self, role_name):
-        if role_name == self.role_type:
+        if role_name == self.character_class_role_type:
             return True
         return False
 
     def can_learn_ability(self, ability_source):
-        if ability_source in self.allowed_ability_source:
+        if ability_source in self.character_class_allowed_ability_source:
             return True
         return False
 
     def get_starting_kit(self):
         return {
-            "mechanics": self.unique_mechanics if self.unique_mechanics is not None else {},
-            "starting_equipment": self.starting_equipment,
-            "starting_abilities": self.starting_abilities,
-            "primary_resource": self.primary_resource,
-            "hit_dice": self.hit_dice,
-            "passive_ability_bonus": self.passive_ability_bonus,
-            "bonus_stats": self.bonus_stats
+            "mechanics": self.character_class_unique_mechanics if self.character_class_unique_mechanics is not None else {},
+            "starting_equipment": self.character_class_starting_equipment,
+            "starting_abilities": self.character_class_starting_abilities,
+            "primary_resource": self.character_class_primary_resource,
+            "base_hp_per_level": self.character_class_base_hp_per_level,
+            "passive_ability_bonus": self.character_class_passive_ability_bonus,
+            "bonus_stats": self.character_class_bonus_stats
         }
 
     # --- Finished with methods for CharacterClass. May add more later.
@@ -114,55 +113,55 @@ class CharacterRace:
         # <-- This will be a spot for proficiences
         # <-- For starting location, IF I go into that much.
     ):
-        self.size = size
-        self.name = name
-        self.description = description
-        self.racial_abilities = racial_abilities if racial_abilities is not None else ()
-        self.racial_stat_bonuses = racial_stat_bonuses if racial_stat_bonuses is not None else {}
-        self.movement_speed = movement_speed if movement_speed is not None else {}
-        self.languages = languages if languages is not None else ()
-        self.resistance_bonuses = resistance_bonuses if resistance_bonuses is not None else {}
-        self.general_alignment = general_alignment
-        self.life_span = life_span
-        self.racial_traits = racial_traits if racial_traits is not None else ()
+        self.character_race_size = size
+        self.character_race_name = name
+        self.character_race_description = description
+        self.character_race_racial_abilities = racial_abilities if racial_abilities is not None else ()
+        self.character_race_racial_stat_bonuses = racial_stat_bonuses if racial_stat_bonuses is not None else {}
+        self.character_race_movement_speed = movement_speed if movement_speed is not None else {}
+        self.character_race_languages = languages if languages is not None else ()
+        self.character_race_resistance_bonuses = resistance_bonuses if resistance_bonuses is not None else {}
+        self.character_race_general_alignment = general_alignment
+        self.character_race_life_span = life_span
+        self.character_race_racial_traits = racial_traits if racial_traits is not None else ()
 
     def get_summary(self):
         race_summary = {
-            "name": self.name,
-            "description": self.description,
-            "racial_abilities": self.racial_abilities,
-            "racial_stat_bonuses": self.racial_stat_bonuses,
-            "size": self.size,
-            "movement_speed": self.movement_speed,
-            "languages": self.languages,
-            "resistance_bonuses": self.resistance_bonuses,
-            "general_alignment": self.general_alignment,
-            "life_span": self.life_span
+            "name": self.character_race_name,
+            "description": self.character_race_description,
+            "racial_abilities": self.character_race_racial_abilities,
+            "racial_stat_bonuses": self.character_race_racial_stat_bonuses,
+            "size": self.character_race_size,
+            "movement_speed": self.character_race_movement_speed,
+            "languages": self.character_race_languages,
+            "resistance_bonuses": self.character_race_resistance_bonuses,
+            "general_alignment": self.character_race_general_alignment,
+            "life_span": self.character_race_life_span
 
         }
         return race_summary
 
     def get_racial_bonuses(self):
         return {
-            "stat_bonuses": self.racial_stat_bonuses,
-            "racial_abilities": self.racial_abilities,
-            "resistance_bonuses": self.resistance_bonuses,
-            "languages": self.languages,
+            "stat_bonuses": self.character_race_racial_stat_bonuses,
+            "racial_abilities": self.character_race_racial_abilities,
+            "resistance_bonuses": self.character_race_resistance_bonuses,
+            "languages": self.character_race_languages,
             # <--- later, skill_bonuses/proficiencies
         }
 
     def has_trait(self, trait_name):
-        if trait_name in self.racial_traits:
+        if trait_name in self.character_race_racial_traits:
             return True
         return False
 
     def can_speak(self, language_name):
-        if language_name in self.languages:
+        if language_name in self.character_race_languages:
             return True
         return False
 
     def get_speed_in(self, environment_type):
-        return self.movement_speed.get(environment_type, self.movement_speed['land'])
+        return self.character_race_movement_speed.get(environment_type, self.character_race_movement_speed['land'])
 
     # <----- possible future check for if a character has any racial proficiencies.
 
@@ -177,45 +176,56 @@ class Character:
                  character_race,
                  character_level=PLAYER_STARTING_LEVEL
                  ):
+        #--- Non depenant on self functions ---
         self.game = game
         self.character_name = character_name
         self.character_class = character_class if character_class is not None else {}
         self.character_race = character_race if character_race is not None else {}
         self.character_level = character_level
-        self.character_stats = self._get_finalized_stats()
-        self.character_current_hp = self.character_max_hp
-        self.character_abilities = self._get_abilities()
-        self.character_starting_inventory = self._get_starting_inventory()
         self.character_is_alive = True
         self.character_xp = 0
-        self.character_xp_to_next_level = self._get_xp_to_next_level()
-        self.character_resistances = self._get_finalized_resistances()
         self.character_equipped_gear = copy.deepcopy(EQUIPPED_GEAR)
-        self.character_active_modifiers = {
-            'buffs',
-            'debuffs'
-        }
-        self.charcter_current_armor = 0  # < ---- placeholder
+        #--- self objects dependant on character class and or character race and or gear
+        gear_modifiers = self._apply_stat_modifiers_from_gear()
+        self.character_stat_modifiers = gear_modifiers['stat_modifiers']
+        self.character_active_status_effects = gear_modifiers['effect_statuses']
+        self.character_stats = self._get_finalized_stats()
+        self.character_abilities = self._get_abilities()
+        self.character_starting_inventory = self._get_starting_inventory()
+        self.character_resistances = self._get_finalized_resistances()
         self.character_block_chance = 0  # <-- placeholder
+        self.character_max_hp = self._get_max_hp()
+        #--- self objects dependant on character level and or stats
+        self.character_xp_to_next_level = self._get_xp_to_next_level()
+        self.character_current_hp = self.character_max_hp
 
     # --- Stats methods ---
 
     def _get_finalized_stats(self):
         finalized_stats = BASE_STATS.copy()
-        for stat in self.character_class.bonus_stats:
-            finalized_stats[stat] += self.character_class.bonus_stats[stat]
-        for stat in self.character_race.racial_stat_bonuses:
-            finalized_stats[stat] += self.character_race.racial_stat_bonuses[stat]
+        modifiers = self.character_stat_modifiers
+        statuses = self.character_active_status_effects
+        for stat in self.character_class.character_class_bonus_stats:
+            finalized_stats[stat] += self.character_class.character_class_bonus_stats[stat]
+        for stat in self.character_race.character_race_racial_stat_bonuses:
+            finalized_stats[stat] += self.character_race.character_race_racial_stat_bonuses[stat]
+        for stat in modifiers:
+            finalized_stats[stat] += modifiers[stat]
+        for status in statuses:
+            finalized_stats[status] = statuses[status]
+
         return finalized_stats
 
-    def _get_hp(self, bonuses):
-        base_hp = calculate_max_hp(
-            self.character_level, self.character_stats['constitution'], self.character_class.base_hp_per_level)
-        bonuses = ()
-        for number in bonuses:
-            base_hp += number
-        return base_hp
+    def _get_max_hp(self):        
+        class_hp = self.character_class.character_class_base_hp_per_level
+        character_level = self.character_level
+        hp_pool = BASE_HP_POOL
+        class_hp_per_level = class_hp * character_level
+        constitution = self.character_stats['constitution']
+        constitution_bonus = constitution * HP_PER_CONSTITUTION_POINT
 
+        return hp_pool + class_hp_per_level + constitution_bonus
+        
     def _take_damage(self, resistance_value, attack_source):
         damage_taken = calculate_damage_taken(resistance_value, attack_source)
         if damage_taken >= self.character_current_hp:
@@ -234,8 +244,8 @@ class Character:
     def _get_finalized_resistances(self):
         final_resistances = RESISTANCES.copy()
 
-        race_resistances = self.character_race.resistance_bonuses
-        class_resistances = self.character_class.resistances_progression
+        race_resistances = self.character_race.character_race_resistance_bonuses
+        class_resistances = self.character_class.character_class_resistances_progression
         level = self.character_level
 
         resistance_bonus = (
@@ -256,7 +266,6 @@ class Character:
         return final_resistances
 
     # --- Equipment methods ---
-
     def _get_equipment(self):
         return self.character_equipped_gear
 
@@ -337,8 +346,8 @@ class Character:
     # --- Abilities methods ---
 
     def _get_abilities(self):
-        class_abilities = self.character_class.starting_abilities
-        race_abilities = self.character_race.racial_abilities
+        class_abilities = self.character_class.character_class_starting_abilities
+        race_abilities = self.character_race.character_race_racial_abilities
         all_abilities = class_abilities + race_abilities
         player_abilities = ABILITIES.copy()
         book = self.game.master_ability_compendium
@@ -358,7 +367,7 @@ class Character:
     # --- Inventory methods ---
 
     def _get_starting_inventory(self):
-        starting_equipment = self.character_class.starting_equipment
+        starting_equipment = self.character_class.character_class_starting_equipment
         full_equipment_list = self.game.master_equipment_compendium
         character_inventory = INVENTORY.copy()
 

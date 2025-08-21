@@ -1,11 +1,5 @@
 from constants import ARMOR_SCALING_FACTOR, MAGIC_RESISTANCE_SCALING_FACTOR, BASE_XP_TO_LEVEL, RESISTANCES
 
-def calculate_max_hp(level, constitution, class_hp_per_level):
-    BASE_HP = 40
-    class_hp = (level - 1) * class_hp_per_level
-    con_bonus = constitution * 4
-    return BASE_HP + class_hp + con_bonus
-
 def calculate_damage_reduction(resistance_value, toughness):
     return resistance_value / (resistance_value + toughness)
 
