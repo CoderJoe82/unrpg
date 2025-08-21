@@ -293,11 +293,10 @@ class Game:
             gear_list = EQUIPPED_GEAR
             for slot_where_gear_is_worn, key_is_id_and_value_is_dictionary_with_item_label_key_and_gear_data_value in gear_list.items():
 
-
                 gear_slot = slot_where_gear_is_worn
                 gear_box_of_each_gear_slot = key_is_id_and_value_is_dictionary_with_item_label_key_and_gear_data_value
 
-                gear_effects_data = []
+                gear_effects_data = {}
 
                 item_label_names = gear_box_of_each_gear_slot.keys()
                 for label in item_label_names:
@@ -309,26 +308,50 @@ class Game:
                     gear_effects = gear_data['effects']
 
                     for index, effects in enumerate(gear_effects):
-                        # if len(gear_effects) > 1:
-                            if effects['type'] == "passive_buff" or effects['type'] == 'debuff':
-                                gear_name = gear_data['name']
-                                effect_type = effects['type']
-                                effect_stat = effects['stat']
-                                effect_value = effects['value']
-                                gear_effects_data.append(
-                                        {
-                                            'gear_slot' : gear_slot,
-                                            'name' : gear_name,
-                                            'type': effect_type,
-                                            'stat': effect_stat,
-                                            'value': effect_value
-                                        }
-                                    )
-                
+                        # YOU NEED TO LOOP THROUGH effects INSIDE THIS LOOP!!!!
+                        if effects['type'] == "passive_buff" or effects['type'] == 'debuff':
+                            gear_name = gear_data['name']
+                            effect_type = effects['type']
+                            effect_stat = effects['stat']
+                            effect_value = effects['value']
+                            gear_id = gear_data['id']
+                            print(f'effects : {effects}')
+                            if gear_id in gear_effects_data:
+                                
+                                gear_effects_data[gear_id].update(
+                                    {
+                                        'gear_slot': gear_slot,
+                                        'name': gear_name,
+                                        'type': effect_type,
+                                        'stat': effect_stat,
+                                        'value': effect_value
+                                    }
+                                )
+                            else:
+                                gear_effects_data[gear_id] = {
+                                    'gear_slot': gear_slot,
+                                    'name': gear_name,
+                                    'type': effect_type,
+                                    'stat': effect_stat,
+                                    'value': effect_value
+                                }
+
+                        # if len(gear_effects) == 1:
+                            # gear_name = gear_data['name']
+                            # effect_type = effects['type']
+                            # effect_stat = effects['stat']
+                            # effect_value = effects['value']
+                            # gear_effects_data.append(
+                            # {
+                            # 'gear_slot' : gear_slot,
+                            # 'name' : gear_name,
+                            # 'type': effect_type,
+                            # 'stat': effect_stat,
+                            # 'value': effect_value
+                            # }
+                            # )
+
                 print(gear_effects_data)
-
-
-        
 
         get_stat_modifiers_from_gear()
         # --- End of tester Fucntions ---#
