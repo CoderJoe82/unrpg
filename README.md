@@ -1,6 +1,10 @@
 # unrpg
 Me learning how to make an rpg game with pygame using a.i. but not only to make it, but teach me.
 
+V-0.0.15
+---
+-Got a function working to loop over all the character's gear and grab any passive buffs or debuffs, and those are all shoved into a list.
+
 V-0.0.14
 ---
 -Worked on getting a function started to loop over the character's equipped gear and gather all the stat bonuses from it and put it into the character's stat bonuses container.

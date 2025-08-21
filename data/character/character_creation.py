@@ -325,9 +325,6 @@ class Character:
                 
                 
 
-    
-    #--- Stat modifications ---
-    #   THIS IS WHAT i'M WORKING ON TOMORROW, THIS FUNCTION NEEDS MODIFIED. FORGOT TO INCLUDE IF AN ITEM HAS MORE THAN ONE STAT BONUS IN THE SAME ITEM.
     def _add_modifiers_from_equipment(self):
         modifiers = []
 

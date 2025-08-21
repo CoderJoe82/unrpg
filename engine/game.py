@@ -32,6 +32,8 @@ class Game:
         self.master_equipment_compendium = load_all_equipment()
 
         # === Tester functions ---
+        true = True
+
         EQUIPPED_GEAR = {
             'head': {
                 'item': {
@@ -173,54 +175,58 @@ class Game:
             },
             'neck': {
                 'item': {
-                    'amulet_007': {
-                        'id': 'amulet_007',
-                        'name': "Sorcerer's Eye",
-                        'level': 7,
-                        'type': 'amulet',
-                        'category': 'amulet',
-                        'equip_slot': 'neck',
-                        'description': 'A polished obsidian sphere set in silver. It seems to find the weaknesses in magical defenses.',
-                        'scaling': {},
-                        'effects': [
-                            {
-                                'type': 'passive_buff',
-                                'stat': 'intelligence',
-                                'value': 10
-                            },
-                            {
-                                'type': 'passive_buff',
-                                'stat': 'spell_crit_chance',
-                                'value': 7
-                            }
-                        ]
-                    }
-                }
+                    "id": "amulet_007",
+                    "name": "Sorcerer's Eye",
+                    "level": 7,
+                    "type": "amulet",
+                    "category": "amulet",
+                    "equip_slot": "neck",
+                    "description": "A polished obsidian sphere set in silver. It seems to find the weaknesses in magical defenses.",
+                    "scaling": {},
+                    "effects": [
+                        {"type": "passive_buff", "stat": "intelligence", "value": 10},
+                        {"type": "passive_buff",
+                            "stat": "spell_crit_chance", "value": 7}
+                    ]
+                },
             },
             'main_hand': {
-                'item': {'heavy_head_001': {
-                    'id': 'heavy_head_001',
-                    'name': 'Dented Iron Helm',
-                    'level': 1, 'type': 'armor',
-                    'category': 'plate',
-                    'equip_slot': 'head',
-                    'description': "A crude, heavy helmet beaten into shape from scrap iron. It's seen a few too many impacts.",
-                    'armor': 12,
-                    'scaling': {},
-                    'effects': []}
-                }
+                'item': {
+                    "id": "sword_1h_004",
+                    "name": "Broadsword of the Guard",
+                    "level": 5,
+                    "type": "weapon",
+                    "category": "sword",
+                    "hand_type": "one_handed",
+                    "equip_slot": "main_hand",
+                    "description": "A sturdy, reliable blade issued to royal guards. It offers a measure of protection to its wielder.",
+                    "damage": "2d8",
+                    "damage_type": "physical",
+                    "attack_speed": 1.1,
+                    "scaling": {"strength": 0.8},
+                    "effects": [
+                        {"type": "passive_buff", "stat": "armor", "value": 15}
+                    ]
+                },
             },
             'off_hand': {
-                'item': {'heavy_head_001': {
-                    'id': 'heavy_head_001',
-                    'name': 'Dented Iron Helm',
-                    'level': 1, 'type': 'armor',
-                    'category': 'plate',
-                    'equip_slot': 'head',
-                    'description': "A crude, heavy helmet beaten into shape from scrap iron. It's seen a few too many impacts.",
-                    'armor': 12,
-                    'scaling': {},
-                    'effects': []}
+                'item':  {
+                    "id": "shield_010",
+                    "name": "Aegis of the Unbroken",
+                    "level": 10,
+                    "type": "shield",
+                    "equip_slot": "off_hand",
+                    "description": "A legendary shield that is said to be unbreakable. When an attack is blocked, the shield's divine power can heal its wielder.",
+                    "armor": 110,
+                    "block_chance": 35,
+                    "block_value": 90,
+                    "scaling": {"strength": 1.0},
+                    "effects": [
+                        {"type": "on_block_chance", "chance": 0.25,
+                         "effect": {"type": "heal", "amount": "3d10"}},
+                        {"type": "passive_buff",
+                            "stat": "crit_immunity", "value": true}
+                    ]
                 }
             },
             'fingers': {
@@ -284,38 +290,45 @@ class Game:
         }
 
         def get_stat_modifiers_from_gear():
-            modifiers = []
             gear_list = EQUIPPED_GEAR
-            for gear_equip_slot, gear_equipped_dictionary in gear_list.items():
-                for gear_item_label, equipped_gear_data in gear_equipped_dictionary.items():
-                    gear_slot = gear_equip_slot
-                    gear_data = gear_equipped_dictionary
-                    gear_full_data = equipped_gear_data
-                    # gear_full_data is the right data for the items with only one effect or less
-                    only_gear_data = equipped_gear_data.values()
-                    only_gear_ids = equipped_gear_data.keys()
-                    multi_slot_gear_item = gear_item_label
-                    effects_container = {}
+            for slot_where_gear_is_worn, key_is_id_and_value_is_dictionary_with_item_label_key_and_gear_data_value in gear_list.items():
 
 
-                    for data in only_gear_data:
-                        
-                        if isinstance(data, dict):
-                            print(data)
-                        # effects = data['effects']
-                        # for index, effect in enumerate(effects):
-                        #     gear_name = data['name']
-                        #     gear_id = data['id']
-                        #     effect_type = effect['type']
-                        #     effect_stat = effect['stat']
-                        #     effect_value = effect['value']
-                        #     effects_container[gear_id] = {
-                        #         'name': gear_name,
-                        #         'effect_type': effect_type,
-                        #         'effect_stat': effect_stat,
-                        #         'effect_value': effect_value
-                        #     }
+                gear_slot = slot_where_gear_is_worn
+                gear_box_of_each_gear_slot = key_is_id_and_value_is_dictionary_with_item_label_key_and_gear_data_value
 
+                gear_effects_data = []
+
+                item_label_names = gear_box_of_each_gear_slot.keys()
+                for label in item_label_names:
+
+                    # <---- Dictionary just holding only gear data
+                    gear_data = gear_box_of_each_gear_slot[label]
+
+                    # <----- Dictionary just holding each gear_data's effects list
+                    gear_effects = gear_data['effects']
+
+                    for index, effects in enumerate(gear_effects):
+                        # if len(gear_effects) > 1:
+                            if effects['type'] == "passive_buff" or effects['type'] == 'debuff':
+                                gear_name = gear_data['name']
+                                effect_type = effects['type']
+                                effect_stat = effects['stat']
+                                effect_value = effects['value']
+                                gear_effects_data.append(
+                                        {
+                                            'gear_slot' : gear_slot,
+                                            'name' : gear_name,
+                                            'type': effect_type,
+                                            'stat': effect_stat,
+                                            'value': effect_value
+                                        }
+                                    )
+                
+                print(gear_effects_data)
+
+
+        
 
         get_stat_modifiers_from_gear()
         # --- End of tester Fucntions ---#
