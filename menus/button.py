@@ -7,6 +7,7 @@ class Button():
         # We create the main rectangle for the button's background.
         self.rect = pygame.Rect(x, y, width, height)
 
+        self.text = text
         # --- 2. The Colors & Font (Simple for now) ---
         self.color = color # A simple grey
         self.text_color = text_color # White

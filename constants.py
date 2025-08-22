@@ -2,10 +2,56 @@
 SCREEN_WIDTH = 1280  # Let's use a more modern widescreen resolution
 SCREEN_HEIGHT = 720
 
-# --- Colors ---
-# The "Earthen" Palette
+#--- Text and Background colors ---
+COLOR_NATURE = (120, 180, 90)    # A soft, living green
+COLOR_MAGIC = (210, 190, 100)     # A warm, mystical gold
+COLOR_EMPHASIS = (200, 160, 120)  # A slightly warmer tone for important concepts
+COLOR_CHOICE = (180, 200, 220)    # A bright, hopeful color for the final question
 COLOR_BACKGROUND = (40, 35, 30)
 COLOR_TEXT_DEFAULT = (220, 215, 200)
+
+#--- Printing colored text ---
+
+def draw_multi_line_colored_text(surface, text_segments, rect, font):
+    """
+    Draws text with multiple colors, handling word wrapping and newlines.
+
+    Args:
+        surface (pygame.Surface): The surface to draw on.
+        text_segments (list): A list of (text, color) tuples.
+        rect (pygame.Rect): The rectangular area to draw the text within.
+        font (pygame.font.Font): The font to use for rendering.
+    """
+    x, y = rect.left, rect.top
+    space_width = font.size(' ')[0]  # Get the width of a single space
+
+    for text, color in text_segments:
+        # Handle manual newlines for paragraph breaks
+        if "\n" in text:
+            num_newlines = text.count("\n")
+            y += num_newlines * font.get_linesize()
+            x = rect.left
+            text = text.lstrip("\n") # Remove the newlines so we don't try to render them
+
+        # Split the text chunk into individual words
+        words = text.split(' ')
+        for word in words:
+            if not word: continue # Skip empty strings that can result from split()
+
+            word_surface = font.render(word, True, color)
+            word_width, word_height = word_surface.get_size()
+
+            # If this word would go off the edge of the rect, move to the next line
+            if x + word_width >= rect.right:
+                x = rect.left
+                y += font.get_linesize()
+
+            # Draw the word
+            surface.blit(word_surface, (x, y))
+
+            # Move the drawing cursor to the end of the word plus a space
+            x += word_width + space_width
+
 
 # --- Game fonts path ---
 GAME_FONT_PATH = "assets/EBGaramond-VariableFont_wght.ttf"

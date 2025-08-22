@@ -1,6 +1,12 @@
 # unrpg
 Me learning how to make an rpg game with pygame using a.i. but not only to make it, but teach me.
 
+V-0.0.20
+---
+-I've moved on from character creation data for the moment, with plans to go back later and add other things
+-Added a new welcome screen for when the player clicks new game.
+-Added event handlers for people to go back to the main menu with a button from the welcome screen as well.
+
 V-0.0.19
 ---
 -Added a layout of future plans in character class that aren't crucial for now.
