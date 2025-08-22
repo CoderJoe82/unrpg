@@ -1,3 +1,5 @@
+from data.character.character_creation import Character
+
 # --- Screen Dimensions ---
 SCREEN_WIDTH = 1280  # Let's use a more modern widescreen resolution
 SCREEN_HEIGHT = 720
@@ -130,7 +132,7 @@ BASE_XP_TO_LEVEL = 1000
 #--- Tuning knob ---
 ARMOR_SCALING_FACTOR = 50
 
-MAGIC_RESISTANCE_SCALING_FACTOR = 40
+RESISTANCE_SCALING_FACTOR = 40
 
 HP_PER_CONSTITUTION_POINT = 8
 

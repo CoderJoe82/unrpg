@@ -1,6 +1,13 @@
 # unrpg
 Me learning how to make an rpg game with pygame using a.i. but not only to make it, but teach me.
 
+V-0.0.18
+---
+-Added a function to get all the data of each piece of gear.
+-Added a function to grab the resistance and stat and status effects bonuses from all character gear
+-Added a function to apply all those bonuses to the Character object init.
+-Refactored quite a bit.
+
 V-0.0.17
 ---
 -Adjusted some minor details for refactoring in my previous functions and also changed get finalized stats function too include our new functions

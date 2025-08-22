@@ -195,6 +195,8 @@ class Character:
         self.character_resistances = self._get_finalized_resistances()
         self.character_block_chance = 0  # <-- placeholder
         self.character_max_hp = self._get_max_hp()
+        self.character_gear_data = self._get_data_from_equipped_gear()
+        self.character_armor_points = self._get_player_armor()
         #--- self objects dependant on character level and or stats
         self.character_xp_to_next_level = self._get_xp_to_next_level()
         self.character_current_hp = self.character_max_hp
@@ -227,7 +229,9 @@ class Character:
         return hp_pool + class_hp_per_level + constitution_bonus
         
     def _take_damage(self, resistance_value, attack_source):
+
         damage_taken = calculate_damage_taken(resistance_value, attack_source)
+
         if damage_taken >= self.character_current_hp:
             self.character_current_hp = 0
             self.character_is_alive = False
@@ -324,23 +328,7 @@ class Character:
                     return result
 
         return None
-
-    def get_stat_modifiers_from_gear(self):
-        modifiers = []
-        gear_list = self.character_equipped_gear
-        for gear_equip_slot, gear_equipped_dictionary in gear_list.items():
-            for gear_item, gear_data in gear_equipped_dictionary.items():
-                for data_id, data_details in gear_data.items():
-                    pass
-                # gear_equip_slot = 'hands', 'neck', etc.
-                # gear_equipped_dictionary = {'item' : None}
-                # gear_id =
-
-    def _add_modifiers_from_equipment(self):
-        modifiers = []
-
-        pass
-
+        
     # def _check_for_equipment_stat_modifiers(self, wanted_key):
 
     # --- Abilities methods ---
@@ -381,9 +369,9 @@ class Character:
 
         return character_inventory
 
-    def _get_gear_player_buffs_and_debuffs_from_gear(self):
+    def _get_data_from_equipped_gear(self):
         gear_list = self.character_equipped_gear
-        gear_effects_data = {}
+        gear_data_list = []
         for slot_where_gear_is_worn, key_is_id_and_value_is_dictionary_with_item_label_key_and_gear_data_value in gear_list.items():
             gear_slot = slot_where_gear_is_worn
             gear_box_of_each_gear_slot = key_is_id_and_value_is_dictionary_with_item_label_key_and_gear_data_value
@@ -391,21 +379,29 @@ class Character:
             for label in item_label_names:
              # <---- Dictionary just holding only gear data
                 gear_data = gear_box_of_each_gear_slot[label]
-                
                 if gear_data:
-                    gear_effects = gear_data.get('effects', [])
-                    gear_effects_container = []
-                    for index, effects in enumerate(gear_effects):
-                        if effects['type'] == 'passive_buff' or effects['type'] == 'debuff':
-                            gear_effects_container.append(
-                                {
-                                    'name': gear_data['name'],
-                                    'modifier_type': effects['type'],
-                                    'stat': effects['stat'],
-                                    'value': effects['value']
-                                }
-                            )
-                    gear_effects_data[gear_data['id']] = gear_effects_container
+                    gear_data_list.append(gear_data)
+
+        return gear_data_list
+
+    def _get_gear_player_buffs_and_debuffs_from_gear(self):
+        gear_effects_data = {}
+        gear_data = self.character_gear_data
+        for index, data in enumerate(gear_data):
+
+            gear_effects = data.get('effects', [])
+            gear_effects_container = []
+            for index, effects in enumerate(gear_effects):
+                if effects['type'] == 'passive_buff' or effects['type'] == 'debuff':
+                    gear_effects_container.append(
+                        {
+                            'name': data['name'],
+                            'modifier_type': effects['type'],
+                            'stat': effects['stat'],
+                            'value': effects['value']
+                        }
+                    )
+            gear_effects_data[data['id']] = gear_effects_container
         return gear_effects_data
     
     def _apply_stat_modifiers_from_gear(self):
@@ -431,6 +427,13 @@ class Character:
                 'effect_statuses': special_effects_statuses
         }
 
+    def _get_player_armor(self):
+        gear_data = self.character_gear_data
+        total_armor_points = 0
+        for index, data in enumerate(gear_data):
+            gear_armor = data.get('armor', 0)               
+            total_armor_points += gear_armor
+        return total_armor_points
     # --- Area to remind me of things to create ---
 
 
