@@ -1,7 +1,7 @@
 import pygame
 from constants import *
 from menus.main_menu import MainMenu
-from data.character.character_creation import Character
+from screens.character_creation_screen import CharacterCreationScreen
 # ---- Testing imports ----
 from engine.data_loader import load_all_abilities, load_all_weapons, load_all_shields, load_all_rings, load_all_charms, load_all_light_armors, load_all_medium_armors, load_all_heavy_armors, load_all_amulets, load_all_equipment
 # --- End of Testing imports ---
@@ -19,6 +19,8 @@ class Game:
             center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * .10))
         self.running = True
         self.main_menu = MainMenu(self)
+        self.character_creation_screen = CharacterCreationScreen(self)
+        self.current_state = self.main_menu
         self.character = None
         self.master_ability_compendium = load_all_abilities()
         self.master_weapon_rack = load_all_weapons()
@@ -40,9 +42,11 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    self.current_state.handle_event(event)
 
             self.surface.fill(COLOR_BACKGROUND)
-            self.main_menu.draw()
+            self.current_state.draw()
 
             self.surface.blit(self.title_surface, self.title_rect)
 

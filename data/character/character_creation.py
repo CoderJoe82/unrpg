@@ -3,6 +3,9 @@ from engine.mechanics import calculate_damage_taken, calculate_xp_to_next_level
 import copy
 
 
+#------------------------ TO DO AND GAME PHILOSOPHIES AT BOTTOM --------------------------------
+
+
 class CharacterClass:
     def __init__(
         self,
@@ -477,3 +480,66 @@ class Character:
 # Magical: Enchanting, Alchemy, Runecrafting
 # Practical: Identification, etc.
 # ======================================================================================
+
+# ======================================================================================
+# --- LONG-TERM DEVELOPMENT ROADMAP ---
+# This section serves as a to-do list for expanding the character systems
+# beyond initial creation, ensuring they are robust enough for a full-scale game.
+# ======================================================================================
+
+# === FUTURE ROADMAP: CharacterRace Enhancements ===
+
+# TODO: [SYSTEM] Sub-races:
+#   - Decide on an implementation strategy. Should sub-races be their own full
+#     CharacterRace objects, or a simple modifier choice during character creation?
+#   - Example: A "Hill Dwarf" might modify the base "Stoneheart Dwarf" by swapping
+#     the +2 STR / +1 CON for +1 CON / +2 WIS.
+
+# TODO: [SYSTEM] Proficiencies:
+#   - Add a 'proficiencies' attribute to the CharacterRace class.
+#   - This will store inherent skills a race has, like weapon types (axes for dwarves),
+#     armor types, or even non-combat skills (perception for elves).
+#   - This makes race choice feel more mechanically distinct beyond just stat points.
+#   - The main Character object will eventually need to aggregate proficiencies
+#     from both its race and its class.
+
+
+# === FUTURE ROADMAP: CharacterClass Enhancements ===
+
+# TODO: [SYSTEM] Talent Trees / Specializations (Fleshing out the 'progression' dictionary):
+#   - Design the data structure that will represent a talent tree. This is a core
+#     system for long-term character growth and build diversity.
+#   - Example: self.progression = {
+#       10: {"type": "specialization_choice", "options": ["Protection", "Arms"]},
+#       12: {"type": "talent_point", "tree": "Protection", "options": ["Improved Shield Wall", "Stalwart Defender"]}
+#     }
+#   - The Character object will need a place to store its chosen talents.
+
+# TODO: [DETAIL] Resource System Mechanics:
+#   - Define base regeneration rates for resources (Mana, Energy, etc.).
+#   - Decide if regeneration should scale with a stat (e.g., Wisdom for Mana regen).
+#   - Add attributes to CharacterClass to store these rules, so they can be class-specific.
+#     (e.g., self.resource_regen_stat = "wisdom", self.resource_regen_modifier = 0.1)
+
+
+# === FUTURE ROADMAP: Character Object Enhancements (The "Live" Character) ===
+
+# TODO: [CRITICAL SYSTEM] Temporary Effects (Buffs & Debuffs):
+#   - Add an attribute to the main Character class: self.active_effects = [].
+#   - This list will hold temporary modifiers from spells, potions, and abilities.
+#   - Each effect in the list needs a 'name', its 'effects' (what it does), and a 'duration'.
+#   - A game-level function will be needed to "tick down" these durations each turn or second.
+#   - All stat calculation methods (_get_finalized_stats, _get_finalized_resistances, etc.)
+#     will need to check this list for any temporary modifiers *after* applying gear.
+
+# TODO: [SYSTEM] Skill Implementation (from the Philosophy Doc):
+#   - Add a skills dictionary to the Character class:
+#     self.skills = {"Mining": {"level": 1, "xp": 0}, "Alchemy": {"level": 1, "xp": 0}}
+#   - Create methods for gaining skill XP (e.g., self.gain_skill_xp("Mining", 10)).
+#   - This method should handle checking for skill level-ups and applying the passive benefits.
+
+# TODO: [SYSTEM] Core Player State Attributes:
+#   - Add attributes to the Character class for tracking non-combat progression.
+#   - self.currency = 0
+#   - self.reputation = {"CityGuard": 0, "MagesGuild": 0}
+#   - self.quest_log = {"active": [], "completed": []}

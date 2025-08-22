@@ -1,5 +1,3 @@
-from data.character.character_creation import Character
-
 # --- Screen Dimensions ---
 SCREEN_WIDTH = 1280  # Let's use a more modern widescreen resolution
 SCREEN_HEIGHT = 720

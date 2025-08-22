@@ -1,6 +1,12 @@
 # unrpg
 Me learning how to make an rpg game with pygame using a.i. but not only to make it, but teach me.
 
+V-0.0.19
+---
+-Added a layout of future plans in character class that aren't crucial for now.
+-Added an event handler method in MainMenu.
+-Refactored game.py to make switching game states much simpler than I had previously tried.
+
 V-0.0.18
 ---
 -Added a function to get all the data of each piece of gear.
