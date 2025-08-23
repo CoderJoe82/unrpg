@@ -1,6 +1,12 @@
 # unrpg
 Me learning how to make an rpg game with pygame using a.i. but not only to make it, but teach me.
 
+V-0.0.21
+---
+-Added a race selection screen
+-Added race buttons for all races currently in the game, set up to automatically adjust perfectly even vertically if I add another later.
+-Added a pygame line as a divider to the right side of the buttons for separating the buttons from the race descriptions once you click the race buttons one by one.
+
 V-0.0.20
 ---
 -I've moved on from character creation data for the moment, with plans to go back later and add other things

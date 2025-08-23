@@ -41,6 +41,11 @@ class MainMenu:
         # We need a font. Let's create one here for the buttons.
         # It's better to create it once than inside the button class every time.
         button_font = pygame.font.Font(GAME_FONT_PATH, 30)
+        self.title_font = pygame.font.Font(GAME_FONT_PATH, 55)
+        self.title_surface = self.title_font.render(
+            "Unnamed RPG", True, COLOR_TEXT_DEFAULT)
+        self.title_rect = self.title_surface.get_rect(
+            center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * .10))
 
         new_game_button = Button(
             x=button_x,
@@ -89,7 +94,7 @@ class MainMenu:
         """
         # The main game loop will handle clearing the screen, so we don't do it here.
         # We just need to draw our own components.
-
+        self.game.surface.blit(self.title_surface, self.title_rect)
         # We can loop through our list of buttons and tell each one to draw itself.
         for button in self.buttons:
             # Pass the surface to the button's draw method
@@ -98,7 +103,7 @@ class MainMenu:
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             for button in self.buttons:
-                if button.rect.collidepoint(event.pos):  
+                if button.rect.collidepoint(event.pos):
                     if button.text == "New Game":
                         self.game.current_state = self.game.character_creation_screen
 

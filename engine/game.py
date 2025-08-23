@@ -12,11 +12,6 @@ class Game:
         pygame.init()
         self.surface = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         self.caption = pygame.display.set_caption("Unnamed RPG")
-        self.title_font = pygame.font.Font(GAME_FONT_PATH, 55)
-        self.title_surface = self.title_font.render(
-            "Unnamed RPG", True, COLOR_TEXT_DEFAULT)
-        self.title_rect = self.title_surface.get_rect(
-            center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * .10))
         self.running = True
         self.main_menu = MainMenu(self)
         self.character_creation_screen = CharacterCreationScreen(self)
@@ -47,7 +42,5 @@ class Game:
 
             self.surface.fill(COLOR_BACKGROUND)
             self.current_state.draw()
-
-            self.surface.blit(self.title_surface, self.title_rect)
 
             pygame.display.flip()
