@@ -1,6 +1,12 @@
 # unrpg
 Me learning how to make an rpg game with pygame using a.i. but not only to make it, but teach me.
 
+V-0.0.22
+---
+-Added 'phasing' functionality for the character creation screen.
+-Added some helper functions to make creating things easier.
+-Did some refactoring of the code after it was finished.
+
 V-0.0.21
 ---
 -Added a race selection screen
