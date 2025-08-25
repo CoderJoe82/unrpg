@@ -1,5 +1,5 @@
 from constants import *
-from data.text_data import WELCOME_MESSAGE
+from data.game_text.text_data import WELCOME_MESSAGE
 from menus.button import Button
 from phases.creation_phase_base import CreationPhaseBase
 

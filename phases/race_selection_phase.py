@@ -1,5 +1,4 @@
 from constants import *
-from data.text_data import WELCOME_MESSAGE
 from menus.button import Button
 from data.character.character_races import ALL_RACES
 from phases.creation_phase_base import CreationPhaseBase
@@ -20,6 +19,8 @@ class RaceSelectionPhase(CreationPhaseBase):
         self._create_race_buttons()
         self._create_section_title()
         self._create_navigation_buttons()
+
+        self.selected_race = ""
 
     def _calculate_positions(self):
         number_of_buttons = len(ALL_RACES.keys())
@@ -90,6 +91,13 @@ class RaceSelectionPhase(CreationPhaseBase):
             )
             current_x += button_width + button_padding
 
+    def _get_selected_race(self, button):
+        selected_race = button.text
+        self.selected_race = selected_race
+
+    def _display_selected_race(self, button):
+        for race in ALL_RACES:
+            print(button.text)
 
     def draw(self):
         self._add_divider_lines(self.game.surface, (70, 60, 55), (self.divider_line_starting_x, self.divider_line_starting_y), (self.divider_line_ending_x, self.divider_line_ending_y), 3)
@@ -105,4 +113,4 @@ class RaceSelectionPhase(CreationPhaseBase):
         if event.type == pygame.MOUSEBUTTONDOWN:
             for button in self.buttons:
                 if button.rect.collidepoint(event.pos):
-                    print('YOOOOOOOOOOOOOOOOOOOOOO')
+                    self._display_selected_race(button)
