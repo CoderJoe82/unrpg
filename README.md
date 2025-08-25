@@ -1,6 +1,10 @@
 # unrpg
 Me learning how to make an rpg game with pygame using a.i. but not only to make it, but teach me.
 
+V-0.0.23
+---
+-Finished major refactoring in current phasing steps finished.
+
 V-0.0.22
 ---
 -Added 'phasing' functionality for the character creation screen.

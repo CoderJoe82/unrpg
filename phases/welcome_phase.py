@@ -7,7 +7,7 @@ class WelcomePhase(CreationPhaseBase):
     def __init__(self, game, character_creation_screen):
         super().__init__(game, character_creation_screen)
 
-        self._create_phase_title(GAME_FONT_PATH, 55, "Welcome!", COLOR_TEXT_DEFAULT, (SCREEN_WIDTH /  2), (SCREEN_HEIGHT * .10))
+        self._add_phase_text(GAME_FONT_PATH, 55, "Welcome!", COLOR_TEXT_DEFAULT, (SCREEN_WIDTH /  2), (SCREEN_HEIGHT * .10))
 
         self. welcome_text_segments = WELCOME_MESSAGE
         self.font = pygame.font.Font(GAME_FONT_PATH, 20)
@@ -19,8 +19,6 @@ class WelcomePhase(CreationPhaseBase):
         button_y = SCREEN_HEIGHT * 0.75
 
         button_x_create_character = ((SCREEN_WIDTH / 2) - button_width - 50)
-        button_x_go_back_to_main_screen = (
-            button_x_create_character + button_width + 50)
 
         button_font = pygame.font.Font(GAME_FONT_PATH, 30)
 
@@ -28,7 +26,7 @@ class WelcomePhase(CreationPhaseBase):
 
         current_x = button_x_create_character
         for index, value in enumerate(button_names):
-            self._create_phase_buttons_test(
+            self._add_phase_buttons(
                 Button(
                     x = current_x,
                     y = button_y,
