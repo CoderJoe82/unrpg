@@ -7,9 +7,10 @@ class CreationPhaseBase:
         self.buttons = []
 
     def _add_phase_text(self, font, font_size, text, text_color, x, y):
-        self.title_font = pygame.font.Font(font, font_size)
-        self.title_surface = self.title_font.render(text, True, text_color)
-        self.title_rect = self.title_surface.get_rect(center=(x, y))
+        rect_font = pygame.font.Font(font, font_size)
+        rect_surface = rect_font.render(text, True, text_color)
+        rect = rect_surface.get_rect(topleft = (x, y))
+        return rect_surface, rect
 
     def _add_phase_buttons(self, button_data):
         self.buttons.append(button_data)

@@ -14,13 +14,15 @@ class RaceSelectionPhase(CreationPhaseBase):
         self.button_height = 60
         self.button_padding = 15
         self.button_x = SCREEN_WIDTH * 0.02
-
+        
         self._calculate_positions()
         self._create_race_buttons()
         self._create_section_title()
         self._create_navigation_buttons()
+        self._get_race_data()
 
-        self.selected_race = ""
+        self.selected_race = None
+
 
     def _calculate_positions(self):
         number_of_buttons = len(ALL_RACES.keys())
@@ -37,11 +39,15 @@ class RaceSelectionPhase(CreationPhaseBase):
         self.divider_line_2_ending_x = SCREEN_WIDTH
         self.divider_line_2_starting_y = SCREEN_HEIGHT * 0.15
         self.divider_line_2_ending_y = self.divider_line_2_starting_y
+
         self.race_selection_header_width = SCREEN_WIDTH - self.divider_line_starting_x
         self.race_choice_rect_x_section_center = (self.race_selection_header_width / 2) + self.divider_line_starting_x
 
+        self.race_data_box_starting_x = self.divider_line_2_starting_x + (SCREEN_WIDTH * 0.03)
+        self.race_data_box_starting_y = self.divider_line_2_starting_y + (SCREEN_HEIGHT * 0.04)
+
     def _create_section_title(self):
-        self._add_phase_text(GAME_FONT_PATH, 55, "Choose Your Race!", COLOR_TEXT_DEFAULT, self.race_choice_rect_x_section_center, self.divider_line_2_starting_y / 2)
+        self.title_surface, self.title_rect = self._add_phase_text(GAME_FONT_PATH, 55, "Choose Your Race!", COLOR_TEXT_DEFAULT, self.race_choice_rect_x_section_center, self.divider_line_2_starting_y / 2)
     
     def _create_race_buttons(self):
         button_font = pygame.font.Font(GAME_FONT_PATH, 20)
@@ -61,6 +67,29 @@ class RaceSelectionPhase(CreationPhaseBase):
                 )
             )
             current_y += self.button_height + self.button_padding
+
+    def _get_race_data(self):
+        self.race_data = {}
+        for key, value in ALL_RACES.items():
+            race_name = key
+            race_data = value
+            self.race_data[race_name] = {
+                'name' : race_data.character_race_name,
+                'racial_abilities' : race_data.character_race_racial_abilities,
+                'size' : race_data.character_race_size,
+                'movement_speed' : race_data.character_race_size,
+                'languages' : race_data.character_race_languages,
+                'resistance_bonuses' : race_data.character_race_resistance_bonuses,
+                'general_alignment' : race_data.character_race_general_alignment,
+                'life_span' : race_data.character_race_life_span,
+                'racial_traits' : race_data.character_race_racial_traits
+            }
+        
+
+    def _create_racial_data_area(self, race_name):
+        box_x = self.race_data_box_starting_x
+        box_y = self.race_data_box_starting_y
+
 
     def _create_navigation_buttons(self):
         button_texts = ["Confirm", "Go back"]
@@ -91,14 +120,6 @@ class RaceSelectionPhase(CreationPhaseBase):
             )
             current_x += button_width + button_padding
 
-    def _get_selected_race(self, button):
-        selected_race = button.text
-        self.selected_race = selected_race
-
-    def _display_selected_race(self, button):
-        for race in ALL_RACES:
-            print(button.text)
-
     def draw(self):
         self._add_divider_lines(self.game.surface, (70, 60, 55), (self.divider_line_starting_x, self.divider_line_starting_y), (self.divider_line_ending_x, self.divider_line_ending_y), 3)
         self._add_divider_lines(self.game.surface, (70, 60, 55), (self.divider_line_2_starting_x,
@@ -109,8 +130,11 @@ class RaceSelectionPhase(CreationPhaseBase):
         for button in self.buttons:
             button.draw(self.game.surface)
 
+        if self.selected_race is not None:
+            self._create_racial_data_area(f"{self.selected_race}:")
+
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             for button in self.buttons:
                 if button.rect.collidepoint(event.pos):
-                    self._display_selected_race(button)
+                    self.selected_race = button.text

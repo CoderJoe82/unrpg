@@ -7,7 +7,7 @@ class WelcomePhase(CreationPhaseBase):
     def __init__(self, game, character_creation_screen):
         super().__init__(game, character_creation_screen)
 
-        self._add_phase_text(GAME_FONT_PATH, 55, "Welcome!", COLOR_TEXT_DEFAULT, (SCREEN_WIDTH /  2), (SCREEN_HEIGHT * .10))
+        self.title_surface, self.title_rect = self._add_phase_text(GAME_FONT_PATH, 55, "Welcome!", COLOR_TEXT_DEFAULT, (SCREEN_WIDTH /  2), (SCREEN_HEIGHT * .10))
 
         self. welcome_text_segments = WELCOME_MESSAGE
         self.font = pygame.font.Font(GAME_FONT_PATH, 20)
