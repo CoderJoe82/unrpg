@@ -152,7 +152,7 @@ class RaceSelectionPhase(CreationPhaseBase):
 
         if self.selected_race is not None:
             self._create_racial_data_area(f"{self.race_data[self.selected_race]['name']}:")
-            draw_multi_line_colored_text(self.game.surface, (self.race_description_string, COLOR_CHOICE), self.race_description_rect, self.font)
+            draw_multi_line_colored_text(self.game.surface, [(self.race_description_string, COLOR_CHOICE)], self.race_description_rect, self.font)
             self.game.surface.blit(self.race_data_surface, self.race_header_rect)
             self.game.surface.blit(self.header_race_subheader_surface, self.header_race_subheader_rect)
             # self.game.surface.blit(self.chosen_race_desciprtion_surface, self.chosen_race_description_rect)
