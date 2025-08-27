@@ -52,7 +52,7 @@ class MainMenu:
             y=button_y_new_game,
             width=button_width,
             height=button_height,
-            text="New Game",
+            display_text="New Game",
             # A darker earthen color for the button
             color=(70, 60, 55),
             text_color=COLOR_TEXT_DEFAULT,
@@ -64,7 +64,7 @@ class MainMenu:
             y=button_y_load,
             width=button_width,
             height=button_height,
-            text="Load Game",
+            display_text="Load Game",
             # A darker earthen color for the button
             color=(70, 60, 55),
             text_color=COLOR_TEXT_DEFAULT,
@@ -77,7 +77,7 @@ class MainMenu:
             y=button_y_quit,
             width=button_width,
             height=button_height,
-            text="Quit",
+            display_text="Quit",
             color=(70, 60, 55),
             text_color=COLOR_TEXT_DEFAULT,
             font=button_font
@@ -104,7 +104,7 @@ class MainMenu:
         if event.type == pygame.MOUSEBUTTONDOWN:
             for button in self.buttons:
                 if button.rect.collidepoint(event.pos):
-                    if button.text == "New Game":
+                    if button.display_text == "New Game":
                         self.game.current_state = self.game.character_creation_screen
 
 #         In summary, the structure is :

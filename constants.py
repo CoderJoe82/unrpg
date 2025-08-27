@@ -30,31 +30,24 @@ def draw_multi_line_colored_text(surface, text_segments, rect, font):
     space_width = font.size(' ')[0]  # Get the width of a single space
 
     for text, color in text_segments:
-        # Handle manual newlines for paragraph breaks
         if "\n" in text:
             num_newlines = text.count("\n")
             y += num_newlines * font.get_linesize()
             x = rect.left
-            # Remove the newlines so we don't try to render them
             text = text.lstrip("\n")
 
-        # Split the text chunk into individual words
         words = text.split(' ')
         for word in words:
-            if not word: continue  # Skip empty strings that can result from split()
+            if not word: continue
 
             word_surface = font.render(word, True, color)
             word_width, word_height = word_surface.get_size()
-
-            # If this word would go off the edge of the rect, move to the next line
             if x + word_width >= rect.right:
                 x = rect.left
                 y += font.get_linesize()
 
-            # Draw the word
             surface.blit(word_surface, (x, y))
-
-            # Move the drawing cursor to the end of the word plus a space
+            
             x += word_width + space_width
 
 

@@ -15,12 +15,11 @@ class RaceSelectionPhase(CreationPhaseBase):
         self.button_padding = 15
         self.button_x = SCREEN_WIDTH * 0.02
         
+        self._get_race_data()
         self._calculate_positions()
         self._create_race_buttons()
         self._create_section_title()
         self._create_navigation_buttons()
-        self._get_race_data()
-
         self.selected_race = None
 
 
@@ -53,6 +52,7 @@ class RaceSelectionPhase(CreationPhaseBase):
         button_font = pygame.font.Font(GAME_FONT_PATH, 20)
         current_y = self.button_y
         for key, value in ALL_RACES.items():
+            race_key = key
             race_data = value
             self._add_phase_buttons(
                 Button(
@@ -60,7 +60,8 @@ class RaceSelectionPhase(CreationPhaseBase):
                     y = current_y,
                     width = self.button_width,
                     height = self.button_height,
-                    text = race_data.character_race_name,
+                    display_text = race_data.character_race_name,
+                    key_text = race_key,
                     color = (70, 60, 55),
                     text_color = COLOR_TEXT_DEFAULT,
                     font = button_font
@@ -87,27 +88,28 @@ class RaceSelectionPhase(CreationPhaseBase):
             }
         
 
-    def _create_racial_data_area(self, race_name):
+    def _create_racial_data_area(self, race_display_name):
         box_x = self.race_data_box_starting_x
         box_y = self.race_data_box_starting_y
 
-        self.race_data_surface, self.race_header_rect = self._add_phase_text(GAME_FONT_PATH, 30, race_name, COLOR_CHOICE, box_x, box_y)
+        self.race_data_surface, self.race_header_rect = self._add_phase_text(GAME_FONT_PATH, 30, race_display_name, COLOR_CHOICE, box_x, box_y)
 
         header_underline_starting_y = box_y + self.race_header_rect.height
         header_underline_ending_y = header_underline_starting_y
         header_underline_ending_x = box_x + self.race_header_rect.width
         self.race_header_underline = self._add_divider_lines(self.game.surface, COLOR_CHOICE, (box_x, header_underline_starting_y), (header_underline_ending_x, header_underline_ending_y), 2)
 
-        bullet_point_font = pygame.font.Font(None, 40)
-        self.bullet_point = bullet_point_font.render("•", True, COLOR_CHOICE)
-
         header_race_subheader_x = box_x
         header_race_subheader_y = header_underline_ending_y + 10
         self.header_race_subheader_surface, self.header_race_subheader_rect = self._add_phase_text(GAME_FONT_PATH, 22, "Description:", COLOR_CHOICE, header_race_subheader_x, header_race_subheader_y)
 
         chosen_race_description_x = box_x
-        chosen_race_description_y = self.header_race_subheader_rect.height + 5
-        self.chosen_race_desciprtion_surface, self.chosen_race_description_rect = self._add_phase_text(GAME_FONT_PATH, 22, f"{self.bullet_point}", COLOR_CHOICE, chosen_race_description_x, chosen_race_description_y)
+        chosen_race_description_y = self.header_race_subheader_rect.bottom + 5
+        self.race_description_string = f"• {self.race_data[self.selected_race]['description']}"
+        self.font = pygame.font.Font(GAME_FONT_PATH, 40)
+        self.race_description_rect = pygame.Rect(chosen_race_description_x, chosen_race_description_y, 500, 500)
+
+        print(self.race_data)
 
     def _create_navigation_buttons(self):
         button_texts = ["Confirm", "Go back"]
@@ -130,7 +132,7 @@ class RaceSelectionPhase(CreationPhaseBase):
                     y = button_y,
                     width = button_width,
                     height = button_height,
-                    text = button_text,
+                    display_text = button_text,
                     color = (70, 60, 55),
                     text_color = COLOR_TEXT_DEFAULT,
                     font = button_font
@@ -149,14 +151,15 @@ class RaceSelectionPhase(CreationPhaseBase):
             button.draw(self.game.surface)
 
         if self.selected_race is not None:
-            self._create_racial_data_area(f"{self.selected_race}:")
+            self._create_racial_data_area(f"{self.race_data[self.selected_race]['name']}:")
+            draw_multi_line_colored_text(self.game.surface, (self.race_description_string, COLOR_CHOICE), self.race_description_rect, self.font)
             self.game.surface.blit(self.race_data_surface, self.race_header_rect)
             self.game.surface.blit(self.header_race_subheader_surface, self.header_race_subheader_rect)
-            self.game.surface.blit(self.chosen_race_desciprtion_surface, self.chosen_race_description_rect)
+            # self.game.surface.blit(self.chosen_race_desciprtion_surface, self.chosen_race_description_rect)
 
 
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             for button in self.buttons:
                 if button.rect.collidepoint(event.pos):
-                    self.selected_race = button.text
+                    self.selected_race = button.key_text

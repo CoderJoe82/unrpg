@@ -32,7 +32,7 @@ class WelcomePhase(CreationPhaseBase):
                     y = button_y,
                     width = button_width,
                     height = button_height,
-                    text = value,
+                    display_text = value,
                     color = (70, 60, 55),
                     text_color = COLOR_TEXT_DEFAULT,
                     font = button_font
@@ -57,7 +57,7 @@ class WelcomePhase(CreationPhaseBase):
         if event.type == pygame.MOUSEBUTTONDOWN:
             for button in self.buttons:
                 if button.rect.collidepoint(event.pos):
-                    if button.text == "Go Back":
+                    if button.display_text == "Go Back":
                         self.game.current_state = self.game.main_menu
-                    elif button.text == "Create Character":
+                    elif button.display_text == "Create Character":
                         self.manager._setup_race_selection_phase()
