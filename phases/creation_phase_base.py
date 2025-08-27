@@ -6,10 +6,10 @@ class CreationPhaseBase:
         self.manager = character_creation_screen
         self.buttons = []
 
-    def _add_phase_text(self, font, font_size, text, text_color, x, y):
+    def _add_phase_text(self, font, font_size, text, text_color, x, y, alignment = "topleft"):
         rect_font = pygame.font.Font(font, font_size)
         rect_surface = rect_font.render(text, True, text_color)
-        rect = rect_surface.get_rect(topleft = (x, y))
+        rect = rect_surface.get_rect(**{alignment:(x, y)})
         return rect_surface, rect
 
     def _add_phase_buttons(self, button_data):

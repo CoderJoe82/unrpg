@@ -1,6 +1,10 @@
 # unrpg
 Me learning how to make an rpg game with pygame using a.i. but not only to make it, but teach me.
 
+V-0.0.24
+---
+-Added some functions to, and refactored some, to put text onto the character race selection screen when you click a specific race button.
+
 V-0.0.23
 ---
 -Finished major refactoring in current phasing steps finished.
