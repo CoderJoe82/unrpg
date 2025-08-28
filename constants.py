@@ -50,6 +50,8 @@ def draw_multi_line_colored_text(surface, text_segments, rect, font):
             
             x += word_width + space_width
 
+    return y + font.get_linesize()
+
 
 # --- Game fonts path ---
 GAME_FONT_PATH = "assets/EBGaramond-VariableFont_wght.ttf"

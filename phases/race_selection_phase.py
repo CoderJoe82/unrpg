@@ -104,12 +104,10 @@ class RaceSelectionPhase(CreationPhaseBase):
         self.header_race_subheader_surface, self.header_race_subheader_rect = self._add_phase_text(GAME_FONT_PATH, 22, "Description:", COLOR_CHOICE, header_race_subheader_x, header_race_subheader_y)
 
         chosen_race_description_x = box_x
-        chosen_race_description_y = self.header_race_subheader_rect.bottom + 5
+        self.chosen_race_description_y = self.header_race_subheader_rect.bottom + 5
         self.race_description_string = f"• {self.race_data[self.selected_race]['description']}"
-        self.font = pygame.font.Font(GAME_FONT_PATH, 40)
-        self.race_description_rect = pygame.Rect(chosen_race_description_x, chosen_race_description_y, 500, 500)
-
-        print(self.race_data)
+        self.font = pygame.font.Font(GAME_FONT_PATH, 22)
+        self.race_description_rect = pygame.Rect(chosen_race_description_x, self.chosen_race_description_y, SCREEN_WIDTH - box_x - 10, 150)
 
     def _create_navigation_buttons(self):
         button_texts = ["Confirm", "Go back"]
@@ -152,7 +150,9 @@ class RaceSelectionPhase(CreationPhaseBase):
 
         if self.selected_race is not None:
             self._create_racial_data_area(f"{self.race_data[self.selected_race]['name']}:")
-            draw_multi_line_colored_text(self.game.surface, [(self.race_description_string, COLOR_CHOICE)], self.race_description_rect, self.font)
+            self.description_box_bottom = draw_multi_line_colored_text(self.game.surface, [(self.race_description_string, COLOR_CHOICE)], self.race_description_rect, self.font)
+            self.race_description_rect_bottom_y = self.description_box_bottom
+            self.race_description_rect_height = self.race_description_rect_bottom_y - self.chosen_race_description_y
             self.game.surface.blit(self.race_data_surface, self.race_header_rect)
             self.game.surface.blit(self.header_race_subheader_surface, self.header_race_subheader_rect)
             # self.game.surface.blit(self.chosen_race_desciprtion_surface, self.chosen_race_description_rect)
