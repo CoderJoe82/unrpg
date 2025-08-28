@@ -153,6 +153,7 @@ class RaceSelectionPhase(CreationPhaseBase):
             self.description_box_bottom = draw_multi_line_colored_text(self.game.surface, [(self.race_description_string, COLOR_CHOICE)], self.race_description_rect, self.font)
             self.race_description_rect_bottom_y = self.description_box_bottom
             self.race_description_rect_height = self.race_description_rect_bottom_y - self.chosen_race_description_y
+            self.race_description_rect.height = self.race_description_rect_height
             self.game.surface.blit(self.race_data_surface, self.race_header_rect)
             self.game.surface.blit(self.header_race_subheader_surface, self.header_race_subheader_rect)
             # self.game.surface.blit(self.chosen_race_desciprtion_surface, self.chosen_race_description_rect)
