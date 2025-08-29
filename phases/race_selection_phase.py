@@ -9,7 +9,7 @@ class RaceSelectionPhase(CreationPhaseBase):
 
         #---- NOTE!!! NEXT TIME YOU DO SOMETHING LIKE THIS, CONSIDER THIS FROM THE START AND LAY IT OUT THIS WAY ***FIRST***
 
-        #--- Configuration math---
+        #--- Static Math magic numbers---
         self.button_width = 180
         self.button_height = 60
         self.button_padding = 15
@@ -21,7 +21,8 @@ class RaceSelectionPhase(CreationPhaseBase):
         self._create_section_title()
         self._create_navigation_buttons()
         self.selected_race = None
-
+    
+      
 
     def _calculate_positions(self):
         number_of_buttons = len(ALL_RACES.keys())
@@ -82,6 +83,7 @@ class RaceSelectionPhase(CreationPhaseBase):
                 'movement_speed' : race_data.character_race_size,
                 'languages' : race_data.character_race_languages,
                 'resistance_bonuses' : race_data.character_race_resistance_bonuses,
+                'racial_stat_bonuses' : race_data.character_race_racial_stat_bonuses,
                 'general_alignment' : race_data.character_race_general_alignment,
                 'life_span' : race_data.character_race_life_span,
                 'racial_traits' : race_data.character_race_racial_traits
@@ -108,6 +110,8 @@ class RaceSelectionPhase(CreationPhaseBase):
         self.race_description_string = f"• {self.race_data[self.selected_race]['description']}"
         self.font = pygame.font.Font(GAME_FONT_PATH, 22)
         self.race_description_rect = pygame.Rect(chosen_race_description_x, self.chosen_race_description_y, SCREEN_WIDTH - box_x - 10, 150)
+
+        self._prepare_display_data()
 
     def _create_navigation_buttons(self):
         button_texts = ["Confirm", "Go back"]
@@ -138,6 +142,59 @@ class RaceSelectionPhase(CreationPhaseBase):
             )
             current_x += button_width + button_padding
 
+    def _prepare_display_data(self):
+        bullet_point = "•"
+
+        data = self.race_data[self.selected_race]
+        race_data_information = []
+        
+        ability_compendium = self.game.master_ability_compendium
+
+        race_data_information.extend([
+            {'header' : "Race Name", 'content' : data['name']},
+            {'header' : "Description", 'content' : data['description']},
+            {'header' : "Racial Abilities", 'content' : data['racial_abilities']},
+            {'header' : "Resistance Bonuses", 'content' : data['resistance_bonuses']},
+            {'header' : "Racial Stat Bonuses", 'content' : data['racial_stat_bonuses']},
+            {'header' : "Racial Traits", 'content' : data['racial_traits']}
+        ])
+
+        racial_ability_list = []
+        for index, value in enumerate(race_data_information[2]['content']):
+            ability_id = value
+            ability_data = ability_compendium[ability_id]
+            racial_ability_list.append(ability_data)
+
+        racial_abilities = []
+        bonus_stats = []
+
+        for index, value in enumerate(race_data_information):
+            race_property_dict = value
+            abilities = {}
+            stats = {}
+            if race_property_dict['header'] == 'Racial Abilities':
+                racial_ability_tuple = race_property_dict['content']
+                for index, value in enumerate(racial_ability_tuple):
+                    ability_id = value
+                    ability_data = ability_compendium[ability_id]
+                    abilities[ability_data['name']] = ability_data['description']
+            elif race_property_dict['header'] == 'Racial Stat Bonuses':
+                racial_stat_bonuses_dict = value
+                racial_stat_bonuses = racial_stat_bonuses_dict['content']
+                for key, value in racial_stat_bonuses.items():
+                    stats[key] = value
+            if abilities:
+                racial_abilities.append(abilities)
+            if stats:
+                bonus_stats.append(stats)
+
+        return {
+            'stat_bonuses' : bonus_stats,
+            'ability_name_and_description' : racial_abilities
+        }
+
+
+
     def draw(self):
         self._add_divider_lines(self.game.surface, (70, 60, 55), (self.divider_line_starting_x, self.divider_line_starting_y), (self.divider_line_ending_x, self.divider_line_ending_y), 3)
         self._add_divider_lines(self.game.surface, (70, 60, 55), (self.divider_line_2_starting_x,
@@ -156,11 +213,10 @@ class RaceSelectionPhase(CreationPhaseBase):
             self.race_description_rect.height = self.race_description_rect_height
             self.game.surface.blit(self.race_data_surface, self.race_header_rect)
             self.game.surface.blit(self.header_race_subheader_surface, self.header_race_subheader_rect)
-            # self.game.surface.blit(self.chosen_race_desciprtion_surface, self.chosen_race_description_rect)
-
 
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             for button in self.buttons:
                 if button.rect.collidepoint(event.pos):
-                    self.selected_race = button.key_text
+                    if button.key_text != "default":
+                        self.selected_race = button.key_text

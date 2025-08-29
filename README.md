@@ -1,6 +1,11 @@
 # unrpg
 Me learning how to make an rpg game with pygame using a.i. but not only to make it, but teach me.
 
+V-0.0.27
+---
+-Added a function to handle more of presenting the data rather than put so much code into the draw function.
+-Not finished, but will add more to it next time.
+
 V-0.0.26
 ---
 -Minor fix
