@@ -190,7 +190,7 @@ class RaceSelectionPhase(CreationPhaseBase):
 
         return {
             'stat_bonuses' : bonus_stats,
-            'ability_name_and_description' : racial_abilities
+            'racial_abilities' : racial_abilities
         }
 
 
