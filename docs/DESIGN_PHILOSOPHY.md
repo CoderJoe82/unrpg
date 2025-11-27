@@ -2,6 +2,12 @@
 
 > "The Game State is the Source of Truth. The AI is the Narrator."
 
+## 0. Core Gameplay Identity
+**Genre:** 2D Text-Driven / Menu-Based RPG.
+**Visual Style:** UI-Heavy. No character sprites walking on a map. The "World" is navigated via menus, text descriptions, and buttons.
+**Interaction:** Mouse-driven interface (Point & Click) for selecting options, managing inventory, and combat choices.
+**Reference:** Think *Disco Elysium* (dialogue/text focus) meets *Darkest Dungeon* (menu-based management) but without the walking.
+
 ## 1. The "Harmony" Setting (World & Tone)
 **Concept:**
 Unlike traditional fantasy where civilization fights back the wilds, this world features a symbiotic relationship between nature and architecture. Cities are built *into* trees, stone keeps are wrapped in living vines by design, and technology (gadgetry) works alongside druidic magic.

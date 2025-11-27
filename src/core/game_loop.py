@@ -1,4 +1,8 @@
 import pygame
+from src.core.event_manager import EventManager
+from src.core.events import QuitEvent
+from src.core.scene_manager import SceneManager
+from src.ui.title_screen import TitleScreen
 
 class GameLoop():
     """
@@ -17,6 +21,10 @@ class GameLoop():
         self.clock = pygame.time.Clock()
         self.running = True
         self.target_fps = 60
+        self.events = EventManager()
+        self.events.subscribe("Quit", self._handle_quit)
+        self.scene_manager = SceneManager(self.events)
+        self.scene_manager.set_scene(TitleScreen(self.scene_manager))
 
     def run(self):
         """
@@ -31,6 +39,9 @@ class GameLoop():
             self._render()
             self.clock.tick(self.target_fps)
 
+    def _handle_quit(self, event):
+        self.running = False
+
     def _handle_input(self):
         """
         Handles user input events.
@@ -38,7 +49,9 @@ class GameLoop():
         This method processes events such as key presses and mouse movements
         to control the game's behavior.
         """
-        pass
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.events.post(QuitEvent())
 
     def _update(self):
         """
@@ -47,7 +60,7 @@ class GameLoop():
         This method handles the logic of the game, including character movement,
         collision detection, and other game mechanics.
         """
-        pass
+        self.scene_manager.update()
 
     def _render(self):
         """
@@ -56,4 +69,4 @@ class GameLoop():
         This method handles the visualization of the game, including rendering
         characters, objects, and the environment.
         """
-        pass         
+        self.scene_manager.render(self.screen)
