@@ -6,6 +6,10 @@ FPS = 60
 # ========== Title Screen Settings ==========
 TITLE_FONT_SIZE = 90
 TITLE_BUTTON_FONT_SIZE = 36
+TITLE_BUTTON_WIDTH = 200
+TITLE_BUTTON_HEIGHT = 50
+TITLE_BUTTON_STARTING_Y = .60
+TITLE_BUTTON_PADDING = 10
 
 # ========== Game Colors ==========
 WHITE = (255, 255, 255)

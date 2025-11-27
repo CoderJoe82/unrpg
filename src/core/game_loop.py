@@ -1,6 +1,6 @@
 import pygame
 from src.core.event_manager import EventManager
-from src.core.events import QuitEvent
+from src.core.events import QuitEvent, MouseClickEvent
 from src.core.scene_manager import SceneManager
 from src.ui.title_screen import TitleScreen
 
@@ -52,6 +52,8 @@ class GameLoop():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.events.post(QuitEvent())
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                self.events.post(MouseClickEvent(event.pos))
 
     def _update(self):
         """

@@ -17,3 +17,15 @@ class QuitEvent:
     """
     def __init__(self):
         self.type = "Quit"
+
+class MouseClickEvent:
+    """
+    Triggered when the user clicks the mouse button.
+    
+    Attributes:
+        type (str): "MouseClick"
+        pos (tuple): The (x, y) coordinates of the click.
+    """
+    def __init__(self, pos):
+        self.type = "MouseClick"
+        self.pos = pos
