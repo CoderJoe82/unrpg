@@ -21,83 +21,6 @@ Unlike traditional fantasy where civilization fights back the wilds, this world 
 
 ---
 
-## 2. Attribute Philosophy (The "Diablo" Approach)
-**Concept:**
-Stats are manual, granular, and impactful. 
-*   **No "Dead" Stats:** Every point allocated provides a tangible benefit.
-*   **Soft Caps, Not Hard Walls:** We want to encourage specialization (min-maxing), but ensure that a "Jack of all Trades" is still viable.
-*   **Respec Friendly:** Builds are investments, but players shouldn't feel paralyzed by fear of "ruining" a character.
-
-**The Core Attributes:**
-*   **Strength:** Physical Damage, Carry Weight.
-*   **Agility:** Attack Speed, Crit Chance, Evasion.
-*   **Intellect:** Magic Damage, Mana Pool.
-*   **Willpower:** Stamina/Mana Regen, Status Resistance, Healing Potency.
-*   **Vitality:** Health Pool, Physical Defense.
-
-**Technical Implication:**
-*   *Math:* Use linear scaling for the first 50 points, then diminishing returns (logarithmic) afterwards to prevent game-breaking numbers while still rewarding investment.
-
----
-
-## 3. Progression: "You Are What You Do" (Elder Scrolls Style)
-**Concept:**
-Character levels differ from Skill levels. You do not magically get better at Swords by killing a rat with a Fireball.
-*   **Usage-Based Growth:** Dealing damage with a Sword grants XP toward the `Sword_Skill`.
-*   **Skill Milestones:** Reaching Level 25/50/75 in a skill unlocks specific perks (Active Abilities or Passive Buffs).
-
-**Technical Implication:**
-*   *The Event Listener:* The Combat System needs to emit events like `OnDamageDealt(Source="Sword", Amount=50)`. The Player class listens for this and adds XP to the relevant skill.
-
----
-
-## 4. The Combat Triangle (Weapons)
-**Concept:**
-Weapons are defined by their *utility*, not just their damage numbers.
-
-| Weapon Type | Core Identity | Special Mechanic |
-| :--- | :--- | :--- |
-| **Swords** | Consistency | **Crit & Parry:** Balanced offense/defense. |
-| **Axes** | Attrition | **Bleeds & Trauma:** High top-end damage, stacking DoTs. |
-| **Maces** | Control | **Stun & Stamina Drain:** Punishment for enemies with high armor. |
-| **Daggers** | Burst | **Backstab & Poison:** Multipliers on unaware/debuffed targets. |
-| **Bows** | Mobility | **Kiting:** High damage but requires distance management. |
-| **Crossbows/Gadgets** | Tech/Pierce | **Armor Pen:** Slower, mechanical, ignores % of defense. |
-| **Polearms** | Zone Control | **Reach & Sweeps:** Hit multiple enemies (Cleave) or prevent enemies from closing distance. |
-| **Staves** | Magic Focus | **Spell Weaving:** Buffs magical output/efficiency. |
-
----
-
-## 5. The Magic System (The 8 Schools)
-**Concept:**
-Magic is categorized by "Source," and each has a distinct playstyle.
-
-*   **Fire:** Burst Damage, AoE, Burning.
-*   **Frost:** Slows, Freezing, Shatter combos.
-*   **Lightning:** Stuns, Chain Damage (jumps targets), Speed.
-*   **Nature:** HoTs (Heal over Time), Poison, Rooting/Thorns.
-*   **Darkness:** Curses, Debuffs (Weaken), Fear. (Not necessarily "Evil").
-*   **Light:** Holy Damage (Smites), Blinding.
-*   **Holy:** Pure Restoration, Wards, Protection buffs.
-*   **Chaos:** The Wild Card.
-    *   *Mechanic:* Has a chance to trigger effects from *any* other school, or unique "Wild Magic" surges.
-    *   *Resistance:* Chaos Damage bypasses standard resistances but checks against a specific "Luck/Fate" stat.
-
----
-
-## 6. Social & Reputation (Reactive World)
-**Concept:**
-Alignment is a *result* of actions, not a restriction on them.
-*   **Reputation Vectors:** Instead of "Good/Evil," track "Order/Chaos" and "Benevolence/Cruelty."
-*   **Faction Standing:** Every NPC belongs to a faction (Kingdom, Guild, Nature Spirit, Bandit Clan).
-*   **Reactivity:** 
-    *   A "Cruel" player might intimidate a merchant into lower prices but will be hunted by Guards.
-    *   A "Nature Friend" might be attacked by Bandits but protected by Wolves in the forest.
-
-**Technical Implication:**
-*   *The Reaction Check:* When generating an interaction, the AI is fed the Player's Reputation Matrix.
-*   *Prompt:* "The player approaches the Sacred Grove. Player Reputation: {Nature: -50 (Enemy)}. Describe the trees attacking them."
-
 ## 2. Attribute Philosophy (The "Seven Pillars")
 **Concept:**
 Stats are manual, granular, and impactful. We adhere to a "Soft Cap" philosophy similar to souls-likes and ARPGs:
@@ -121,3 +44,29 @@ Stats are manual, granular, and impactful. We adhere to a "Soft Cap" philosophy 
     *   **Charisma** acts as the "Bandwidth" (Can I control 3 wolves?).
     *   **Magic Stat** acts as the "Quality" (How much damage do the wolves do?).
     *   *Example:* A Necromancer needs **CHA** to raise *many* skeletons, but needs **INT/Darkness** to make them actually *strong*.
+
+---
+
+## 3. Progression: The Hybrid System
+**Concept:**
+We combine "Usage-Based Growth" (Skyrim) with "Manual Stat Allocation" (Diablo).
+
+**The Rules of Growth:**
+1.  **Usage-Based Skills:** You do not get XP for killing a rat. You get XP for *hitting* the rat with a Sword (`Sword_Skill` goes up).
+2.  **Skill Milestones:** When your Skills level up enough, your **Character Level** increases.
+3.  **Manual Reward:** When Character Level increases, you gain **3 Attribute Points** to manually spend on the Seven Pillars.
+
+**The Math (Level 60 Cap):**
+*   **Max Level:** 60
+*   **Points per Level:** 3
+*   **Total Points:** 180 (plus starting base stats).
+*   **Soft Cap:** 40 points (Diminishing returns start).
+*   **Hard Cap:** 99 points.
+
+**Build Diversity:**
+With 180 points, a player can:
+*   **Max 2 Stats** to 99 (Pure Specialist).
+*   **Soft-Cap 4 Stats** to 40 (Versatile Hybrid).
+
+**Technical Implication:**
+*   *The Event Listener:* The Combat System emits `OnDamageDealt(Source="Sword", Amount=50)`. The Player class listens, adds XP to `Sword_Skill`. If `Sword_Skill` levels up, check if `Character_Level` should also level up.
